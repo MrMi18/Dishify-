@@ -1,0 +1,2 @@
+const resApi = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.174214&lng=79.0600207";
+const cloudinaryUrl = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";

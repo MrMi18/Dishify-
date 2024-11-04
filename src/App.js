@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import Header from "./Components/Header"
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
+import FoodItems from "./Components/FoodItems";
 
 
 
@@ -30,6 +31,7 @@ const App = () =>{
         <div>
            
             <Header/>
+            {/* <FoodItems /> */}
             <Main/>
             <Footer/>
         </div>

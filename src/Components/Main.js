@@ -5,11 +5,26 @@ import Shimmer from "./Shimmer"
 
 
 
-const Search = () =>{
+const Search = ({resData,setResData}) =>{
+    console.log("pros wala ",resData);
+    const [searchText,setSearchText] = useState("");
+    console.log(searchText);
     return(
         <div style={{padding:"1.5rem", width:"90%" }}>
-            <input style={{padding:"10px", width:"70%", marginLeft:"2rem" }} type="Text" placeholder="Search for 'Burger'"></input>
-            <button style={{padding:"10px", width:"10%" , marginLeft:"2rem" }} >Search</button>
+            <input onChange={(e) =>{
+                setSearchText(e.target.value)
+            }} value={searchText} style={{padding:"10px", width:"70%", marginLeft:"2rem" }} type="Text" placeholder="Search for 'Burger'">
+            </input>
+            <button onClick={() =>{  
+              const search =   resData.filter(
+                (res) => res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+                    
+                );
+                setResData(search)
+                console.log("Search data",search);
+                                                
+            }}
+            style={{padding:"10px", width:"10%" , marginLeft:"2rem" }} >Search</button>
         </div>
     )
 
@@ -35,7 +50,7 @@ const Main = () =>{
         const data = await fetch(API_URL);
         const json = await data.json();
 
-        console.log(json);
+       
 
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResData(API_DATA);
@@ -47,8 +62,9 @@ const Main = () =>{
     }
     
     return (
+        
         <div style={{width:"100vw",textAlign:"center"}}>
-            <Search/>
+            <Search resData={allResData} setResData={setResData}/>
          <div style={{display:"flex", gap:"1.5rem", justifyContent:"center"}}>
             <button onClick={() =>{
               const topRes =   resData.filter((res) => res.info.avgRating>4);

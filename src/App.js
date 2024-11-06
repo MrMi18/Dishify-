@@ -4,13 +4,10 @@ import Header from "./Components/Header"
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import FoodItems from "./Components/FoodItems";
-
-
-
-
-
-
-
+import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+import About from "./Components/About";
+import Error from "./Components/Error";
+import Contact from "./Components/Contact";
 
 // Navbar Section
 
@@ -20,27 +17,49 @@ import FoodItems from "./Components/FoodItems";
 
 //2 - Cards Sections 
 
-
-
-
-
-
-
 const App = () =>{
      return (
         <div>
            
             <Header/>
-            <FoodItems />
-            <Main/>
+            <Outlet />
+            
             <Footer/>
         </div>
         
         )
 }
 
+const appRouter = createBrowserRouter([
+
+    {
+        path:"/",
+        element:<App/>,
+        
+        children:[
+            {
+                path:"/About",
+                element: <About/>
+            },
+            {
+                 path:"/",
+                 element:<Main/>,
+                 
+            },
+            {
+                path:"/Contact",
+                element:<Contact/>
+            },
+                      
+        ],
+        errorElement:<Error/>,
+            
+        
+    },
+    
+])
 
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<RouterProvider router={appRouter} />);

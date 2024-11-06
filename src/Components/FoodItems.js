@@ -36,13 +36,13 @@ const FoodItems = () =>{
     return (
         <div>
             <h2>Popular Food Items </h2>
-            <div>
+            <div className="food-logos" style={{display:"flex",width:"100vw"}}>
                 {
                   foodItemsList.map(res =>{
                     const source = foodImageUrl+"/"+res?.imageId;
-                    
-                    <img  style={{height:"100px", width:"100px"}}  src={source} alt={res.text}></img>
-                    console.log(source);
+                    return( <img key={res.id} style={{width:"8rem"}}  src={source} alt={res.text}/>
+                   )
+                   console.log(source);
                   })
                    
                 }

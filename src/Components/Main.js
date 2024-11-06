@@ -2,6 +2,7 @@ import Cards from "./Cards"
 import { API_URL} from "../utils/constant"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
+import FoodItems from "./FoodItems"
 
 
 
@@ -13,7 +14,7 @@ const Search = ({resData,setResData}) =>{
         <div style={{padding:"1.5rem", width:"90%" }}>
             <input onChange={(e) =>{
                 setSearchText(e.target.value)
-            }} value={searchText} style={{padding:"10px", width:"70%", marginLeft:"2rem" }} type="Text" placeholder="Search for 'Burger'">
+            }} value={searchText} style={{padding:"10px", width:"70%", marginLeft:"2rem" }} type="Text" placeholder="Search for resturant">
             </input>
             <button onClick={() =>{  
               const search =   resData.filter(
@@ -64,6 +65,7 @@ const Main = () =>{
     return (
         
         <div style={{width:"100vw",textAlign:"center"}}>
+            
             <Search resData={allResData} setResData={setResData}/>
          <div style={{display:"flex", gap:"1.5rem", justifyContent:"center"}}>
             <button onClick={() =>{

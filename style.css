@@ -15,3 +15,13 @@
      border-radius:1rem;
      background-color: #f0f0f0;
 }
+.shimmer-logo{
+    width:8rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+.food-logos{
+    overflow:scroll;
+    
+}

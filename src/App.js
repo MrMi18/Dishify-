@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Error from "./Components/Error";
 import Contact from "./Components/Contact";
+import ResMenu from "./Components/ResMenu";
 
 // Navbar Section
 
@@ -50,12 +51,17 @@ const appRouter = createBrowserRouter([
                 path:"/Contact",
                 element:<Contact/>
             },
+            {
+                path:"/ResturantMenu/:resId",
+                element:<ResMenu/>
+            }
                       
         ],
         errorElement:<Error/>,
             
         
     },
+    
     
 ])
 

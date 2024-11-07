@@ -11,7 +11,7 @@ const Cards = (props) =>{
         <div className = "card" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
       
           }}>
-            <img style={{width:"100%",height:"12rem",objectFit:"fill",borderRadius:"1rem"}}  src={imagUrl+cloudinaryImageId}  alt="Food Image"></img>
+            <img style={{width:"100%",height:"13rem",objectFit:"cover",borderRadius:"1rem"}}  src={imagUrl+cloudinaryImageId}  alt="Food Image"></img>
             <div style={{display:"flex",flexDirection:"column", alignItems:"start",}}>
              <h4 style={{padding:".5rem", textAlign: "left",fontFamily:"cursive"}}>{name}</h4>
              <h4 style={{ padding: ".5rem", textAlign: "left", fontFamily: "cursive" }}>

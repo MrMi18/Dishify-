@@ -2,8 +2,9 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: ProximaNova, arial, Helvetica Neue, sans-serif;;
 }
-.card:hover{
+.card:hover {
     
     border: 1px solid #aaaaaa ;
     box-shadow: .2rem .2rem .2rem #aaaaaa;
@@ -24,4 +25,18 @@
 .food-logos{
     overflow:scroll;
     
+}
+.ResturanDetails {
+  
+  font-weight: 700;
+}
+.Bold{
+    font-weight: 700;
+}
+.resturant{
+    border: 1px solid #aaaaaa ;
+    box-shadow: .2.1rem .2rem .2rem #aaaaaa;
+}
+.resturant{
+
 }

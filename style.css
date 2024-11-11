@@ -37,6 +37,13 @@
     border: 1px solid #aaaaaa ;
     box-shadow: .2.1rem .2rem .2rem #aaaaaa;
 }
-.resturant{
+.menuCards>li:hover{
+    cursor: pointer;
+
+}
+.menuCards>li{
+   
+}
+.fullMenu{
 
 }

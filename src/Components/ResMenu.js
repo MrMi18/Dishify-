@@ -8,6 +8,7 @@ import Recommendation from "./Recommendation";
 const ResMenu = () => {
 
     const[menuDetails, setMenuDetails]= useState([]);
+    const[flag, setFlag] = useState([true]);
 
 
 
@@ -35,11 +36,11 @@ const ResMenu = () => {
 
       const {itemCards} = menuDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
       const{cards} = menuDetails?.cards[4].groupedCard.cardGroupMap.REGULAR;
-
+      let count = 0;
       console.log(menuDetails);
      console.log(itemCards);
     return(
-        <div style={{marginTop:"3rem",display:"flex" , flexDirection:"column", alignItems:"center"}}>
+        <div style={{marginTop:"3rem",display:"flex" , flexDirection:"column", alignItems:"center",flexWrap:"wrap"}}>
 
            <h2 style={{paddingBottom:"3rem",marginLeft:"0px"}}>{name}</h2>
            
@@ -67,19 +68,62 @@ const ResMenu = () => {
             
             </div>
             {
-                cards.slice(1,9).map(menuSections => <div><li key="">{menuSections.card.card.title}({menuSections.card.card.itemCards.length})</li>
+               
+                cards.slice(1,9).map((menuSections,index) => {
+
+                    const itemCards = menuSections?.card?.card?.itemCards;
+                    // const active = flag;
+                    return(
+
+                    <div key={itemCards[count++]?.card?.info?.id|| index} >
+                        <div onClick={() =>{
+                            (setFlag(!flag));
+                        }} className="menuCards"  style={{listStyle:"none", display:"flex",justifyContent:"space-between",padding:"1.5rem",marginTop:"2rem", paddingBottom:"0px"
+                            
+                        }}>
+                           <li className="Bold"style={{fontWeight:"700",fontSize:"1.5rem"}}>{menuSections?.card?.card?.title} ({itemCards ? itemCards.length : 0})</li>
+                           <li style={{}}> <svg fill="none" viewBox="0 0 24 24" height="2em" width="2em" ><path fill="currentColor" d="M6.343 7.757L4.93 9.172 12 16.242l7.071-7.07-1.414-1.415L12 13.414 6.343 7.757z"/>
+                            </svg></li>
+                          
+                        </div>
                    
-                   <div>{itemCards.map(details=> 
-                
-                    <Recommendation key={details?.card.info?.id} menu={details?.card.info} size={itemCards.length} /> 
-                        )}
-                        </div> 
-                </div>
-            
-                
-                )
+                    <div className="fullMenu" style={{padding:"2rem"}}>
+                        {flag&&itemCards && itemCards.map(details=> 
+                 
+                     <Recommendation key={details?.card?.info?.id} menu={details?.card?.info} size={itemCards.length} /> 
+                     
+                         )}
+                    </div> 
+                    </div>
+
+                    )
+
+                    
+
+                })
              }
         </div>
     )
 }
 export default ResMenu;
+
+
+// {cards.slice(1, 9).map((menuSection, index) => {
+//     // Fetch itemCards for the current section
+//     const itemCards = menuSection?.card?.card?.itemCards;
+
+//     return (
+//         <div key={index}>
+//             {/* Section title */}
+//             <li>{menuSection?.card?.card?.title} ({itemCards ? itemCards.length : 0})</li>
+            
+//             {/* Display each item in the current section */}
+//             <div>
+//                 {itemCards &&
+//                     itemCards.map((details) => (
+//                         <Recommendation key={details?.card?.info?.id} menu={details?.card?.info} size={itemCards.length} />
+//                     ))}
+//             </div>
+//         </div>
+//     );
+// })}

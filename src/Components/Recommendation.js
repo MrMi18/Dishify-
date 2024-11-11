@@ -14,7 +14,7 @@ const Recommendation = (props) =>{
     return (
         // <div>
         //     <h2>Recommendate ({sizeOfRecom})</h2>
-        <div style={{display:"flex", justifyContent:"space-between",width:"70vw",paddingTop:"3rem",alignItems:"center"}}>
+        <div style={{display:"flex", justifyContent:"space-between",width:"70vw",paddingTop:"3rem"}}>
             
             <div style={{display:"flex", flexDirection:"column",gap:".5rem",width:"60%"}}>
                 {itemAttribute.vegClassifier==="NONVEG"?

@@ -3,6 +3,7 @@ import { API_URL} from "../utils/constant"
 import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import FoodItems from "./FoodItems"
+import { Link, useParams } from "react-router-dom"
 
 
 
@@ -61,6 +62,8 @@ const Main = () =>{
     if(resData.length===0){
         return <Shimmer/>
     }
+
+    
     
     return (
         
@@ -81,7 +84,8 @@ const Main = () =>{
              
             <div style={{display:"flex", gap:"1.5rem", flexWrap:"wrap", justifyContent:"center"}} >
               {
-                resData.map(data => <Cards key={data.info.id}   apiData={data} />)
+                resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}>
+                        <Cards apiData={data} /></Link>)
               }
                
             </div>

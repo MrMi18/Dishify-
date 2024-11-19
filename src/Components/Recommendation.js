@@ -1,11 +1,11 @@
-import { useState,useEffect } from "react";
+
 import { imagUrl } from "../utils/constant";
 
 const Recommendation = (props) =>{
     const{menu,size} = props;
     
     const{name,imageId,description,itemAttribute,price} = menu;
-    
+    console.log("inside Menu ",name)
     // const[sizeOfRecom,setSizeOfRecom]=useState(0);
     // useEffect(() => {
     //     setSizeOfRecom(size);
@@ -17,7 +17,7 @@ const Recommendation = (props) =>{
         <div style={{display:"flex", justifyContent:"space-between",width:"70vw",paddingTop:"3rem"}}>
             
             <div style={{display:"flex", flexDirection:"column",gap:".5rem",width:"60%"}}>
-                {itemAttribute.vegClassifier==="NONVEG"?
+                {itemAttribute?.vegClassifier==="NONVEG"?
                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                    <rect x="1" y="1" width="22" height="22" stroke="red" fill="none" strokeWidth="2"/>
                    <polygon points="12,6 6,18 18,18" fill="red"/>

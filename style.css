@@ -2,12 +2,16 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: ProximaNova, arial, Helvetica Neue, sans-serif;;
+    font-family: ProximaNova, arial, Helvetica Neue, sans-serif;
+    color:black;
 }
 .card:hover {
     
     border: 1px solid #aaaaaa ;
     box-shadow: .2rem .2rem .2rem #aaaaaa;
+}
+.card{
+    
 }
 .shimmer-cards{
     width:14rem;

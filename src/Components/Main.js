@@ -53,10 +53,12 @@ const Main = () =>{
         const json = await data.json();
 
        
-
+        console.log(json);
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResData(API_DATA);
         setAllResData(API_DATA);
+        
+
     };
     
     if(resData.length===0){
@@ -84,7 +86,8 @@ const Main = () =>{
              
             <div style={{display:"flex", gap:"1.5rem", flexWrap:"wrap", justifyContent:"center"}} >
               {
-                resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}>
+                
+                resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}  style={{textDecoration:"none"}}>
                         <Cards apiData={data} /></Link>)
               }
                

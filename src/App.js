@@ -9,6 +9,7 @@ import About from "./Components/About";
 import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import ResMenu from "./Components/ResMenu";
+import Login from "./Components/Login";
 
 // Navbar Section
 
@@ -41,6 +42,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/About",
                 element: <About/>
+            },
+            {
+                path:"/Login",
+                element: <Login/>
             },
             {
                  path:"/",

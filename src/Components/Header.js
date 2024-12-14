@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import Search from "./Search"
+import { useState } from "react";
 
 
 const Header = () =>{
+    const[cartCount,setCartCount] = useState(0);
     return (
          <div style={{display:"flex", justifyContent:"space-between" , backgroundColor:"#0101", alignItems:"center", height:"4rem" , padding:"1.5rem",width:"100vw"}}>
              <div style={{}} >
@@ -16,7 +19,20 @@ const Header = () =>{
                         </li>
                      <li ><Link to="/About">About</Link></li>
                      <li ><Link to="/Login">Login</Link></li>
-                     <li>Portfolio</li>
+                     
+                     <li style={{display:"flex",alignItems:"center"}}>
+                     <svg  viewBox="-1 0 37 32" height="20" width="20" fill="#686b78"><path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>
+                         <div>{cartCount} heey </div>
+                     </svg>
+                            
+                        
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16.5" cy="18.5" r="1.5"/>
+                            <circle cx="9.5" cy="18.5" r="1.5"/>
+                            <path d="M18 16H8a1 1 0 0 1-.958-.713L4.256 6H3a1 1 0 0 1 0-2h2a1 1 0 0 1 .958.713L6.344 6H21a1 1 0 0 1 .937 1.352l-3 8A1 1 0 0 1 18 16zm-9.256-2h8.563l2.25-6H6.944z"/>
+                        </svg>
+                    </li>
+                     
                  </ul>
              </div>
          </div>

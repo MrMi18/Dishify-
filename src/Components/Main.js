@@ -4,35 +4,12 @@ import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 import FoodItems from "./FoodItems"
 import { Link, useParams } from "react-router-dom"
+import Search from "./Search"
 
 
 
-const Search = ({resData,setResData}) =>{
-    console.log("pros wala ",resData);
-    const [searchText,setSearchText] = useState("");
-    console.log(searchText);
-    return(
-        <div style={{padding:"1.5rem", width:"90%" }}>
-            <input onChange={(e) =>{
-                setSearchText(e.target.value)
-            }} value={searchText} style={{padding:"10px", width:"70%", marginLeft:"2rem" }} type="Text" placeholder="Search for resturant">
-            </input>
-            <button onClick={() =>{  
-              const search =   resData.filter(
-                (res) => res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
-                    
-                );
-                setResData(search)
-                console.log("Search data",search);
-                                                
-            }}
-            style={{padding:"10px", width:"10%" , marginLeft:"2rem" }} >Search</button>
-        </div>
-    )
-
-}
 const Main = () =>{
-    
+   
     const [resData,setResData] = useState([]);
     const [allResData, setAllResData] = useState([]);
 
@@ -55,6 +32,7 @@ const Main = () =>{
        
         console.log(json);
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        console.log(API_DATA);
         setResData(API_DATA);
         setAllResData(API_DATA);
         
@@ -70,6 +48,7 @@ const Main = () =>{
     return (
         
         <div style={{width:"100vw",textAlign:"center"}}>
+             <FoodItems />
             
             <Search resData={allResData} setResData={setResData}/>
          <div style={{display:"flex", gap:"1.5rem", justifyContent:"center"}}>

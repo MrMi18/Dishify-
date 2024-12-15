@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer"
 import FoodItems from "./FoodItems"
 import { Link, useParams } from "react-router-dom"
 import Search from "./Search"
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 
 
@@ -12,6 +13,7 @@ const Main = () =>{
    
     const [resData,setResData] = useState([]);
     const [allResData, setAllResData] = useState([]);
+    const onlineStatus = useOnlineStatus();
 
     const availableRes  = () =>{
         const openRes = resData.filter((res) => res.info.availability.opened===true);
@@ -45,7 +47,15 @@ const Main = () =>{
 
     
     
-    return (
+   if(onlineStatus === false){
+     return(  
+     <div>
+        <h1 className="h-4/5 w-3/4 decoration-red-500 place-content-center">Hey You are offline please connect with internet connection</h1>
+     </div>)
+   }
+
+
+     return (
         
         <div style={{width:"100vw",textAlign:"center"}}>
              <FoodItems />

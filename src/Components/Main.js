@@ -16,7 +16,7 @@ const Main = () =>{
     const onlineStatus = useOnlineStatus();
 
     const availableRes  = () =>{
-        const openRes = resData.filter((res) => res.info.availability.opened===true);
+        const openRes =  resData && resData.filter((res) => res.info.availability.opened===true);
         setResData(openRes);
     };
     const reset = () =>{
@@ -41,7 +41,7 @@ const Main = () =>{
 
     };
     
-    if(resData.length===0){
+    if(resData && resData.length===0){
         return <Shimmer/>
     }
 
@@ -49,8 +49,8 @@ const Main = () =>{
     
    if(onlineStatus === false){
      return(  
-     <div>
-        <h1 className="h-4/5 w-3/4 decoration-red-500 place-content-center">Hey You are offline please connect with internet connection</h1>
+     <div className="flex justify-center items-center h-72 w-screen">
+        <h1 className="text-lg">Hey You are offline please connect with internet connection</h1>
      </div>)
    }
 
@@ -63,7 +63,7 @@ const Main = () =>{
             <Search resData={allResData} setResData={setResData}/>
          <div style={{display:"flex", gap:"1.5rem", justifyContent:"center"}}>
             <button onClick={() =>{
-              const topRes =   resData.filter((res) => res.info.avgRating>4);
+              const topRes =   resData && resData.filter((res) => res.info.avgRating>4);
               setResData(topRes) 
              }} style={{padding:".5rem", border:"white", borderRadius:"2rem" }}>Top Restaurant</button>
 
@@ -76,7 +76,7 @@ const Main = () =>{
             <div style={{display:"flex", gap:"1.5rem", flexWrap:"wrap", justifyContent:"center"}} >
               {
                 
-                resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}  style={{textDecoration:"none"}}>
+                resData && resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}  style={{textDecoration:"none"}}>
                         <Cards apiData={data} /></Link>)
               }
                

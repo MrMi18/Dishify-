@@ -1,11 +1,12 @@
 
 import { imagUrl } from "../utils/constant";
 
-const Recommendation = (props) =>{
-    const{menu,size} = props;
+const Recommendation = ({menu}) =>{
+    // const{menu,size} = props;
+    // console.log(menu);
     
     const{name,imageId,description,itemAttribute,price} = menu;
-    console.log("inside Menu ",name)
+   
     // const[sizeOfRecom,setSizeOfRecom]=useState(0);
     // useEffect(() => {
     //     setSizeOfRecom(size);

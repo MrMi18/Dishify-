@@ -15,7 +15,7 @@ const Recommendation = ({menu}) =>{
     return (
         // <div>
         //     <h2>Recommendate ({sizeOfRecom})</h2>
-        <div style={{display:"flex", justifyContent:"space-between",width:"70vw",paddingTop:"3rem"}}>
+        <div className="flex m-2 mx-auto ">
             
             <div style={{display:"flex", flexDirection:"column",gap:".5rem",width:"60%"}}>
                 {itemAttribute?.vegClassifier==="NONVEG"?
@@ -37,7 +37,7 @@ const Recommendation = ({menu}) =>{
             </div>
             <div style={{display:"flex",flexDirection:"column",width:"15rem",textAlign:"center",gap:"1rem"}}>
                 <img style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>
-                <button style={{padding:".7rem 2.5rem", width:"fit-content",marginLeft:"25%",backgroundColor:"white",color:"green", fontWeight:"800",borderRadius:"1rem",fontSize:"1.1rem",
+                <button className="hover:bg-green-500"  style={{padding:".7rem 2.5rem", width:"fit-content",marginLeft:"25%",backgroundColor:"white",color:"green", fontWeight:"800",borderRadius:"1rem",fontSize:"1.1rem",
                     marginTop:"-2.5rem", borderColor:"#D9DADB"
                 }}>ADD</button>
                 <p style={{color:"#aaaaaa"}}>Customisable</p>

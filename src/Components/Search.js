@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Search = ({resData,setResData}) =>{
-    console.log("pros wala ",resData);
+    // console.log("props wala ",resData);
     const [searchText,setSearchText] = useState("");
     console.log(searchText);
     return(
@@ -16,7 +16,7 @@ const Search = ({resData,setResData}) =>{
                     
                 );
                 setResData(search)
-                console.log("Search data",search);
+                // console.log("Search data",search);
                                                 
             }}
             style={{padding:"10px", width:"10%" , marginLeft:"2rem" }} >Search</button>

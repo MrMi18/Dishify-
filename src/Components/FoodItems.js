@@ -28,11 +28,11 @@ const FoodItems = () =>{
    const fetchData = async() =>{
        const data = await fetch(API_URL);
         const json = await data.json();
-        console.log(json);
+        // console.log(json);
         setFoodItemList (json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
 
 
-        console.log(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
+        // console.log(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
         
         
 
@@ -46,10 +46,13 @@ const FoodItems = () =>{
                     const source = foodImageUrl+"/"+item?.imageId;
                     const entityId  = item?.entityId;
                     
-                    collection_id = entityId && entityId.split("=").length>1 && collectionString[1].split("&")[0];
+                    let collectionString = entityId && entityId.split("=");
+                    
+                    let collection_id = collectionString.length>1&& collectionString[1].split("&")[0];
                    
+                    console.log(collectionString);
                      
-                    console.log(collection_id);
+                    // console.log(collection_id);
                     return( <Link key={item?.id} to={"/collection/"+collection_id}>
                         <img className="w-10" style={{width:"8rem"}}  src={source} alt={item?.accessibility?.alttext}/></Link>
                    )

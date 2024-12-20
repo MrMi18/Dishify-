@@ -40,8 +40,12 @@ const Main = () =>{
         setAllResData(API_DATA);
 
         const moreData =  json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setMoreResData(moreData);
+        moreData && setMoreResData(moreData);
         
+        if(!moreData){
+          const altMoreData =  json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+          setMoreResData(altMoreData);
+        }
 
     };
     

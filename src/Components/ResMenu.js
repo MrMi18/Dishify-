@@ -15,7 +15,7 @@ const ResMenu = () => {
 
     const menuDetails = useMenuDetails(resId);
 
-    const[flag, setFlag] = useState([true]);
+    
    
    
     if(menuDetails.length===0) return <Shimmer/>

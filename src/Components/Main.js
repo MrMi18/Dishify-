@@ -33,9 +33,9 @@ const Main = () =>{
         const json = await data.json();
 
        
-        console.log("APna Data "+json.data);
+        
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        console.log(API_DATA);
+        // console.log(API_DATA);
         setResData(API_DATA);
         setAllResData(API_DATA);
 
@@ -61,7 +61,7 @@ const Main = () =>{
      </div>)
    }
 
-
+        
      return (
         
         <div style={{width:"100vw",textAlign:"center"}}>

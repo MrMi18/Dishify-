@@ -10,6 +10,7 @@ import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import ResMenu from "./Components/ResMenu";
 import Login from "./Components/Login";
+import ItemsPage from "./Components/ItemsPage";
 
 // Navbar Section
 
@@ -60,6 +61,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/ResturantMenu/:resId",
                 element:<ResMenu/>
+            },
+            {
+                path:"/collection/:collection_id",
+                element:<ItemsPage/>
             }
                       
         ],

@@ -36,7 +36,7 @@ const Recommendation = ({menu}) =>{
 
             </div>
             <div style={{display:"flex",flexDirection:"column",width:"15rem",textAlign:"center",gap:"1rem"}}>
-                <img style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>
+                <img className = "w-3/12 h-10 " style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>
                 <button className="hover:bg-green-500"  style={{padding:".7rem 2.5rem", width:"fit-content",marginLeft:"25%",backgroundColor:"white",color:"green", fontWeight:"800",borderRadius:"1rem",fontSize:"1.1rem",
                     marginTop:"-2.5rem", borderColor:"#D9DADB"
                 }}>ADD</button>

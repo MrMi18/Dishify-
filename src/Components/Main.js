@@ -84,7 +84,7 @@ const Main = () =>{
          </div>
            
              
-            <div style={{display:"flex", gap:"1.5rem", flexWrap:"wrap", justifyContent:"center"}} >
+            <div className="flex justify-evenly flex-wrap w-10/12 mx-auto p " >
               {
                 
                 resData && resData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}  style={{textDecoration:"none"}}>
@@ -92,7 +92,7 @@ const Main = () =>{
               }
                
             </div>
-            <div style={{display:"flex", gap:"1.5rem", flexWrap:"wrap", justifyContent:"center"}} >
+            <div className="flex justify-evenly flex-wrap w-10/12 mx-auto " >
               {
                 
                 moreResData && moreResData.map(data => <Link to={"/ResturantMenu/"+data.info.id} key={data.info.id}  style={{textDecoration:"none"}}>

@@ -63,7 +63,7 @@ const appRouter = createBrowserRouter([
                 element:<ResMenu/>
             },
             {
-                path:"/collection/:collection_id",
+                path:"/collection/:collection_id/:tags",
                 element:<ItemsPage/>
             }
                       

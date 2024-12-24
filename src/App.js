@@ -11,6 +11,8 @@ import Contact from "./Components/Contact";
 import ResMenu from "./Components/ResMenu";
 import Login from "./Components/Login";
 import ItemsPage from "./Components/ItemsPage";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 // Navbar Section
 
@@ -23,12 +25,13 @@ import ItemsPage from "./Components/ItemsPage";
 const App = () =>{
      return (
         <div>
-           
+           <Provider store={store}>
             <Header/>
             
             <Outlet />
             
             <Footer/>
+         </Provider>
         </div>
         
         )

@@ -14,7 +14,7 @@ const MainMenu = ({cards}) =>{
   };
 
     return(
-        <div className="flex m-2 w-9/12  mx-auto flex-col p-2  ">
+        <div className="flex m-2 w-9/12  mx-auto flex-col p-2    ">
                  {cards && cards.map((menuSection, index) => {
 
                     if( menuSection?.card.card?.["@type"] ==  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"  ){
@@ -23,7 +23,7 @@ const MainMenu = ({cards}) =>{
                       const title = menuSection?.card?.card?.title;
                      const {itemCards } = menuSection?.card?.card;
                     
-                      return (<div key ={menuSection?.card?.card?.title}  >
+                      return (<div key ={menuSection?.card?.card?.title}  className="" >
 
                             <ResMenuHeader title={menuSection?.card?.card?.title} size={itemCards.length} flag = {true} showMenu={showMenu[title]}  toggleMenu={() => toggleMenu(title)}   />
                               {itemCards &&

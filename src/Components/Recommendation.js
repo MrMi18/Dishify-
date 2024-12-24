@@ -1,21 +1,26 @@
 
+import { useDispatch, useSelector } from "react-redux";
 import { imagUrl } from "../utils/constant";
+import { addItems } from "../utils/cartSlice";
 
 const Recommendation = ({menu}) =>{
     // const{menu,size} = props;
     // console.log(menu);
     
     const{name,imageId,description,itemAttribute,price} = menu;
+    console.log(menu);
    
-    // const[sizeOfRecom,setSizeOfRecom]=useState(0);
-    // useEffect(() => {
-    //     setSizeOfRecom(size);
-    // }, [size]);
-    
+    // const cart  = useSelector(store => store.cart.item);
+    const dispatch = useDispatch();
+
+    const addingItem  = (menu) =>{
+        dispatch(addItems(menu));
+    }
+
     return (
         // <div>
         //     <h2>Recommendate ({sizeOfRecom})</h2>
-        <div className="flex m-2 mx-auto ">
+        <div className="flex m-2 mx-auto justify-between  border-b-2">
             
             <div style={{display:"flex", flexDirection:"column",gap:".5rem",width:"60%"}}>
                 {itemAttribute?.vegClassifier==="NONVEG"?
@@ -35,12 +40,14 @@ const Recommendation = ({menu}) =>{
                 <p>{description}</p>
 
             </div>
-            <div style={{display:"flex",flexDirection:"column",width:"15rem",textAlign:"center",gap:"1rem"}}>
-                <img className = "w-3/12 h-10 " style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>
-                <button className="hover:bg-green-500"  style={{padding:".7rem 2.5rem", width:"fit-content",marginLeft:"25%",backgroundColor:"white",color:"green", fontWeight:"800",borderRadius:"1rem",fontSize:"1.1rem",
-                    marginTop:"-2.5rem", borderColor:"#D9DADB"
-                }}>ADD</button>
-                <p style={{color:"#aaaaaa"}}>Customisable</p>
+            <div className="relative m-2" style={{display:"flex",flexDirection:"column",width:"15rem",textAlign:"center",gap:"1rem"}}>
+                   {!imagUrl+imageId?<img className = "w-10/12 h-9/12 " style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>:null} 
+
+                <button onClick={() => addingItem(menu)} 
+                    className="hover:bg-green-400 hover:text-slate-50 border-gray-300 p-2  text-slate-400  w-24 absolute inset-x-1/4 bottom-6  bg-slate-100 rounded-lg font-bold"  >ADD</button>
+                
+                
+                <p className=" " style={{color:"#aaaaaa"}}>Customisable</p>
 
             </div>
 

@@ -5,7 +5,7 @@ const ResMenuHeader = ({title,size,flag,showMenu,toggleMenu}) =>{
    
     return (
         
-        <div className="flex justify-between m-3 border-b-2   " 
+        <div className="flex justify-between m-3 border-b-2 cursor-pointer   " 
         onClick={ toggleMenu }
         >
            {flag?<h1 className="text-lg font-bold my-2">{title} ({size})</h1>:<h1 className="text-base my-1 ml-2">{title} ({size})</h1>} 

@@ -24,7 +24,7 @@ const Header = () =>{
                      <li ><Link to="/About">About</Link></li>
                      <li ><Link to="/Login">Login</Link></li>
 
-                     <li>{cartItem.length}</li>
+                     <li><Link to= "/Cart">{cartItem.length}</Link></li>
 
                      <li className="flex gap-1 items-center">
                      <svg  viewBox="-1 0 37 32" height="20" width="20" fill="#686b78"><path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>  

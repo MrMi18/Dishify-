@@ -8,11 +8,10 @@ const Recommendation = ({menu}) =>{
     // console.log(menu);
     
     const{name,imageId,description,itemAttribute,price} = menu;
-    console.log(menu);
+    
    
-    // const cart  = useSelector(store => store.cart.item);
+    
     const dispatch = useDispatch();
-
     const addingItem  = (menu) =>{
         dispatch(addItems(menu));
     }

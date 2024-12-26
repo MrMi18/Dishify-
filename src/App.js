@@ -13,7 +13,7 @@ import Login from "./Components/Login";
 import ItemsPage from "./Components/ItemsPage";
 import { Provider } from "react-redux";
 import store from "./utils/store";
-
+import Cart from "./Components/cart";
 // Navbar Section
 
 
@@ -45,6 +45,11 @@ const appRouter = createBrowserRouter([
         
         children:[
             {
+                path:"/",
+                element:<Main/>,
+                
+           },
+            {
                 path:"/About",
                 element: <About/>
             },
@@ -53,8 +58,8 @@ const appRouter = createBrowserRouter([
                 element: <Login/>
             },
             {
-                 path:"/",
-                 element:<Main/>,
+                 path:"/Cart",
+                 element:<Cart/>,
                  
             },
             {

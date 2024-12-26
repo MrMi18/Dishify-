@@ -24,7 +24,7 @@ const FoodItems = () =>{
 
    };
     return (
-        <div style={{margin:"3rem"}}>
+        <div className="m-3">
             <h2 className="font-bold m-4 text-2xl py-2">Popular Food Items </h2>
             <div className="flex mx-auto gap-4 w-10/12 overflow" >
                 { 

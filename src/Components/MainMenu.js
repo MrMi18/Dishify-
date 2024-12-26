@@ -18,7 +18,7 @@ const MainMenu = ({cards}) =>{
                  {cards && cards.map((menuSection, index) => {
 
                     if( menuSection?.card.card?.["@type"] ==  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"  ){
-                     { console.log(menuSection?.card?.card?.title)}
+                    //  { console.log(menuSection?.card?.card?.title)}
                      
                       const title = menuSection?.card?.card?.title;
                      const {itemCards } = menuSection?.card?.card;

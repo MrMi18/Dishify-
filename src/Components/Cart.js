@@ -1,36 +1,36 @@
-
 import { useSelector } from "react-redux";
 import CartPage from "./CartPage";
 
-const Cart = () =>{
+
+const Cart = () => {
     const cartItems =  useSelector(store => store.cart.item);
-    
-    console.log("hello")
-    return(
-        //ye div ka changes reflact nai hora  esa nai hai ke iske bilkul hi nai horey apaan refresh waera marre 
-        // or jo tune bola tha wo karre jab dikhra ye 
-        <div className="bg-black  ">
-          
-            <h1>hello </h1>
-            <h1>heyyyyy</h1>
-           <h1>mi   what's up bruhhhh </h1> 
-           <h1>Please show hoja yaar </h1>
+  return (
+    <div className='bg-green-500'>
+      <h1 className=''>hello  mi hhh these is showing please show  bhai please work</h1> 
+      <h1>testing use Selctor pass  testing map failed   map content test: pass 
+        testing failed for some cases next final test : passed  final wala test is it working now yessss   evrything is done 
+        </h1>
+   
+
 
             <div className="border  ">      
                 {
-                    cartItems && cartItems.map(cart =>{
-                                
+                    cartItems && cartItems.map((cart,index )=>{
+                                const key = cart+index;
+                                console.log(key)
                                 return (
                                     //iske dikhre changes live 
-                                    <CartPage {...cart} key={cart.name}/>   
+                                     
+                                    <CartPage {...cart} key={key}/>  
+                                    // <div> heey testing</div> 
                                    
                                 )
                         
                     })
                 } 
             </div>
-       </div>
-    )
-    
+    </div>
+  )
 }
+
 export default Cart;

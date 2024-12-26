@@ -14,6 +14,7 @@ import ItemsPage from "./Components/ItemsPage";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import Cart from "./Components/cart";
+import CheckoutPage from "./Components/CheckoutPage";
 // Navbar Section
 
 
@@ -62,6 +63,12 @@ const appRouter = createBrowserRouter([
                  element:<Cart/>,
                  
             },
+            {
+                 path:"/CheckoutPage",
+                 element:<CheckoutPage/>,
+                 
+            },
+            
             {
                 path:"/Contact",
                 element:<Contact/>

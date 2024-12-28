@@ -39,14 +39,14 @@ const Recommendation = ({menu}) =>{
                 <p>{description}</p>
 
             </div>
-            <div className="relative m-2" style={{display:"flex",flexDirection:"column",width:"15rem",textAlign:"center",gap:"1rem"}}>
-                   {!imagUrl+imageId?<img className = "w-10/12 h-9/12 " style={{objectFit:"cover",border:"1px solid #aaaaaa",borderRadius:".9rem"}} src={imagUrl+imageId} ></img>:null} 
+            <div className="relative m-2 w-36 h-32  ">
+                   {!imagUrl+imageId?<img className = "w-32 h-32 object-cover rounded-xl " src={imagUrl+imageId} ></img>:null} 
 
                 <button onClick={() => addingItem(menu)} 
-                    className="hover:bg-green-400 hover:text-slate-50 border-gray-300 p-2  text-slate-400  w-24 absolute inset-x-1/4 bottom-6  bg-slate-100 rounded-lg font-bold"  >ADD</button>
+                    className="hover:bg-green-400 hover:text-slate-50 border-gray-300 p-1  text-slate-400  w-20 absolute  inset-x-5 bottom-0.5  bg-slate-100 rounded-lg font-bold"  >ADD</button>
                 
                 
-                <p className=" " style={{color:"#aaaaaa"}}>Customisable</p>
+               
 
             </div>
 

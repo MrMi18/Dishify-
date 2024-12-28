@@ -49,7 +49,7 @@ const CartPage = ({ name, description, imageId, defaultPrice, price }) => {
   const title = name.split("(")[0];
 
   return (
-    <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm'>
+    <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm m-1'>
       {/* Product Image */}
       <img
         className='w-20 h-20 object-cover border rounded-lg'
@@ -74,6 +74,7 @@ const CartPage = ({ name, description, imageId, defaultPrice, price }) => {
         </div>
         <span className='font-bold text-gray-700'>₹ {cost / 100}</span>
       </div>
+      
     </div>
   );
 };

@@ -15,6 +15,10 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 import Cart from "./Components/cart";
 import CheckoutPage from "./Components/CheckoutPage";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 // Navbar Section
 
 

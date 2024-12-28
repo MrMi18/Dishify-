@@ -14,7 +14,7 @@ const MainMenu = ({cards}) =>{
   };
 
     return(
-        <div className="flex m-2 w-9/12  mx-auto flex-col p-2    ">
+        <div className="flex m-2 w-8/12  mx-auto flex-col p-2    ">
                  {cards && cards.map((menuSection, index) => {
 
                     if( menuSection?.card.card?.["@type"] ==  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"  ){

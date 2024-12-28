@@ -63,59 +63,121 @@
 
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CartPage from './CartPage';
 
+
 const CheckoutPage = () => {
-  const cartItems = useSelector((store) => store.cart.item);
+     const [isValid , setisValid] = useState(false);
+    const cartItems = useSelector(store => store.cart.item);
+    const subtotal = cartItems.reduce((total, item) => total + (item.price || item.defaultPrice), 0);
+    const gst = subtotal * 0.18; // VAT 18%
+     
 
-  // Calculate Total
-  const subtotal = cartItems.reduce((total, item) => total + (item.price || item.defaultPrice), 0);
-  const vat = subtotal * 0.18; // VAT 18%
-  const total = subtotal + vat;
 
-  return (
-    <div className='flex flex-col lg:flex-row justify-between gap-8 p-6 bg-gray-50'>
-      {/* Cart Section */}
-      <div className='flex-1 bg-white p-6 rounded-lg shadow-md'>
-        <h2 className='text-lg font-semibold mb-4'>Your Cart</h2>
-        <div className='flex flex-col gap-4'>
-          {cartItems &&
-            cartItems.map((cart, index) => {
-              const key = cart + index;
-              return <CartPage {...cart} key={key} />;
-            })}
+    
+    const couponHandler = () =>{
+       if (isValid){
+          total = total-50;
+          console.log(total)
+       }
+    }
+
+    return (
+        <div className="flex flex-col md:flex-row justify-between items-start w-10/12 mx-auto mt-8 gap-8 ">
+            {/* Cart Items Section */}
+            
+            <div className="flex flex-col w-full md:w-8/12 gap-4">
+                <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
+                <div className="border bg-white shadow-md rounded-lg p-4">
+                    
+                    <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm m-1'>
+                              <div>
+                                   <span className='font-bold '>Cart  </span>
+                                   <span className='text-sm text-gray-300 ml-2 '>{cartItems.length} items</span>
+                              </div>
+                              <span><i className="fa-solid fa-trash"></i> Remove all</span>
+                              
+                     </div>
+
+                    {cartItems && cartItems.map((cart, index) => {
+                        const key = cart + index;
+                        return <CartPage {...cart} key={key} />;
+                    })}
+                </div>
+            </div>
+
+            {/* Order Summary and Payment Details */}
+            <div className="flex flex-col w-full md:w-4/12  gap-6 mt-16">
+                {/* Order Summary Card */}
+                <div className="border bg-white shadow-md rounded-lg p-6">
+                    <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+                    <div className="flex justify-between mb-2">
+                        <span>Subtotal</span>
+                        <span>{(subtotal/100).toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                        <span>Shipping</span>
+                        <span className='text-green-400'>Free</span>
+                    </div>
+                    <div className='flex justify-between py-2'>
+                    <span>GST (18%)</span>
+                     <span>₹ {(gst / 100).toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between font-bold text-lg">
+                        <span>Total</span>
+                        <span>₹{(total/100).toFixed(2)}</span>
+                    </div>
+                </div>
+
+                {/* Payment Details Card */}
+                <div className="border bg-white shadow-md rounded-lg p-6">
+                    <h2 className="text-lg font-semibold mb-4">Payment Details</h2>
+
+                    {/* Payment Options */}
+                    <div className="mb-4">
+                        <h3 className="text-sm font-semibold mb-2">Choose Payment Method</h3>
+                        <div className="flex flex-col gap-2">
+                            <label className="flex items-center gap-2">
+                                <input type="radio" name="payment" value="card" className="accent-green-500" />
+                                Credit/Debit Card
+                            </label>
+                            <label className="flex items-center gap-2">
+                                <input type="radio" name="payment" value="paypal" className="accent-green-500" />
+                                Pay With UPI
+                            </label>
+                            <label className="flex items-center gap-2">
+                                <input type="radio" name="payment" value="micoins" className="accent-green-500" />
+                                Pay with MI Coins
+                            </label>
+                        </div>
+                    </div>
+
+                    {/* Coupon Code Section */}
+                    <div className="mt-4">
+                        <h3 className="text-sm font-semibold mb-2">Apply Coupon</h3>
+                        <div className="flex gap-2">
+                            <input onChange={(e) =>{
+                               if(e==='virat18'){
+                                   setisValid(true);
+                               }
+                            }}
+                                type="text"
+                                placeholder="Enter coupon code"
+                                className="border rounded-lg p-2 flex-grow focus:outline-none focus:ring-2 focus:ring-green-400"
+                            />
+                            <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                   onClick={couponHandler()}
+                            >
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      {/* Order Summary Section */}
-      <div className='w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-md h-fit'>
-        <h2 className='text-lg font-semibold mb-4'>Order Summary</h2>
-        <div className='text-sm'>
-          <div className='flex justify-between py-2'>
-            <span>Subtotal</span>
-            <span>₹ {subtotal / 100}</span>
-          </div>
-          <div className='flex justify-between py-2'>
-            <span>Shipping</span>
-            <span className='text-green-500'>Free</span>
-          </div>
-          <div className='flex justify-between py-2'>
-            <span>VAT (18%)</span>
-            <span>₹ {vat / 100}</span>
-          </div>
-          <div className='border-t mt-4 pt-2 flex justify-between font-bold'>
-            <span>Total</span>
-            <span>₹ {total / 100}</span>
-          </div>
-        </div>
-        <button className='w-full bg-green-500 text-white py-2 mt-4 rounded-lg'>
-          Proceed to Checkout
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default CheckoutPage;

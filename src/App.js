@@ -18,6 +18,8 @@ import CheckoutPage from "./Components/CheckoutPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Navbar Section
 
@@ -31,11 +33,13 @@ const App = () =>{
      return (
         <div>
            <Provider store={store}>
+            
             <Header/>
             
             <Outlet />
             
             <Footer/>
+            <ToastContainer />
          </Provider>
         </div>
         

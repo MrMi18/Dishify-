@@ -7,7 +7,7 @@ const Recommendation = ({menu}) =>{
     // const{menu,size} = props;
     // console.log(menu);
     
-    const{name,imageId,description,itemAttribute,price} = menu;
+    const{name,imageId,description,itemAttribute,price,defaultPrice} = menu;
     
    
     
@@ -35,7 +35,7 @@ const Recommendation = ({menu}) =>{
                 
 
                 <p className="Bold">{name}</p>
-                <p className="Bold">₹{price/100}</p>
+                <p className="Bold">₹{price/100||defaultPrice/100}</p>
                 <p>{description}</p>
 
             </div>

@@ -64,26 +64,55 @@
 
 
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import CartPage from './CartPage';
+import { clearItems } from '../utils/cartSlice';
+import { toast } from 'react-toastify';
+import EmptyCart from './EmptyCart';
 
 
 const CheckoutPage = () => {
      const [isValid , setisValid] = useState(false);
-    const cartItems = useSelector(store => store.cart.item);
-    const subtotal = cartItems.reduce((total, item) => total + (item.price || item.defaultPrice), 0);
-    const gst = subtotal * 0.18; // VAT 18%
      
 
-
+   
+    const cartItems = useSelector(store => store.cart.item);
     
-    const couponHandler = () =>{
-       if (isValid){
-          total = total-50;
-          console.log(total)
-       }
+    const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100), 0);
+    const gst = subtotal * 0.18; 
+    const [total , setTotale ] = useState(subtotal+gst);
+
+    const dispatch = useDispatch();
+    const clearingItems  = () =>{
+        dispatch(clearItems());
+        setTotale(0);
+        toast.warning("All Items removed Successfully");
     }
 
+
+    const wrongCoupon = () =>{
+     toast.warning("Invalid coupon or coupon is expiress");
+    }
+    const couponHandler = () =>{
+       if (isValid){
+          if(total>=1000){
+                setTotale(total-50);
+              // console.log(total)     
+               setisValid(!isValid);
+                 toast.success("Congratulations you saved ₹50");
+          }else {
+               toast.warning("Add more items minimum total price should be 1000" );
+           }
+         
+       }
+
+    }
+   
+    if(cartItems.length===0){
+     <EmptyCart/>
+    }else{
+
+   
     return (
         <div className="flex flex-col md:flex-row justify-between items-start w-10/12 mx-auto mt-8 gap-8 ">
             {/* Cart Items Section */}
@@ -97,7 +126,9 @@ const CheckoutPage = () => {
                                    <span className='font-bold '>Cart  </span>
                                    <span className='text-sm text-gray-300 ml-2 '>{cartItems.length} items</span>
                               </div>
-                              <span><i className="fa-solid fa-trash"></i> Remove all</span>
+                              <span onClick={() =>{
+                                   clearingItems();
+                              }} className='cursor-pointer'><i className="fa-solid fa-trash"></i> Remove all</span>
                               
                      </div>
 
@@ -115,7 +146,7 @@ const CheckoutPage = () => {
                     <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
                     <div className="flex justify-between mb-2">
                         <span>Subtotal</span>
-                        <span>{(subtotal/100).toFixed(2)}</span>
+                        <span>{(subtotal).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between mb-2">
                         <span>Shipping</span>
@@ -123,11 +154,11 @@ const CheckoutPage = () => {
                     </div>
                     <div className='flex justify-between py-2'>
                     <span>GST (18%)</span>
-                     <span>₹ {(gst / 100).toFixed(2)}</span>
+                     <span>₹ {(gst ).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between font-bold text-lg">
                         <span>Total</span>
-                        <span>₹{(total/100).toFixed(2)}</span>
+                        <span>₹{(total).toFixed(2)}</span>
                     </div>
                 </div>
 
@@ -159,7 +190,11 @@ const CheckoutPage = () => {
                         <h3 className="text-sm font-semibold mb-2">Apply Coupon</h3>
                         <div className="flex gap-2">
                             <input onChange={(e) =>{
-                               if(e==='virat18'){
+                              // console.log(e.target.value);
+                              let value = e.target.value;
+                               if(value==='virat18'){
+                                  
+                                   
                                    setisValid(true);
                                }
                             }}
@@ -168,7 +203,7 @@ const CheckoutPage = () => {
                                 className="border rounded-lg p-2 flex-grow focus:outline-none focus:ring-2 focus:ring-green-400"
                             />
                             <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                                   onClick={couponHandler()}
+                                   onClick={!isValid?wrongCoupon:couponHandler}
                             >
                                 Apply
                             </button>
@@ -178,6 +213,7 @@ const CheckoutPage = () => {
             </div>
         </div>
     );
+}
 };
 
 export default CheckoutPage;

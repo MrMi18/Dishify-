@@ -13,7 +13,6 @@ import Login from "./Components/Login";
 import ItemsPage from "./Components/ItemsPage";
 import { Provider } from "react-redux";
 import store from "./utils/store";
-import Cart from "./Components/cart";
 import CheckoutPage from "./Components/CheckoutPage";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -85,11 +84,7 @@ const appRouter = createBrowserRouter([
                 path:"/NameInfo",
                 element: <NameInfo/>
             },
-            {
-                 path:"/Cart",
-                 element:<Cart/>,
-                 
-            },
+            
             {
                  path:"/CheckoutPage",
                  element:<CheckoutPage/>,

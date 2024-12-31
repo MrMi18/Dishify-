@@ -14,7 +14,7 @@ const Cart = () => {
 
 
             <div className="border  ">      
-                {
+                {/* {
                     cartItems && cartItems.map((cart,index )=>{
                                 const key = cart+index;
                                 console.log(key)
@@ -27,7 +27,7 @@ const Cart = () => {
                                 )
                         
                     })
-                } 
+                }  */}
             </div>
     </div>
   )

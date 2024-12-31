@@ -71,21 +71,27 @@ import { toast } from 'react-toastify';
 import EmptyCart from './EmptyCart';
 
 
+
 const CheckoutPage = () => {
      const [isValid , setisValid] = useState(false);
      
 
    
-    const cartItems = useSelector(store => store.cart.item);
+    const cartItemsObj = useSelector(store => store.cart.item);
     
+    console.log(cartItemsObj)
+     const cartItems =  Object.values(cartItemsObj);
+     console.log(cartItems)
     const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100), 0);
     const gst = subtotal * 0.18; 
-    const [total , setTotale ] = useState(subtotal+gst);
+    const [total , setTotal ] = useState(subtotal+gst);
+
+    console.log(subtotal,total,gst);
 
     const dispatch = useDispatch();
     const clearingItems  = () =>{
         dispatch(clearItems());
-        setTotale(0);
+        setTotal(0);
         toast.warning("All Items removed Successfully");
     }
 
@@ -96,7 +102,7 @@ const CheckoutPage = () => {
     const couponHandler = () =>{
        if (isValid){
           if(total>=1000){
-                setTotale(total-50);
+                setTotal(total-149);
               // console.log(total)     
                setisValid(!isValid);
                  toast.success("Congratulations you saved ₹50");
@@ -109,7 +115,9 @@ const CheckoutPage = () => {
     }
    
     if(cartItems.length===0){
-     <EmptyCart/>
+      return (
+          <EmptyCart/>
+      )
     }else{
 
    
@@ -131,10 +139,10 @@ const CheckoutPage = () => {
                               }} className='cursor-pointer'><i className="fa-solid fa-trash"></i> Remove all</span>
                               
                      </div>
-
+                       {console.log(cartItems)   }         
                     {cartItems && cartItems.map((cart, index) => {
                         const key = cart + index;
-                        return <CartPage {...cart} key={key} />;
+                        return <CartPage {...cart}     total = {total}  setTotal={setTotal} key={key} />;
                     })}
                 </div>
             </div>

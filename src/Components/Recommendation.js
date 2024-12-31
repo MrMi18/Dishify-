@@ -13,7 +13,7 @@ const Recommendation = ({menu}) =>{
     
     const dispatch = useDispatch();
     const addingItem  = (menu) =>{
-        dispatch(addItems(menu));
+        dispatch(addItems({id : menu.id , data: menu}));
     }
 
     return (

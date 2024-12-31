@@ -24,7 +24,7 @@ const ResMenu = () => {
     } = menuDetails?.cards[2]?.card?.card?.info;
     
       const cards = menuDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-      // console.log(cards);
+      console.log(cards);
       
     return(
       <div >
@@ -73,3 +73,50 @@ const ResMenu = () => {
     )
 }
 export default ResMenu;
+
+
+
+
+// import ResMenuHeader from "./ResMenuHeader";
+// import Recommendation from "./Recommendation";
+// import { useParams } from "react-router-dom";
+// import useMenuDetails from "../utils/useMenuDetails";
+// import { useEffect, useState } from "react";
+// import Shimmer from "./Shimmer";
+
+// const ResMenu = () => {
+//     const { resId } = useParams();
+//     const menuDetails = useMenuDetails(resId);
+    
+//     // if (menuDetails.length === 0) return <Shimmer />;
+
+//     const { name, avgRating, costForTwoMessage, cuisines, areaName, sla, totalRatingsString, availability } = menuDetails?.cards[2]?.card?.card?.info;
+//     const cards = menuDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+//     return (
+//         <div className="flex flex-col items-center my-6">
+//             <h2 className="text-2xl font-bold">{name}</h2>
+//             <div className="border rounded-lg w-6/12 p-4 flex flex-col gap-2 shadow-md">
+//                 <div className="flex gap-2 items-center">
+//                     <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+//                         <circle cx="10" cy="10" r="9" fill="#21973B" />
+//                         <path d="M10 12V8" stroke="white" strokeWidth="2" />
+//                         <path d="M8 10h4" stroke="white" strokeWidth="2" />
+//                     </svg>
+//                     <p>{avgRating}</p>
+//                     <p>({totalRatingsString})</p>
+//                     <p>{costForTwoMessage}</p>
+//                 </div>
+//                 <p className="font-semibold">{cuisines.join(", ")}</p>
+//                 <div className="flex gap-1">
+//                     <p className="font-bold">Outlet:</p>
+//                     <p className="text-gray-600">{areaName}</p>
+//                 </div>
+//                 <p>{availability.opened ? sla.slaString : "Closed & Not Delivering"}</p>
+//             </div>
+//             <MainMenu cards={cards} />
+//         </div>
+//     );
+// };
+
+// export default ResMenu;

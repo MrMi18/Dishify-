@@ -1,40 +1,88 @@
+<circle cx="9.5" cy="18.5" r="1.5"/>
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
-// SocialMediaIcons Component
-const SocialMediaIcons = () => {
-    return (
-        <div style={{ display: "flex", gap: "1rem" }}>
-            <div>
-                <svg style={{ width: "1.5rem" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                    <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path>
-                    <path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"></path>
-                </svg>
-            </div>
-            <div>
-                <svg style={{ width: "1.5rem" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
-                </svg>
-            </div>
-            <div>
-                <svg style={{ width: "1.5rem" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                    <path fill="#03A9F4" d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"></path>
-                </svg>
-            </div>
-        </div>
-    );
-};
-
-// Login Component
 const Login = () => {
+    const loginRequestHandler = () =>{
+        toast.warning("Invalid request login or signup is currently not available ");
+    }
     return (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "40%", gap: "1rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                    <button>Login</button>
-                    <button>Register</button>
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+                {/* Login/Register Toggle */}
+                <div className="flex justify-between mb-6">
+                    <button className="w-1/2 py-2 text-center text-white bg-blue-500 rounded-l-lg hover:bg-blue-600 focus:outline-none">
+                        Login
+                    </button>
+                    <button  onClick={loginRequestHandler}
+                    className="w-1/2 py-2 text-center bg-gray-200 rounded-r-lg hover:bg-gray-300 focus:outline-none">
+                        Register
+                    </button>
                 </div>
-                <div>Sign in with:</div>
-                <SocialMediaIcons />
+
+                {/* Input Fields */}
+                <form className="space-y-4">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email:
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            Password:
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                     onClick={loginRequestHandler}
+                        
+                        className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                        Sign In
+                    </button>
+                </form>
+
+                {/* Social Media Sign-In */}
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600">Or sign in with</p>
+                    <div className="flex justify-center mt-4 space-x-4">
+                        {/* Facebook */}
+                        <button  onClick={loginRequestHandler}
+                         className="p-2 rounded-full text-white">
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z" />
+                                <path
+                                    fill="#fff"
+                                    d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.717-0.095,2.572-0.29"
+                                />
+                            </svg>
+                        </button>
+
+                        {/* Google */}
+                        <button  onClick={loginRequestHandler}
+                        className="p-2 rounded-full text-white">
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <path
+                                    fill="#EA4335"
+                                    d="M24 9.5c-3.14 0-5.98 1.17-8.14 3.1l-6.6-6.6C13.83 2.5 18.61 0 24 0c8.99 0 16.49 5.19 20.3 12.84l-7.6 6.12C34.37 14.07 29.45 9.5 24 9.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -49,13 +49,13 @@ const Main = () =>{
 
     };
     
-    if(resData && resData.length===0){
+    if( resData && resData.length===0){
         return <Shimmer/>
     }
     if(moreResData && moreResData.length===0){
         return <Shimmer/>
     }
-
+    
     
     
    if(onlineStatus === false){
@@ -68,7 +68,7 @@ const Main = () =>{
         
      return (
         
-        <div style={{width:"100vw",textAlign:"center"}}>
+        <div style={{textAlign:"center"}}>
              <FoodItems />
             
             <Search resData={allResData} setResData={setResData}/>

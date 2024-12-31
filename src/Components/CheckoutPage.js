@@ -49,6 +49,9 @@ const CheckoutPage = () => {
        }
 
     }
+    const orderSuccesfull = () =>{
+        toast.success("Order Placed Successfully");
+    }
    
     if(cartItems.length===0){
       return (
@@ -115,15 +118,15 @@ const CheckoutPage = () => {
                         <h3 className="text-sm font-semibold mb-2">Choose Payment Method</h3>
                         <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="card" className="accent-green-500" />
+                                <input type="radio" name="payment" value="card" className="accent-black" />
                                 Credit/Debit Card
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="paypal" className="accent-green-500" />
+                                <input type="radio" name="payment" value="paypal" className="accent-black" />
                                 Pay With UPI
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="micoins" className="accent-green-500" />
+                                <input type="radio" name="payment" value="micoins" className="accent-black" />
                                 Pay with MI Coins
                             </label>
                         </div>
@@ -150,6 +153,12 @@ const CheckoutPage = () => {
                                    onClick={!isValid?wrongCoupon:couponHandler}
                             >
                                 Apply
+                            </button>
+                        </div>
+                        <div className='text-left'>
+                           <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 my-4"
+                                   onClick={orderSuccesfull}
+                             >Checkout 
                             </button>
                         </div>
                     </div>

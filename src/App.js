@@ -40,7 +40,20 @@ const App = () =>{
             <Outlet />
             
             <Footer/>
-            <ToastContainer />
+            <ToastContainer 
+            position="top-right"
+            autoClose={1500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            bodyClassName="toastBody"
+            
+            />
          </Provider>
         </div>
         

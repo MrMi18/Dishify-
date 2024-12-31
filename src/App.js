@@ -20,6 +20,7 @@ import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NameInfo from "./Components/NameInfo";
 
 // Navbar Section
 
@@ -66,6 +67,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/Login",
                 element: <Login/>
+            },
+            {
+                path:"/NameInfo",
+                element: <NameInfo/>
             },
             {
                  path:"/Cart",

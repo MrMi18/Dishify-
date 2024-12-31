@@ -1,48 +1,87 @@
 import { Link } from "react-router-dom";
-import Search from "./Search"
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import store from "../utils/store";
+import { toast } from "react-toastify";
 
-
-const Header = () =>{
-    const cartItem =  useSelector(store => store.cart.item);
-    
+const Login = () => {
+    const loginRequestHandler = () =>{
+        toast.warning("Invalid request  ")
+    }
     return (
-         <div className="flex items-center bg-orange-300 justify-between py-4">
-             <div className="pl-4" >
-            <Link to="/">
-             <svg className="VXJlj" viewBox="0 0 61 61" height="49" width="49"><g clipPath="url(#a)"><path fill="#FF5200" d="M.32 30.5c0-12.966 0-19.446 3.498-23.868a16.086 16.086 0 0 1 2.634-2.634C10.868.5 17.354.5 30.32.5s19.446 0 23.868 3.498c.978.774 1.86 1.656 2.634 2.634C60.32 11.048 60.32 17.534 60.32 30.5s0 19.446-3.498 23.868a16.086 16.086 0 0 1-2.634 2.634C49.772 60.5 43.286 60.5 30.32 60.5s-19.446 0-23.868-3.498a16.086 16.086 0 0 1-2.634-2.634C.32 49.952.32 43.466.32 30.5Z"></path><path fill="#fff" fillRule="evenodd" d="M32.317 24.065v-6.216a.735.735 0 0 0-.732-.732.735.735 0 0 0-.732.732v7.302c0 .414.336.744.744.744h.714c10.374 0 11.454.54 10.806 2.73-.03.108-.066.21-.102.324-.006.024-.012.048-.018.066-2.724 8.214-10.092 18.492-12.27 21.432a.764.764 0 0 1-1.23 0c-1.314-1.776-4.53-6.24-7.464-11.304-.198-.462-.294-1.542 2.964-1.542h3.984c.222 0 .402.18.402.402v3.216c0 .384.282.738.666.768a.73.73 0 0 0 .582-.216.701.701 0 0 0 .216-.516v-4.362a.76.76 0 0 0-.756-.756h-8.052c-1.404 0-2.256-1.2-2.814-2.292-1.752-3.672-3.006-7.296-3.006-10.152 0-7.314 5.832-13.896 13.884-13.896 7.17 0 12.6 5.214 13.704 11.52.006.054.048.294.054.342.288 3.096-7.788 2.742-11.184 2.76a.357.357 0 0 1-.36-.36v.006Z" clipRule="evenodd"></path></g><defs><clipPath id="a"><path fill="#fff" d="M.32.5h60v60h-60z"></path></clipPath></defs></svg>
-              
-             </Link>
-             </div>
-             <div >
-                 <ul className="flex gap-16 text-lg">
-                     <li >
-                       <Link to="/"> Home  </Link>
-                        </li>
-                     <li ><Link to="/About">About</Link></li>
-                     <li ><Link to="/Login">Login</Link></li>
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+                {/* Login/Register Toggle */}
+                <div className="flex justify-between mb-6">
+                    <button className="w-1/2 py-2 text-center text-white bg-blue-500 rounded-l-lg hover:bg-blue-600 focus:outline-none">
+                        Login
+                    </button>
+                    <button className="w-1/2 py-2 text-center bg-gray-200 rounded-r-lg hover:bg-gray-300 focus:outline-none">
+                        Register
+                    </button>
+                </div>
 
-                     <li><Link to= "/Cart">{cartItem.length}</Link></li>
-                     <li><Link to= "/CheckoutPage">Cart</Link></li>
-                     
-                     
+                {/* Input Fields */}
+                <form className="space-y-4">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email:
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            Password:
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
 
-                     <li className="flex gap-1 items-center">
-                     <svg  viewBox="-1 0 37 32" height="20" width="20" fill="#686b78"><path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>  
-                     </svg>
-                      <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="16.5" cy="18.5" r="1.5"/>
-                            <circle cx="9.5" cy="18.5" r="1.5"/>
-                            <path d="M18 16H8a1 1 0 0 1-.958-.713L4.256 6H3a1 1 0 0 1 0-2h2a1 1 0 0 1 .958.713L6.344 6H21a1 1 0 0 1 .937 1.352l-3 8A1 1 0 0 1 18 16zm-9.256-2h8.563l2.25-6H6.944z"/>
-                        </svg>
-                    </li>
-                     
-                 </ul>
-             </div>
-         </div>
-         
-     )
- }
- export default Header;
+                    {/* Submit Button */}
+                    <button
+                     onClick={loginRequestHandler}
+                        type="submit"
+                        className="w-full py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                        Sign In
+                    </button>
+                </form>
+
+                {/* Social Media Sign-In */}
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600">Or sign in with</p>
+                    <div className="flex justify-center mt-4 space-x-4">
+                        {/* Facebook */}
+                        <button className="p-2 bg-blue-600 rounded-full text-white hover:bg-blue-700">
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z" />
+                                <path
+                                    fill="#fff"
+                                    d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.717-0.095,2.572-0.29"
+                                />
+                            </svg>
+                        </button>
+
+                        {/* Google */}
+                        <button className="p-2 bg-red-500 rounded-full text-white hover:bg-red-600">
+                            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <path
+                                    fill="#EA4335"
+                                    d="M24 9.5c-3.14 0-5.98 1.17-8.14 3.1l-6.6-6.6C13.83 2.5 18.61 0 24 0c8.99 0 16.49 5.19 20.3 12.84l-7.6 6.12C34.37 14.07 29.45 9.5 24 9.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;

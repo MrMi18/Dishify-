@@ -136,6 +136,7 @@ const Main = () => {
         fetchData();
     }, []);
 
+   
     const fetchData = async () => {
         const data = await fetch(API_URL);
         const json = await data.json();
@@ -148,10 +149,12 @@ const Main = () => {
             const altMoreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             setMoreResData(altMoreData);
         }
+         
     };
 
-    if (resData.length === 0) return <Shimmer />;
-    if (moreResData.length === 0) return <Shimmer />;
+      
+    if (resData && resData.length === 0) return <Shimmer />;
+    if (moreResData && moreResData.length === 0) return <Shimmer />;
     
     if (onlineStatus === false) {
         return (
@@ -164,24 +167,25 @@ const Main = () => {
     return (
         <div className="w-full text-center">
             <FoodItems />
+            <h1 className="font-bold text-2xl text-left ml-32 my-4  mx-auto">Top Restaurant Chain</h1>
             <Search resData={allResData} setResData={setResData} />
             <div className="flex gap-6 justify-center my-4">
                 <button onClick={() => {
-                    const topRes = resData.filter(res => res.info.avgRating > 4);
+                    const topRes = resData && resData.filter(res => res.info.avgRating > 4);
                     setResData(topRes);
                 }} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Top Restaurant</button>
                 <button onClick={availableRes} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Open Restaurant</button>
                 <button onClick={reset} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Reset Filter</button>
             </div>
             <div className="flex justify-evenly flex-wrap w-10/12 mx-auto p">
-                {resData.map(data => (
-                    <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
-                        <Cards apiData={data} />
-                    </Link>
+                {resData && resData.map(data => (
+                   <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
+                      <Cards apiData={data} />
+                   </Link>
                 ))}
             </div>
             <div className="flex justify-evenly flex-wrap w-10/12 mx-auto">
-                {moreResData.map(data => (
+                {moreResData && moreResData.map(data => (
                     <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
                         <Cards apiData={data} />
                     </Link>

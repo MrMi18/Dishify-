@@ -1,7 +1,8 @@
 const NameInfo = () =>{
     return(
-        <div className="h-screen w-screen flex justify-center items-center flex-col">
-            <div className="flex flex-col gap-2 mx-auto my-auto" >
+        <div className="h-screen w-screen flex justify-center items-center flex-col ">
+            <div className="flex flex-col gap-3 mx-auto my-auto w-3/12" >
+            
             <h3>Name</h3>
             <input type="text"
                placeholder="Enter your name"

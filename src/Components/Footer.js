@@ -66,7 +66,7 @@ const Footer = () =>{
 
 
 
-        <div className='flex gap-4 justify-center py-2 bg-slate-100'>
+        <div className='flex gap-4 justify-center py-2 bg-slate-100 '>
           <div >
             <p >Made with ❤️❤️ By Mr MI</p>
           </div>

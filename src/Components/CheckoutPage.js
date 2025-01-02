@@ -5,6 +5,7 @@ import CartPage from './CartPage';
 import { clearItems } from '../utils/cartSlice';
 import { toast } from 'react-toastify';
 import EmptyCart from './EmptyCart';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,7 +19,7 @@ const CheckoutPage = () => {
     console.log(cartItemsObj)
      const cartItems =  Object.values(cartItemsObj);
      console.log(cartItems)
-    const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100), 0);
+    const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100)*item.quantity, 0);
     const gst = subtotal * 0.18; 
     const [total , setTotal ] = useState(subtotal+gst);
 
@@ -51,6 +52,7 @@ const CheckoutPage = () => {
     }
     const orderSuccesfull = () =>{
         toast.success("Order Placed Successfully");
+       
     }
    
     if(cartItems.length===0){

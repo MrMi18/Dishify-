@@ -138,7 +138,11 @@ const Main = () => {
 
    
     const fetchData = async () => {
-        const data = await fetch(API_URL);
+        const data = await fetch(API_URL)
+
+        
+
+        
         const json = await data.json();
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResData(API_DATA);
@@ -150,6 +154,7 @@ const Main = () => {
             setMoreResData(altMoreData);
         }
          
+
     };
 
       
@@ -158,7 +163,8 @@ const Main = () => {
     
     if (onlineStatus === false) {
         return (
-            <div className="flex justify-center items-center h-72 w-screen">
+            <div className="flex justify-center items-center h-72 w-10/12
+            ">
                 <h1 className="text-lg">Hey You are offline please connect with internet connection</h1>
             </div>
         );

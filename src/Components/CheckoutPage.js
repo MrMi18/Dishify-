@@ -6,6 +6,8 @@ import { clearItems } from '../utils/cartSlice';
 import { toast } from 'react-toastify';
 import EmptyCart from './EmptyCart';
 import { Link } from 'react-router-dom';
+import NameInfo from './NameInfo';
+import OrderPlaced from './OrderPlaced';
 
 
 
@@ -16,14 +18,14 @@ const CheckoutPage = () => {
    
     const cartItemsObj = useSelector(store => store.cart.item);
     
-    console.log(cartItemsObj)
+    // console.log(cartItemsObj)
      const cartItems =  Object.values(cartItemsObj);
-     console.log(cartItems)
+    //  console.log(cartItems)
     const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100)*item.quantity, 0);
     const gst = subtotal * 0.18; 
     const [total , setTotal ] = useState(subtotal+gst);
 
-    console.log(subtotal,total,gst);
+    // console.log(subtotal,total,gst);
 
     const dispatch = useDispatch();
     const clearingItems  = () =>{
@@ -50,11 +52,15 @@ const CheckoutPage = () => {
        }
 
     }
+    const[orderPlaced,setOrderPlaced] = useState(false);
     const orderSuccesfull = () =>{
         toast.success("Order Placed Successfully");
-       
+        setOrderPlaced(true);
+
     }
-   
+    if(orderPlaced){
+        return <OrderPlaced/>
+    }
     if(cartItems.length===0){
       return (
           <EmptyCart/>
@@ -80,7 +86,7 @@ const CheckoutPage = () => {
                               }} className='cursor-pointer'><i className="fa-solid fa-trash"></i> Remove all</span>
                               
                      </div>
-                       {console.log(cartItems)   }         
+                       {/* {console.log(cartItems)   }          */}
                     {cartItems && cartItems.map((cart, index) => {
                         const key = cart + index;
                         return <CartPage {...cart}     total = {total}  setTotal={setTotal} key={key} />;
@@ -158,10 +164,12 @@ const CheckoutPage = () => {
                             </button>
                         </div>
                         <div className='text-left'>
+                          
                            <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 my-4"
                                    onClick={orderSuccesfull}
                              >Checkout 
                             </button>
+                            
                         </div>
                     </div>
                 </div>

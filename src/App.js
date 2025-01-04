@@ -31,7 +31,7 @@ import NameInfo from "./Components/NameInfo";
 
 const App = () =>{
      return (
-        <div>
+        <div >
             {/* <NameInfo/> */}
          <Provider store={store}>
             

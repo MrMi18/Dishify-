@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { foodItemsApi1,foodImageUrl, foodItemsApi2, imagUrl } from "../utils/constant";
+import { itemsPageApi,foodImageUrl, imagUrl } from "../utils/constant";
 import { useParams,Link } from "react-router-dom";
 import Cards from "./Cards";
 
@@ -15,11 +15,11 @@ const ItemsPage =  () =>{
         fetchData();
     },[collection_id])
 
-    const itemsPageApi = foodItemsApi1+collection_id+"&tags="+tags+foodItemsApi2;
+    const itemsPageApi1 = itemsPageApi+"/"+collection_id+"/"+tags;
     // console.log(itemsPageApi.localeCompare("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.174214&lng=79.0600207&collection=149088&tags=layout_FestiveEvent10&sortBy=&filters=&type=rcv2&offset=0&page_type=null"));
-    console.log(itemsPageApi);
+    console.log(itemsPageApi1);
     const fetchData = async () =>{
-        const data = await fetch (itemsPageApi);
+        const data = await fetch (itemsPageApi1);
         const json = await data.json();
         // console.log(json.data);
         // setItemsData(json.data);

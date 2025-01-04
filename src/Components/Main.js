@@ -144,6 +144,7 @@ const Main = () => {
 
         
         const json = await data.json();
+        
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResData(API_DATA);
         setAllResData(API_DATA);

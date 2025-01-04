@@ -3,5 +3,4 @@
 /.parcel-cache
 /rough
 
-# Local Netlify folder
-.netlify
+/swiggy-proxy/node_modules/

@@ -91,7 +91,7 @@ const FoodItems = () => {
     //     }
     // };
 
-    return (
+   if(foodItemsList) return (
         <div className="relative m-3 w-10/12 mx-auto">
             <h2 className="font-bold m-4 text-2xl py-2">Popular Food Items</h2>
             <div className="flex justify-center items-center">
@@ -110,6 +110,7 @@ const FoodItems = () => {
 
                                     return (
                                         <div key={item?.id} className="flex-shrink-0 px-2" style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}>
+                                            {console.log(collection_id,tags)}
                                             <Link to={`/collection/${collection_id}/${tags}`}>
                                                 <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext} />
                                             </Link>

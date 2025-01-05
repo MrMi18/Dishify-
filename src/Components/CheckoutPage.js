@@ -34,6 +34,18 @@ const CheckoutPage = () => {
         toast.warning("All Items removed Successfully");
     }
 
+      const[paymentMode,setPaymentMode] = useState('');
+
+      const paymentRequestHandler = (e) =>{
+        let value = e.target.value;
+        setPaymentMode(e.target.value);
+        if(value==='card') return toast.warning(" Please try with MIcoins Cards are not accepted");
+        if(value==='upi') return toast.warning(" Please try with MIcoins UPI are not accepted");
+        
+      }
+      
+
+
 
     const wrongCoupon = () =>{
      toast.warning("Invalid coupon or coupon is expiress");
@@ -54,11 +66,17 @@ const CheckoutPage = () => {
     }
     const[orderPlaced,setOrderPlaced] = useState(false);
     const orderSuccesfull = () =>{
+        if(paymentMode==='') return toast.warning(" Please add payment method");
+        if(paymentMode==='card') return toast.warning(" Please try with MIcoins Cards are not accepted");
+        if(paymentMode==='upi') return toast.warning(" Please try with MIcoins UPI are not accepted");
         toast.success("Order Placed Successfully");
         setOrderPlaced(true);
-
+        dispatch(clearItems());
+        setTotal(0);
+       
     }
     if(orderPlaced){
+        
         return <OrderPlaced/>
     }
     if(cartItems.length===0){
@@ -126,15 +144,18 @@ const CheckoutPage = () => {
                         <h3 className="text-sm font-semibold mb-2">Choose Payment Method</h3>
                         <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="card" className="accent-black" />
+                                <input type="radio" name="payment" value="card" onChange={paymentRequestHandler}
+                                 className="accent-black" />
                                 Credit/Debit Card
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="upi" className="accent-black" />
+                                <input type="radio" name="payment" value="upi" onChange={paymentRequestHandler}
+                                 className="accent-black" />
                                 Pay With UPI
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="micoins" className="accent-black" />
+                                <input type="radio" name="payment" value="micoins" 
+                                onChange={paymentRequestHandler}className="accent-black" />
                                 Pay with MI Coins
                             </label>
                         </div>

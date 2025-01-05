@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addItems ,addingOneItem, removeItem} from '../utils/cartSlice';
 
 const CartPage = ({ name, description,id, imageId, defaultPrice, price,quantity,total,setTotal}) => {
-  console.log(total);
+  // console.log(total);
   const cost = (price || defaultPrice)/100;
   
   const title = (!name.includes("("))?name:name.split("(")[0];
@@ -44,11 +44,11 @@ const CartPage = ({ name, description,id, imageId, defaultPrice, price,quantity,
       <div className='flex flex-col items-center gap-2'>
         <div className='flex items-center gap-2'>
           <button onClick={()=>clearItem(id)}
-          className='px-2 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>-</button>
+          className='px-3 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>-</button>
           <span className='font-semibold'>{quantity}</span>
            
           <button onClick={()=>addingItem(id)}
-           className='px-2 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>+</button>
+           className='px-3 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>+</button>
         </div>
         <span className='font-bold text-gray-700'>₹ {(cost*quantity).toFixed(2)}</span>
       </div>

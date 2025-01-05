@@ -182,7 +182,7 @@ const Main = () => {
             
             <div className="flex gap-6 justify-center my-4">
                 <button onClick={() => {
-                    const topRes = resData && resData.filter(res => res.info.avgRating > 4);
+                    const topRes = resData && resData.filter(res => res.info.avgRating > 4.5);
                     setResData(topRes);
                 }} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Top Restaurant</button>
                 <button onClick={availableRes} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Open Restaurant</button>

@@ -1,65 +1,59 @@
-// const Shimmer = () =>{
-//     return (
-//         <div style={{textAlign:"center"}}>
-//             {/* <div style={{display:"flex", flexWrap:"wrap",justifyContent:"center",gap:"1.5rem",overflow:"scroll"}}>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-//                 <div className="shimmer-logo"></div>
-                
-
-//             </div> */}
-//             <div style={{padding:"1.5rem", width:"90%" }}>
-//                <input style={{padding:"10px", width:"70%", marginLeft:"2rem", borderColor:"#f4aaa" }} type="Text" ></input>
-//                <span style={{padding:"10px", width:"10%" , marginLeft:"2rem",height:"2rem",backgroundColor:"f0f0f0" }} ></span>
-//            </div>
-//            <div style={{display:"flex", flexWrap:"wrap",justifyContent:"center",gap:"1.5rem"}}>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-//               <div className="shimmer-cards"></div>
-
-//             </div>
-//         </div>
-        
-//     )
-// }
-// export default Shimmer;
-
-const Shimmer = () => {
-    console.log("inside shimmer ui ");
+const Circle = () =>{
     return (
-        <div style={{ textAlign: "center" }}>
-            <div style={{ padding: "1.5rem", width: "90%" }}>
-                <input style={{ padding: "10px", width: "70%", marginLeft: "2rem", borderColor: "#f4aaa" }} type="Text" />
-                <span style={{ padding: "10px", width: "10%", marginLeft: "2rem", height: "2rem", backgroundColor: "f0f0f0" }}></span>
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem" }}>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
-                <div className="shimmer"></div>
+        <div className="w-full">
+           
+
+            <div className="flex  py-10 gap-6 w-9/12 mx-auto">
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
+                <div className="circle "></div>
             </div>
         </div>
+        
     )
+}
+
+const Cards = () =>{
+    return (
+        <div className="pt-10 gap-6 w-10/12 mx-auto flex flex-col items-center ">
+        <div className="p-4 w-6/12 items-center flex gap-4">
+        <input 
+         className="border p-2 w-3/4 rounded"
+         type="text"   
+       />
+       <button className="bg-gray-200  px-10 py-5  rounded ml-2"> 
+      </button>
+     </div>
+     <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem" }}>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+         <div className="shimmer"></div>
+     </div>
+     </div>
+    )
+}
+
+const Shimmer = ({cards,circle}) => {
+   
+    
+
+        
+        if (cards && circle) {return ( <div><Circle/> <Cards /></div>)}
+        if(circle) return   <Circle/>;
+        if (cards) return <Cards />;
 }
 export default Shimmer;

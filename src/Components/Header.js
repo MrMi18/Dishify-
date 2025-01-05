@@ -53,8 +53,9 @@ const Header = () => {
     const cartItem = useSelector(store => store.cart.item);
     
     return (
-        <div className="flex items-center bg-slate-50 shadow-lg h-20 justify-between py-4  ">
-            <div className="pl-4">
+        <div className="w-full  bg-slate-50 shadow-xl h-20 py-4  flex   ">
+        <div className="flex items-center justify-between  w-10/12 mx-auto  ">
+            <div className="">
                 <Link to="/">
                     <div className="h-18 w-32">
                         <img src={logo} className="object-fill   "/>
@@ -62,7 +63,7 @@ const Header = () => {
                 </Link>
             </div>
             <div>
-                <ul className="flex gap-16 text-lg ">
+                <ul className="flex gap-10 text-lg ">
                     <li><Link to="/"> Home </Link></li>
                     <li><Link to="/About">About</Link></li>
                     <li><Link to="/Login">Login</Link></li>
@@ -80,6 +81,7 @@ const Header = () => {
                     <li></li>
                 </ul>
             </div>
+        </div>
         </div>
     );
 }

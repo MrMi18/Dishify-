@@ -63,6 +63,7 @@
 import { useEffect, useState } from "react";
 import { API_URL, foodImageUrl } from "../utils/constant";
 import { Link } from "react-router-dom";
+// import Shimmer from "./Shimmer";
 
 const FoodItems = () => {
     const [foodItemsList, setFoodItemList] = useState([]);
@@ -79,6 +80,8 @@ const FoodItems = () => {
         // console.log(json.data)
     };
 
+    // if(foodItemsList && foodItemsList.length===0) return <Shimmer cards={false} circle ={true} />
+
     // const prevSlide = () => {
     //     if (currentIndex > 0) {
     //         setCurrentIndex(currentIndex - 1);
@@ -92,8 +95,8 @@ const FoodItems = () => {
     // };
 
    if(foodItemsList) return (
-        <div className="relative m-3 w-10/12 mx-auto">
-            <h2 className="font-bold m-4 text-2xl py-2">Popular Food Items</h2>
+        <div className="relative py-4 w-9/12 mx-auto border-b-2 ">
+            <h2 className="font-bold my-4 text-2xl py-2 text-left">Popular Food Items</h2>
             <div className="flex justify-center items-center">
                 {/* <button onClick={prevSlide} className={`absolute left-0 p-2 rounded-full ${currentIndex === 0 ? 'bg-gray-300' : 'bg-gray-700 text-white'}`} disabled={currentIndex === 0}>
                     &#8249;

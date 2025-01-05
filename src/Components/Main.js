@@ -159,9 +159,8 @@ const Main = () => {
     };
 
       
-    if (resData && resData.length === 0) {console.log("hey Shimmer needs to be Called ")
-       return (<Shimmer />)}
-    if (moreResData && moreResData.length === 0) return <Shimmer />;
+    if (resData && resData.length === 0) return (<Shimmer circle={true}  cards ={true} />);
+    if (moreResData && moreResData.length === 0) return <Shimmer circle={false}  cards ={true} />;
     
     if (onlineStatus === false) {
         return (
@@ -175,8 +174,12 @@ const Main = () => {
     return (
         <div className="w-full text-center">
             <FoodItems />
-            <h1 className="font-bold text-2xl text-left ml-32 my-4  mx-auto">Top Restaurant Chain</h1>
-            <Search resData={allResData} setResData={setResData} />
+            <div className="flex w-9/12 py-10  mx-auto items-center justify-between">
+              <h1 className="font-bold text-2xl   ">Top Restaurant Chain</h1>
+              
+              <Search resData={allResData} setResData={setResData} />
+            </div>
+            
             <div className="flex gap-6 justify-center my-4">
                 <button onClick={() => {
                     const topRes = resData && resData.filter(res => res.info.avgRating > 4);
@@ -185,14 +188,14 @@ const Main = () => {
                 <button onClick={availableRes} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Open Restaurant</button>
                 <button onClick={reset} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Reset Filter</button>
             </div>
-            <div className="flex justify-evenly flex-wrap w-10/12 mx-auto p">
+            <div className="flex gap-6 flex-wrap w-9/12 mx-auto justify-center p">
                 {resData && resData.map(data => (
                    <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
                       <Cards apiData={data} />
                    </Link>
                 ))}
             </div>
-            <div className="flex justify-evenly flex-wrap w-10/12 mx-auto">
+            <div className="flex gap-6 flex-wrap w-9/12 mx-auto">
                 {moreResData && moreResData.map(data => (
                     <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
                         <Cards apiData={data} />

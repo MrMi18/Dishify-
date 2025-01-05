@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { itemsPageApi,foodImageUrl, imagUrl } from "../utils/constant";
 import { useParams,Link } from "react-router-dom";
 import Cards from "./Cards";
+import Shimmer from "./Shimmer";
 
 const ItemsPage =  () =>{
 
@@ -34,7 +35,7 @@ const ItemsPage =  () =>{
        
         console.log(cards)
     }
-    
+    if(cards && cards.length===0) return <Shimmer circle={false} cards = {true} />
     return(
         <div className=" w-10/12 mx-auto">
           <div className="py-6 w-9/12 text-left fle px-10 ">

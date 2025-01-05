@@ -18,7 +18,7 @@ const ResMenu = () => {
     
    
    
-    if(menuDetails.length===0) return <Shimmer/>
+    if(menuDetails.length===0) return <Shimmer cards={true} circle={false}/>
 
     const {name,avgRating,costForTwoMessage,cuisines,areaName,sla,totalRatingsString,availability
     } = menuDetails?.cards[2]?.card?.card?.info;

@@ -5,7 +5,12 @@ const Cards = (props) =>{
     const {apiData} = props
     const {name,areaName,cuisines,avgRating,cloudinaryImageId,sla,aggregatedDiscountInfoV3,costForTwo}  = apiData?.info
     
-    const nCuisines = cuisines.slice(0,3);
+    let nCuisines = cuisines.join(", ").length>23?cuisines.join(", ").slice(0,24)+"...":cuisines.join(", ");  
+    
+    const trimmedName = name.length>23?name.slice(0,24)+"...":name;
+    
+      
+  
     
     return (
         <div className = "  hover:shadow-2xl hover:border  my-4" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
@@ -13,7 +18,7 @@ const Cards = (props) =>{
           }}>
             <img style={{width:"100%",height:"13rem",objectFit:"cover",borderRadius:"1rem"}}  src={imagUrl+cloudinaryImageId}  alt="Food Image"></img>
             <div style={{display:"flex",flexDirection:"column", alignItems:"start",}}>
-             <h4 style={{padding:".5rem", textAlign: "left",fontFamily:"cursive"}}>{name}</h4>
+             <h4 style={{padding:".5rem", textAlign: "left",fontFamily:"cursive"}}>{trimmedName}</h4>
              <h4 style={{ padding: ".5rem", textAlign: "left", fontFamily: "cursive" }}>
                {(aggregatedDiscountInfoV3?.header && aggregatedDiscountInfoV3?.subHeader)
                ? `${aggregatedDiscountInfoV3.header} ${aggregatedDiscountInfoV3.subHeader}`
@@ -27,7 +32,7 @@ const Cards = (props) =>{
                 
                 <p >{sla.slaString}</p>
               </div>
-              <p style={{padding:".5rem",textAlign: "left",color:"gray"}}>{nCuisines.join(", ")}</p>
+              <p style={{padding:".5rem",textAlign: "left",color:"gray"}}>{nCuisines}</p>
               <p style={{padding:".5rem",fontFamily:"cursive"}}>{areaName}</p>
             </div>
             

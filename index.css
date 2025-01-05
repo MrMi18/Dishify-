@@ -26,6 +26,9 @@
   }
 
   .shimmer{
-    @apply 
-    w-3/12 h-1/4 bg-slate-200
+    @apply  w-60 h-60  bg-slate-200 
+    border rounded-md 
+  }
+  .circle{
+    @apply  w-20 h-20 border rounded-full bg-slate-200
   }

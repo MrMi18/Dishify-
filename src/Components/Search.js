@@ -33,11 +33,11 @@ const Search = ({ resData, setResData }) => {
     const [searchText, setSearchText] = useState("");
 
     return (
-        <div className="p-4 w-90">
+        <div className="p-4 w-90 ">
             <input 
                 onChange={(e) => setSearchText(e.target.value)} 
                 value={searchText} 
-                className="border p-2 w-3/4 rounded"
+                className="border p-2 w-8/12 rounded"
                 type="text" 
                 placeholder="Search for restaurant" 
             />

@@ -2,5 +2,5 @@
 /dist
 /.parcel-cache
 /rough
-
+/.Test
 /swiggy-proxy/node_modules/

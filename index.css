@@ -32,3 +32,6 @@
   .circle{
     @apply  w-20 h-20 border rounded-full bg-slate-200
   }
+  .cursive{
+    font-family: cursive;
+  }

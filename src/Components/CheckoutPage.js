@@ -130,7 +130,7 @@ const CheckoutPage = () => {
                                 Credit/Debit Card
                             </label>
                             <label className="flex items-center gap-2">
-                                <input type="radio" name="payment" value="paypal" className="accent-black" />
+                                <input type="radio" name="payment" value="upi" className="accent-black" />
                                 Pay With UPI
                             </label>
                             <label className="flex items-center gap-2">

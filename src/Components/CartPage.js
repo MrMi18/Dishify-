@@ -33,8 +33,8 @@ const CartPage = ({ name, description,id, imageId, defaultPrice, price,quantity,
       />
       
       {/* Product Details */}
-      <div className='flex-1 flex flex-col gap-1'>
-        <h3 className='font-semibold text-lg truncate'>{title}</h3>
+      <div className='flex-1 flex flex-col gap-1 w-3/12'>
+        <h3 className='font-semibold text-lg'>{title}</h3>
         <p className='text-sm text-gray-600'>Perfect choice for any occasion</p>
         <p className='text-sm'>Quantity: <span className='font-semibold'>{quantity}</span></p>
         <p className='text-sm'>Price: <span className='font-semibold'>₹ {cost }</span> per item</p>

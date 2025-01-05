@@ -70,20 +70,25 @@ const Recommendation = ({ menu }) => {
     }
 
     return (
-        <div className="flex m-2 mx-auto justify-between border-b-2">
+        <div className="flex m-2 mx-auto justify-between border-b-2 w-[95%] py-4">
             <div style={{ display: "flex", flexDirection: "column", gap: ".5rem", width: "60%" }}>
-                {itemAttribute?.vegClassifier === "NONVEG" ?
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                
+                <p className="font-semibold">{name}</p>
+                 <div className="flex gap-4 items-center">
+                    <p className="font-semibold">₹{price / 100 || defaultPrice / 100}</p>
+                    {itemAttribute?.vegClassifier === "NONVEG" ?
+                    <svg  width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="22" height="22" stroke="red" fill="none" strokeWidth="2" />
                         <polygon points="12,6 6,18 18,18" fill="red" />
                     </svg> :
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="22" height="22" stroke="green" fill="none" strokeWidth="2" />
                         <circle cx="12" cy="12" r="6" fill="green" />
                     </svg>
-                }
-                <p className="font-semibold">{name}</p>
-                <p className="font-semibold">₹{price / 100 || defaultPrice / 100}</p>
+                    }
+
+                 </div>
+                
                 <p>{description}</p>
             </div>
             <div className="relative m-2 w-36 h-32">

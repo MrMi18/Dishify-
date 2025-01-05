@@ -188,14 +188,14 @@ const Main = () => {
                 <button onClick={availableRes} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Open Restaurant</button>
                 <button onClick={reset} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Reset Filter</button>
             </div>
-            <div className="flex gap-6 flex-wrap w-9/12 mx-auto justify-center p">
+            <div className="flex gap-4 flex-wrap w-9/12 mx-auto justify-center ">
                 {resData && resData.map(data => (
                    <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
                       <Cards apiData={data} />
                    </Link>
                 ))}
             </div>
-            <div className="flex gap-6 flex-wrap w-9/12 mx-auto">
+            <div className="flex gap-4 flex-wrap w-9/12 mx-auto justify-center">
                 {moreResData && moreResData.map(data => (
                     <Link to={`/ResturantMenu/${data.info.id}`} key={data.info.id} className="text-decoration-none">
                         <Cards apiData={data} />

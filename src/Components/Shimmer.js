@@ -39,6 +39,7 @@
 // export default Shimmer;
 
 const Shimmer = () => {
+    console.log("inside shimmer ui ");
     return (
         <div style={{ textAlign: "center" }}>
             <div style={{ padding: "1.5rem", width: "90%" }}>
@@ -46,17 +47,17 @@ const Shimmer = () => {
                 <span style={{ padding: "10px", width: "10%", marginLeft: "2rem", height: "2rem", backgroundColor: "f0f0f0" }}></span>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem" }}>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
-                <div className="shimmer-cards"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
+                <div className="shimmer"></div>
             </div>
         </div>
     )

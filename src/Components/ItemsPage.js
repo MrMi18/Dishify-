@@ -28,6 +28,7 @@ const ItemsPage =  () =>{
         // console.log(restaurants);
 
         // setRestaurants(restaurants); event card 
+        
         const {cards} = json?.data;
         setCards(cards);
        

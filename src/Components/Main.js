@@ -159,7 +159,8 @@ const Main = () => {
     };
 
       
-    if (resData && resData.length === 0) return <Shimmer />;
+    if (resData && resData.length === 0) {console.log("hey Shimmer needs to be Called ")
+       return (<Shimmer />)}
     if (moreResData && moreResData.length === 0) return <Shimmer />;
     
     if (onlineStatus === false) {

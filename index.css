@@ -24,3 +24,8 @@
     color: #55636f; /* #10171D */
     font-size: 1.5rem ;
   }
+
+  .shimmer{
+    @apply 
+    w-3/12 h-1/4 bg-slate-200
+  }

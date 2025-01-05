@@ -76,7 +76,7 @@ const FoodItems = () => {
         const data = await fetch(API_URL);
         const json = await data.json();
         setFoodItemList(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-        console.log(json.data)
+        // console.log(json.data)
     };
 
     // const prevSlide = () => {
@@ -110,7 +110,7 @@ const FoodItems = () => {
 
                                     return (
                                         <div key={item?.id} className="flex-shrink-0 px-2" style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}>
-                                            {console.log(collection_id,tags)}
+                                            
                                             <Link to={`/collection/${collection_id}/${tags}`}>
                                                 <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext} />
                                             </Link>

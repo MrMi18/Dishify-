@@ -33,7 +33,7 @@ const Cards = (props) =>{
                 
                 <p >{sla.slaString}</p>
               </div>
-              <p className="font-light text-gray-400 cursive truncate w-[93%] text-left">{nCuisines}</p>
+              <p className="font-light text-md text-gray-400 cursive truncate w-[93%] text-left">{nCuisines}</p>
               <p className=" cursive" >{areaName} </p>
             </div>
             

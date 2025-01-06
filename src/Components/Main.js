@@ -172,7 +172,7 @@ const Main = () => {
     }
 
     return (
-        <div className="w-full text-center">
+        <div className="w-full text-center relative">
             <FoodItems />
             <div className="flex w-9/12 py-10  mx-auto items-center justify-between">
               <h1 className="font-bold text-2xl   ">Top Restaurant Chain</h1>

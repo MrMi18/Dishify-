@@ -1,47 +1,4 @@
-// import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import store from "../utils/store";
-// import logo from "./assets/logo.png";
 
-// const Header = () => {
-//     const cartItem = useSelector(store => store.cart.item);
-
-//     return (
-//         <div className="flex items-center bg-indigo-500 h-20 justify-between px-4">
-//             {/* Logo */}
-//             <div>
-//                 <Link to="/">
-//                     <img src={logo} alt="Logo" className="h-16 w-28 object-contain" />
-//                 </Link>
-//             </div>
-
-//             {/* Navigation */}
-//             <ul className="flex gap-8 text-white text-lg">
-//                 <li>
-//                     <Link to="/" className="hover:text-indigo-300">Home</Link>
-//                 </li>
-//                 <li>
-//                     <Link to="/About" className="hover:text-indigo-300">About</Link>
-//                 </li>
-//                 <li>
-//                     <Link to="/Login" className="hover:text-indigo-300">Login</Link>
-//                 </li>
-//                 <li className="flex items-center gap-1">
-//                     <Link to="/CheckoutPage" className="hover:text-indigo-300">Cart</Link>
-//                     <span>
-//                         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-//                             <circle cx="16.5" cy="18.5" r="1.5" />
-//                             <circle cx="9.5" cy="18.5" r="1.5" />
-//                             <path d="M18 16H8a1 1 0 01-.958-.713L4.256 6H3a1 1 0 010-2h2a1 1 0 01.958.713L6.344 6H21a1 1 0 01.937 1.352l-3 8A1 1 0 0118 16zm-9.256-2h8.563l2.25-6H6.944z" />
-//                         </svg>
-//                     </span>
-//                 </li>
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default Header;
 
 
 
@@ -55,14 +12,18 @@ const Header = () => {
     const micoinshandler = () =>{
         toast.info("You have 10000 MiCoins");
     }
+    const cartItemsObj = useSelector(store => store.cart.item);
+    const cartItems =  Object.values(cartItemsObj);
+    const quantity = cartItems.reduce((itemCount, item) => itemCount + (item.quantity ),0);
+
     
     return (
-        <div className="w-full  bg-slate-50 shadow-xl h-20 py-4  flex   ">
+        <div className="w-full  bg-slate-50 shadow-xl h-20 py-4 top-0 flex fixed z-10  ">
         <div className="flex items-center justify-between  w-10/12 mx-auto  ">
             <div className="">
                 <Link to="/">
                     <div className="h-18 w-32">
-                        <img src={logo} className="object-fill   "/>
+                        <img data-testid = "logo"   src={logo} className="object-fill   "/>
                     </div>
                 </Link>
             </div>
@@ -72,7 +33,7 @@ const Header = () => {
                     <li><Link to="/About">About</Link></li>
                     <li><Link to="/Login">Login</Link></li>
                     <li >
-                        <Link to="/CheckoutPage" className="flex gap-1 items-center" >Cart
+                        <Link to="/CheckoutPage" className="flex gap-1 items-center relative" >Cart
                         <span>
                           <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="16.5" cy="18.5" r="1.5"/>
@@ -80,11 +41,12 @@ const Header = () => {
                             <path d="M18 16H8a1 1 0 0 1-.958-.713L4.256 6H3a1 1 0 0 1 0-2h2a1 1 0 0 1 .958.713L6.344 6H21a1 1 0 0 1 .937 1.352l-3 8A1 1 0 0 1 18 16zm-9.256-2h8.563l2.25-6H6.944z"/>
                           </svg>
                         </span>
+                        <span data-testid ="cartSize" className="absolute -top-1.5 -right-1 bg-orange-500 border rounded-full w-4 px-1  text-white text-start text-xs ">{quantity}</span>
                         </Link>
                     </li>
                     <li className="flex hover:cursor-pointer" onClick={micoinshandler}>
                        <p>MiCoins</p> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef821e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef821e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
                     </li>
                 </ul>
             </div>

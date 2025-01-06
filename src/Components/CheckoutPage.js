@@ -24,6 +24,7 @@ const CheckoutPage = () => {
     const subtotal = cartItems.reduce((total, item) => total + (item.price/100 || item.defaultPrice/100)*item.quantity, 0);
     const gst = subtotal * 0.18; 
     const [total , setTotal ] = useState(subtotal+gst);
+    const quantity = cartItems.reduce((itemCount, item) => itemCount + (item.quantity ),0);
 
     // console.log(subtotal,total,gst);
 
@@ -97,7 +98,7 @@ const CheckoutPage = () => {
                     <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm m-1'>
                               <div>
                                    <span className='font-bold '>Cart  </span>
-                                   <span className='text-sm text-gray-300 ml-2 '>{cartItems.length} items</span>
+                                   <span className='text-sm text-gray-300 ml-2 '>{quantity} items</span>
                               </div>
                               <span onClick={() =>{
                                    clearingItems();

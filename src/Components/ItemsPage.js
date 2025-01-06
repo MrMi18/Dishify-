@@ -37,7 +37,7 @@ const ItemsPage =  () =>{
     }
     if(cards && cards.length===0) return <Shimmer circle={false} cards = {true} />
     return(
-        <div className=" w-10/12 mx-auto">
+        <div className=" w-10/12 mx-auto mt-20">
           <div className="py-6 w-9/12 text-left fle px-10 ">
              <h1 className="font-bold text-3xl  ">{cards[0]?.card?.card.title}</h1>
              <h1>{cards[0]?.card?.card?.description}</h1>

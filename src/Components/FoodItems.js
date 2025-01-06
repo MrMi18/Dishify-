@@ -80,27 +80,39 @@ const FoodItems = () => {
         // console.log(json.data)
     };
 
-    // if(foodItemsList && foodItemsList.length===0) return <Shimmer cards={false} circle ={true} />
+    
 
-    // const prevSlide = () => {
-    //     if (currentIndex > 0) {
-    //         setCurrentIndex(currentIndex - 1);
-    //     }
-    // };
+    const prevSlide = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
 
-    // const nextSlide = () => {
-    //     if (currentIndex < foodItemsList.length - 1) {
-    //         setCurrentIndex(currentIndex + 1);
-    //     }
-    // };
+    const nextSlide = () => {
+        if (currentIndex < foodItemsList.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
+    };
 
    if(foodItemsList) return (
-        <div className="relative py-4 w-9/12 mx-auto border-b-2 ">
+        <div className="relative py-4 w-9/12 mx-auto border-b-2">
             <h2 className="font-bold my-4 text-2xl py-2 text-left">Popular Food Items</h2>
+             <div className="relative flex justify-end">
+
+             <button onClick={prevSlide} className= {` absolute top-1/4 left-2 px-1 z-10 rounded-full ${
+                currentIndex === 0 ? "bg-gray-300" : "bg-gray-700 text-white" }`}
+                disabled={currentIndex === 0} > ◀
+            </button>
+
+
+            <button onClick={nextSlide} className={`absolute top-1/4 right-2 px-1  z-10 rounded-full ${
+                currentIndex >= foodItemsList.length - 6  ? "bg-gray-300": "bg-gray-700 text-white"  }`}
+                disabled={currentIndex >= foodItemsList.length - 6}> ▶
+            </button>
+
+             </div>
             <div className="flex justify-center items-center">
-                {/* <button onClick={prevSlide} className={`absolute left-0 p-2 rounded-full ${currentIndex === 0 ? 'bg-gray-300' : 'bg-gray-700 text-white'}`} disabled={currentIndex === 0}>
-                    &#8249;
-                </button> */}
+                
                 <div className="flex items-center justify-center w-full overflow-x-auto  no-scrollbar">
                     <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * (100 / Math.min(6, foodItemsList.length))}%)` }}>
                         {
@@ -126,9 +138,7 @@ const FoodItems = () => {
                         }
                     </div>
                 </div>
-                {/* <button onClick={nextSlide} className={`absolute right-0 p-2 rounded-full ${currentIndex >= foodItemsList.length - 6 ? 'bg-gray-300' : 'bg-gray-700 text-white'}`} disabled={currentIndex >= foodItemsList.length - 6}>
-                    &#8250;
-                </button> */} 
+                 
             </div>
         </div>
     );

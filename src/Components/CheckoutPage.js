@@ -49,7 +49,9 @@ const CheckoutPage = () => {
 
 
     const wrongCoupon = () =>{
+       
      toast.warning("Invalid coupon or coupon is expiress");
+     
     }
     const couponHandler = () =>{
        if (isValid){
@@ -88,7 +90,7 @@ const CheckoutPage = () => {
 
    
     return (
-        <div className="flex flex-col md:flex-row justify-between items-start w-10/12 mx-auto mt-8 gap-8 ">
+        <div className="flex flex-col md:flex-row justify-between items-start w-10/12 mx-auto  gap-8 mt-28">
             {/* Cart Items Section */}
             
             <div className="flex flex-col w-full md:w-8/12 gap-4">
@@ -124,7 +126,7 @@ const CheckoutPage = () => {
                     </div>
                     <div className="flex justify-between mb-2">
                         <span>Shipping</span>
-                        <span className='text-green-400'>Free</span>
+                        <span className='text-green-400 '><del className='text-sm text-slate-400'>40 </del>Free </span>
                     </div>
                     <div className='flex justify-between py-2'>
                     <span>GST (18%)</span>
@@ -146,17 +148,17 @@ const CheckoutPage = () => {
                         <div className="flex flex-col gap-2">
                             <label className="flex items-center gap-2">
                                 <input type="radio" name="payment" value="card" onChange={paymentRequestHandler}
-                                 className="accent-black" />
+                                 className="accent-green-600" />
                                 Credit/Debit Card
                             </label>
                             <label className="flex items-center gap-2">
                                 <input type="radio" name="payment" value="upi" onChange={paymentRequestHandler}
-                                 className="accent-black" />
+                                 className="accent-green-600" />
                                 Pay With UPI
                             </label>
                             <label className="flex items-center gap-2">
                                 <input type="radio" name="payment" value="micoins" 
-                                onChange={paymentRequestHandler}className="accent-black" />
+                                onChange={paymentRequestHandler}className="accent-green-600" />
                                 Pay with MI Coins
                             </label>
                         </div>
@@ -187,7 +189,7 @@ const CheckoutPage = () => {
                         </div>
                         <div className='text-left'>
                           
-                           <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 my-4"
+                           <button className="bg-green-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-green-600 my-4"
                                    onClick={orderSuccesfull}
                              >Checkout 
                             </button>

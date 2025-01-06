@@ -27,7 +27,7 @@ const ResMenu = () => {
       console.log(cards);
       
     return(
-      <div >
+      <div className="mt-24" >
         <div style={{marginTop:"3rem",display:"flex" , flexDirection:"column", alignItems:"center",flexWrap:"wrap"}}>
 
            <h2 className="text-2xl font-bold m-2">{name}</h2>

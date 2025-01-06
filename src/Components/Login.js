@@ -11,7 +11,7 @@ const Login = () => {
     
     return (
         
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="flex justify-center items-center h-screen bg-gray-100 mt-20">
             <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
                 {/* Login/Register Toggle */}
                 <div className="flex justify-between mb-6">

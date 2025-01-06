@@ -60,6 +60,7 @@
 import { useDispatch } from "react-redux";
 import { addItems } from "../utils/cartSlice";
 import { imagUrl } from "../utils/constant";
+import dummy from "./assets/dummy.jpg"
 
 const Recommendation = ({ menu }) => {
     const { name, imageId, description, itemAttribute, price, defaultPrice } = menu;
@@ -92,8 +93,9 @@ const Recommendation = ({ menu }) => {
                 <p>{description}</p>
             </div>
             <div className="relative m-2 w-36 h-32">
-                <img className="w-32 h-32 object-cover rounded-xl" src={`${imagUrl}${imageId}`} alt="" />
-                <button onClick={() => addingItem(menu)} className="hover:bg-green-400 hover:text-slate-50 border-gray-300 p-1 text-slate-400 w-20 absolute inset-x-5 bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
+                
+                <img className="w-32 h-32 object-cover rounded-xl" src={imageId?`${imagUrl}${imageId}`:dummy} alt="" />
+                <button onClick={() => addingItem(menu)} className="hover:bg-orange-400 hover:text-slate-50 border-gray-300 p-1 text-slate-400 w-20 absolute inset-x-5 bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
             </div>
         </div>
     )

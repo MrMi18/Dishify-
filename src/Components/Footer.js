@@ -6,7 +6,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () =>{
     return(
-      <div className=''>
+      <div className='text-slate-500'>
            <footer className="bg-gray-100 text-white py-10 mt-4 ">
       <div className="container mx-auto grid grid-cols-1 
             md:grid-cols-4 gap-8 w-11/12">
@@ -16,10 +16,12 @@ const Footer = () =>{
           <h4 className=" ml-2 text-md font-bold">By Mr Mi</h4>
         </div>
 
-        <div>
-          <h3 className="text-xl font-bold mb-4">Contacts</h3>
+        <div className='flex flex-col gap-2  '>
+          <h3 className="text-xl font-bold mb-4 ">Contacts</h3>
           <p>Phone: +91 7218316775</p>
-          <p>Email: imran.mohd1910@gmail.com</p>
+          <a href="mailto:imran.mohd1910@gmail.com" className=" hover:underline">
+            imran.mohd1910@gmail.com
+          </a>
           <p>Address: Sadar, Nagpur</p>
         </div>
 
@@ -49,9 +51,9 @@ const Footer = () =>{
           </div>
         </div>
 
-        <div>
+        <div >
           <h3 className="text-xl font-bold mb-4">Services</h3>
-          <ul>
+          <ul className='flex flex-col gap-2'>
             <li><a href="#" className="hover:underline">
               Web Development</a></li>
             <li><a href="#" className="hover:underline">

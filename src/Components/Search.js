@@ -28,8 +28,9 @@
 // export default Search;
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-const Search = ({ resData, setResData }) => {
+const Search = ({ resData, setResData,moreResData,setMoreResData ,allResData}) => {
     const [searchText, setSearchText] = useState("");
 
     return (
@@ -44,7 +45,14 @@ const Search = ({ resData, setResData }) => {
             <button onClick={() => {
                 const search = resData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
                 setResData(search);
-            }} className="bg-blue-500 text-white px-4 py-2 rounded ml-2 hover:bg-blue-600">
+                const searchMore = moreResData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
+                setMoreResData(searchMore);
+                if(search.length===0 && searchMore.length===0){
+                    setMoreResData(allResData);
+                    setResData(allResData);
+                    toast.info("unable to find food and restaurant");
+                }
+            }} className="bg-orange-400 text-white px-4 py-2 rounded ml-2 hover:bg-orange-500">
                 Search
             </button>
         </div>

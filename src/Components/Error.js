@@ -5,7 +5,7 @@ const Error = () => {
     console.log(err);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br bg-black text-white gap-2">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br bg-black text-white gap-2 mt-20">
             <div className="max-w-lg text-center shadow-lg p-8 bg-white bg-opacity-10 rounded-lg backdrop-blur-md">
                 <h1 className="text-7xl font-extrabold mb-4 text-white drop-shadow-md">
                     Oops!

@@ -1,6 +1,6 @@
 const Circle = () =>{
     return (
-        <div className="w-full">
+        <div className="w-full mt-20">
            
 
             <div className="flex  py-10 gap-6 w-9/12 mx-auto">
@@ -21,7 +21,7 @@ const Circle = () =>{
 
 const Cards = () =>{
     return (
-        <div className="py-20 gap-6 w-10/12 mx-auto flex flex-col items-center ">
+        <div className="py-20 gap-6 w-10/12 mx-auto flex flex-col items-center mt-20 ">
         <div className="p-4 w-6/12 items-center flex gap-4">
         <input 
          className="border p-2 w-3/4 rounded"

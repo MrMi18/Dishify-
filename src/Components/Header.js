@@ -41,7 +41,7 @@ const Header = () => {
                             <path d="M18 16H8a1 1 0 0 1-.958-.713L4.256 6H3a1 1 0 0 1 0-2h2a1 1 0 0 1 .958.713L6.344 6H21a1 1 0 0 1 .937 1.352l-3 8A1 1 0 0 1 18 16zm-9.256-2h8.563l2.25-6H6.944z"/>
                           </svg>
                         </span>
-                        <span data-testid ="cartSize" className="absolute -top-1.5 -right-1 bg-orange-500 border rounded-full w-4 px-1  text-white text-start text-xs ">{quantity}</span>
+                        <span data-testid ="cartSize" className="absolute -top-1.5 -right-1 bg-orange-500 border text-center rounded-full w-4 px-0  text-white  text-xs ">{quantity}</span>
                         </Link>
                     </li>
                     <li className="flex hover:cursor-pointer" onClick={micoinshandler}>

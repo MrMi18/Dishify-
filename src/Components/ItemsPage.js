@@ -33,7 +33,7 @@ const ItemsPage =  () =>{
         const {cards} = json?.data;
         setCards(cards);
        
-        console.log(cards)
+       
     }
     if(cards && cards.length===0) return <Shimmer circle={false} cards = {true} />
     return(

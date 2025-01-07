@@ -117,7 +117,9 @@ import { Link } from "react-router-dom";
 import Search from "./Search";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
+
 const Main = () => {
+    
     const [resData, setResData] = useState([]);
     const [allResData, setAllResData] = useState([]);
     const [moreResData, setMoreResData] = useState([]);
@@ -138,13 +140,13 @@ const Main = () => {
 
    
     const fetchData = async () => {
-        const data = await fetch(API_URL)
 
-        
-
+        try{
+          
+        const data = await fetch(API_URL);
         
         const json = await data.json();
-        
+        console.log(json.data);
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResData(API_DATA);
         setAllResData(API_DATA);
@@ -155,9 +157,12 @@ const Main = () => {
             setMoreResData(altMoreData);
         }
          
-
+    }catch (error) {
+        console.error("Error during fetch:", error);
+        alert("Failed to fetch data. Please try again later.");
+    }
     };
-
+    
       
     if (resData && resData.length === 0) return (<Shimmer circle={true}  cards ={true} />);
     if (moreResData && moreResData.length === 0) return <Shimmer circle={false}  cards ={true} />;

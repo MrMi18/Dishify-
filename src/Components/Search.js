@@ -38,9 +38,10 @@ const Search = ({ resData, setResData,moreResData,setMoreResData ,allResData}) =
             <input 
                 onChange={(e) => setSearchText(e.target.value)} 
                 value={searchText} 
-                className="border p-2 w-8/12 rounded"
+                className="border p-2 w-8/12 rounded focus:outline-none focus:ring-2 focus:ring-[#F0BB78]"
                 type="text" 
                 placeholder="Search for restaurant" 
+                
             />
             <button onClick={() => {
                 const search = resData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()));

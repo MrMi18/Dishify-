@@ -14,7 +14,7 @@ const Cards = (props) =>{
   
     
     return (
-        <div className = "border hover:shadow-2xl hover:border   my-4" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
+        <div className = "border border-slate-100 hover:shadow-2xl hover:border   my-4" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
     
           }}>
             <img className=" h-44 w-[100%] object-cover border rounded-xl "  src={imagUrl+cloudinaryImageId}  alt="Food Image"></img>

@@ -3,7 +3,7 @@
 import { use, useState } from "react";
 import { toast } from "react-toastify";
 
-const Search = ({ resData, setResData,allResData}) => {
+const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}) => {
     const [searchText, setSearchText] = useState("");
     const [temp ,setTemp]= useState([]);
 
@@ -18,12 +18,20 @@ const Search = ({ resData, setResData,allResData}) => {
         // return;
         return;
      }
+     if(searchResData){
+        console.log("yes search data is there");
+        console.log(searchResData);
+     }
     
-     const search = resData && resData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()) || 
-        res?.info?.cuisines.join(",").toLowerCase().includes(searchText.toLowerCase()));
-         
-        
-        if(!search &&search && search.length==0){
+     const search = resData && resData.filter(res => (res?.info && res?.info?.name.toLowerCase().includes(searchText.toLowerCase()) ||
+     res?.info?.cuisines.join(",").toLowerCase().includes(searchText.toLowerCase()) ) 
+    //  || 
+    //  (res?.name.toLowerCase().includes(searchText.toLowerCase()) || 
+    //   res?.cuisines.join(",").toLowerCase().includes(searchText.toLowerCase()))
+    );
+
+
+        if(!search  || search.length==0){
             console.log("yeee");
             
              setResData(allResData);
@@ -32,6 +40,7 @@ const Search = ({ resData, setResData,allResData}) => {
              setResData(search);
            
         }
+        
    }
 
 

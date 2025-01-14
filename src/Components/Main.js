@@ -14,12 +14,14 @@ import useAllResData from "../utils/useAllResData";
 
 const Main = () => {
     
-    const [resData, setResData] = useState([]);
+    const [resData, setResData] = useState( []);
     const [allResData, setAllResData] = useState([]);
     const [moreResData, setMoreResData] = useState([]);
     const onlineStatus = useOnlineStatus();
-    const wholeResData = useAllResData();
-    console.log(wholeResData);
+    const wholeResData = useAllResData(); 
+    const[searchResData, setSearchResData] = useState([]);
+    // setSearchResData(wholeResData);
+   
 
     const availableRes = () => {
         const openRes = resData && resData.filter(res => res.info.availability.opened === true);
@@ -47,7 +49,7 @@ const Main = () => {
         // const moreData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const moreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
             console.log(moreData);
-        const allRestaurantData = [...API_DATA, ...moreData];
+        const allRestaurantData = [...API_DATA, ...moreData,...searchResData];
         setResData(allRestaurantData);
         setAllResData(allRestaurantData);
         console.log(allRestaurantData);
@@ -90,7 +92,7 @@ const Main = () => {
             <div className="flex w-9/12 py-10  mx-auto items-center justify-between">
               <h1 className="font-bold text-2xl   ">Top Restaurant Chain</h1>
               
-              <Search allResData={allResData} resData={allResData} setResData={setResData}  />
+              <Search allResData={allResData} resData={allResData} setResData={setResData} setSearchResData={setSearchResData} searchResData={searchResData}  />
             </div>
             
             <div className="flex gap-6 justify-center my-4">

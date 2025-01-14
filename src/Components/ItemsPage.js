@@ -32,6 +32,7 @@ const ItemsPage =  () =>{
         
         const {cards} = json?.data;
         setCards(cards);
+        console.log(cards);
        
        
     }

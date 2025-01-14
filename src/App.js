@@ -20,6 +20,7 @@ import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NameInfo from "./Components/NameInfo";
+import Test from "./Components/Test";
 
 // Navbar Section
 
@@ -84,6 +85,11 @@ const appRouter = createBrowserRouter([
             {
                 path:"/NameInfo",
                 element: <NameInfo/>
+            },
+            
+            {
+                path:"/Test",
+                element: <Test/>
             },
             
             {

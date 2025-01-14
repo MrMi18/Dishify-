@@ -3,7 +3,7 @@ import {imagUrl} from "../utils/constant";
 
 const Cards = (props) =>{
     const {apiData} = props
-    const {name,areaName,cuisines,avgRating,cloudinaryImageId,sla,aggregatedDiscountInfoV3,costForTwo}  = apiData?.info
+    const {name,areaName,cuisines,avgRating,cloudinaryImageId,sla,aggregatedDiscountInfoV3,costForTwo}  = apiData?.info || apiData;
     
     let nCuisines = cuisines.join(", ")
     // .length>21?cuisines.join(", ").slice(0,21)+"...":cuisines.join(", ");  

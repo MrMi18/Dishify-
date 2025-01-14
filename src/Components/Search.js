@@ -3,26 +3,35 @@
 import { use, useState } from "react";
 import { toast } from "react-toastify";
 
-const Search = ({ resData, setResData,moreResData,setMoreResData ,allResData}) => {
+const Search = ({ resData, setResData,allResData}) => {
     const [searchText, setSearchText] = useState("");
     const [temp ,setTemp]= useState([]);
 
 
    const handleSearch = () =>{
+
+     if (!searchText.trim()) {
+        // Reset to all data if the search is empty
+        // setResData(allResData);
+        // setMoreResData(allResData);
+        // toast.info("Showing all restaurants. Please enter a search term.");
+        // return;
+        return;
+     }
     
-            const search = resData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()) || 
-                 res?.info.cuisines.join(",").toLowerCase().includes(searchText.toLowerCase())|| []);
-                
-                const searchMore = moreResData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase())||[]);
-                
-                if(search.length===0 && searchMore.length===0){
-                    setMoreResData(allResData);
-                    setResData(allResData);
-                    toast.info("unable to find food and restaurant");
-                }else{
-                    setResData(search);
-                    setMoreResData(searchMore);
-                }
+     const search = resData && resData.filter(res => res?.info?.name.toLowerCase().includes(searchText.toLowerCase()) || 
+        res?.info?.cuisines.join(",").toLowerCase().includes(searchText.toLowerCase()));
+         
+        
+        if(!search &&search && search.length==0){
+            console.log("yeee");
+            
+             setResData(allResData);
+             toast.info("unable to find food and restaurant");
+        }else{
+             setResData(search);
+           
+        }
    }
 
 

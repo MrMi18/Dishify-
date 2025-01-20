@@ -21,6 +21,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NameInfo from "./Components/NameInfo";
 import Test from "./Components/Test";
+import ContactUs from "./Components/Contact";
+import LoginSignupPage from "./Components/Login";
+
 
 // Navbar Section
 
@@ -31,6 +34,7 @@ import Test from "./Components/Test";
 //2 - Cards Sections 
 
 const App = () =>{
+    
      return (
         <div >
             {/* <NameInfo/> */}
@@ -80,7 +84,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/Login",
-                element: <Login/>
+                element: <LoginSignupPage/>
             },
             {
                 path:"/NameInfo",
@@ -100,7 +104,7 @@ const appRouter = createBrowserRouter([
             
             {
                 path:"/Contact",
-                element:<Contact/>
+                element:<ContactUs/>
             },
             {
                 path:"/ResturantMenu/:resId",

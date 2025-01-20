@@ -12,6 +12,7 @@ export const cloudinaryUrl = "https://media-assets.swiggy.com/swiggy/image/uploa
 
 // constants.js after updating with proxy URLs
 export const API_URL = "https://dishify-1x1o.onrender.com/api/restaurants"; // Proxy for original API_URL
+// export const API_URL = "http://localhost:5000/api/restaurants";
 export const menuAPI = "https://dishify-1x1o.onrender.com/api/menu/"; // Proxy for original menuAPI
 export const itemsPageApi = "https://dishify-1x1o.onrender.com/api/collection"; // Proxy for original foodItemsApi1
 // You don't need foodItemsApi2 because it is a query string part.

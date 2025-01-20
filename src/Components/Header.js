@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from './assets/DeshifyByMrMI.png'
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import ContactUs from "./Contact";
 
 const Header = () => {
     const cartItem = useSelector(store => store.cart.item);
@@ -43,6 +44,11 @@ const Header = () => {
                     <li className="flex hover:cursor-pointer" onClick={micoinshandler}>
                        <p>MiCoins</p> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef821e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+                    </li>
+                    <li>
+                        <Link to="/Contact">
+                              ContactUs
+                        </Link>
                     </li>
                     
                 </ul>

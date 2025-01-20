@@ -40,8 +40,8 @@ const CheckoutPage = () => {
       const paymentRequestHandler = (e) =>{
         let value = e.target.value;
         setPaymentMode(e.target.value);
-        if(value==='card') return toast.warning(" Please try with MIcoins Cards are not accepted");
-        if(value==='upi') return toast.warning(" Please try with MIcoins UPI are not accepted");
+        if(value==='card') return toast.warning(" Please try with MIcoins Cards not accepted");
+        if(value==='upi') return toast.warning(" Please try with MIcoins UPI not accepted");
         
       }
       
@@ -70,8 +70,8 @@ const CheckoutPage = () => {
     const[orderPlaced,setOrderPlaced] = useState(false);
     const orderSuccesfull = () =>{
         if(paymentMode==='') return toast.warning(" Please add payment method");
-        if(paymentMode==='card') return toast.warning(" Please try with MIcoins Cards are not accepted");
-        if(paymentMode==='upi') return toast.warning(" Please try with MIcoins UPI are not accepted");
+        if(paymentMode==='card') return toast.warning(" Please change payment mode cards not accepted try with mi coins");
+        if(paymentMode==='upi') return toast.warning("Please change payment mode cards not accepted try with mi coins");
         toast.success("Order Placed Successfully");
         setOrderPlaced(true);
         dispatch(clearItems());

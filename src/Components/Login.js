@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginSignupPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  
+   const [isLogin, setIsLogin] = useState(true);
+ 
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 mt-10">
@@ -35,13 +39,65 @@ const LoginSignupPage = () => {
 };
 
 const LoginForm = () => {
+  
+    const [emailId,setEmailId] = useState("imran@gmail");
+    const [password, setPassword] = useState("Shane@123");
+    const[loginUser, setLoginUser] = useState({});
+    const[loginFailed,setLoginFailed] = useState("");
+    const navigate = useNavigate(); 
+
+
+    // const checkingUser = async () => {
+    //     try{
+    //         const res = await axios.post("http://localhost:5000/login",{
+    //             email: emailId,
+    //             password: password
+    //         },{withCredentials: true});
+    //         console.log(res.data);
+    //         setLoginUser(res.data);
+    //     }catch(err){
+    //         console.log(err);
+    //         // setAuthFailed("Invalid Credentials");
+    //     }
+        
+      
+        
+    // }
+
+    // useEffect(() => {
+    //   checkingUser();
+    // },[]) 
+
+    const loginHander = async() =>{
+        console.log("we are inside the handler ")
+        try{
+            console.log("we are tring to fetch");
+            const res = await axios.post("http://localhost:5000/login",{
+            emailId: emailId,
+            password: password
+        },{withCredentials: true});
+         
+        setLoginUser(res.data.data);
+        navigate("/");
+        }catch(err){
+            console.error(err);
+            setLoginFailed(err.response.data);
+            console.log(err.response.data);
+        }
+        
+        
+    }
+    console.log(loginUser);
+
   return (
-    <form>
+    <div>
       <div >
         <label className="block text-sm font-medium text-gray-700">Email</label>
         <input
           type="email"
           placeholder="Email"
+          value={emailId}
+          onChange={(e) => setEmailId(e.target.value)}
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
         />
@@ -50,13 +106,16 @@ const LoginForm = () => {
         <label className="block text-sm font-medium text-gray-700 ">Password</label>
         <input
           type="password"
+          value={password}
           placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
         />
       </div>
-      <p className="text-red-600 text-sm ">{}</p>
+      <p className="text-red-600 text-sm ">{loginFailed}</p>
       <button
+      onClick={loginHander}
         type="submit"
         className="w-full py-2 font-semibold text-white bg-[#F97316] rounded-md hover:bg-orange-600 focus:outline-none my-2"
       >
@@ -69,8 +128,8 @@ const LoginForm = () => {
       </div> */}
       
 
-      
-    </form>
+      </div>
+    
   );
 };
 

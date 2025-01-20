@@ -77,7 +77,7 @@ const FoodItems = () => {
         const data = await fetch(API_URL);
         const json = await data.json();
         setFoodItemList(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-        console.log(json.data)
+        // console.log(json.data)
     };
 
     

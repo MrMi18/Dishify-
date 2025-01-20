@@ -3,8 +3,14 @@ import logo from './assets/DeshifyByMrMI.png'
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ContactUs from "./Contact";
+import axios from "axios";
+import { useState,useEffect } from "react";
+import useLoginUser from "../utils/useLoginUser.js";
 
 const Header = () => {
+    
+    
+
     const cartItem = useSelector(store => store.cart.item);
     const micoinshandler = () =>{
         toast.info("You have 10000 MiCoins");
@@ -12,6 +18,9 @@ const Header = () => {
     const cartItemsObj = useSelector(store => store.cart.item);
     const cartItems =  Object.values(cartItemsObj);
     const quantity = cartItems.reduce((itemCount, item) => itemCount + (item.quantity ),0);
+
+    
+    
 
     
     return (
@@ -28,7 +37,11 @@ const Header = () => {
                 <ul className="flex gap-10 text-lg ">
                     <li><Link to="/"> Home </Link></li>
                     <li><Link to="/About">About</Link></li>
-                    <li><Link to="/Login">Login</Link></li>
+                    {
+                        // loginUser?<a>LogOut</a>:
+                        <li><Link to="/Login">Login</Link></li>
+                    }
+                    
                     <li >
                         <Link to="/CheckoutPage" className="flex gap-1 items-center relative" >Cart
                         <span>

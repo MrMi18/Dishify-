@@ -23,17 +23,15 @@ import NameInfo from "./Components/NameInfo";
 import Test from "./Components/Test";
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
+import useLoginUser from "./utils/useLoginUser";
 
 
-// Navbar Section
 
 
-// Main Section
-// 1 - Search Section
-
-//2 - Cards Sections 
 
 const App = () =>{
+    const loginUser = useLoginUser();
+    console.log(loginUser);
     
      return (
         <div >

@@ -44,15 +44,15 @@ const Main = () => {
         const data = await fetch(API_URL);
         
         const json = await data.json();
-        console.log(json.data);
+        // console.log(json.data);
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         // const moreData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const moreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-            console.log(moreData);
+            // console.log(moreData);
         const allRestaurantData = [...API_DATA, ...moreData,...searchResData];
         setResData(allRestaurantData);
         setAllResData(allRestaurantData);
-        console.log(allRestaurantData);
+        // console.log(allRestaurantData);
         
          
     }catch (error) {

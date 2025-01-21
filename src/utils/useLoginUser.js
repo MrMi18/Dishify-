@@ -19,6 +19,6 @@ const useLoginUser= () =>{
     useEffect(() =>{
         user();
     },[]);
-    return loginUser;
+    return {loginUser,setLoginUser};
 }
 export default useLoginUser;

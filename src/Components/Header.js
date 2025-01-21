@@ -1,16 +1,61 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from './assets/DeshifyByMrMI.png'
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ContactUs from "./Contact";
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
+import { UserContext } from "../App";
 import useLoginUser from "../utils/useLoginUser.js";
 
 const Header = () => {
+    const navigate = useNavigate();
+    const [loginLogout,setloginLogout] = useState("");
+    // const [logout,setLogout] = useState(null)
+
+    const { loginUser,setLoginUser }= useContext(UserContext);
+    
+    const LoginLogoutHandling = () =>{
+        //  user?setLoginOrLogout("Logout"):setLoginOrLogout("Login");
+        if(loginUser){
+            setloginLogout("Logout")
+         }else{
+            setloginLogout("Login")
+         }
+        
+    }
+    useEffect(()=>{
+        LoginLogoutHandling()
+    },[loginUser])
     
     
 
+
+    const loginLogoutHandler = async () =>{
+        if(loginUser){
+             try{
+            
+            await axios.post("http://localhost:5000/logout",{},{withCredentials:true});
+            toast.success("User logout succussfull");
+            setLoginUser(null);
+            navigate("/");
+            
+            
+
+        }
+        catch(err){
+            console.error(err);
+        }
+        }else{
+            navigate("/login")
+            
+        }
+        
+       
+       
+    }
+    
+1
     const cartItem = useSelector(store => store.cart.item);
     const micoinshandler = () =>{
         toast.info("You have 10000 MiCoins");
@@ -37,10 +82,6 @@ const Header = () => {
                 <ul className="flex gap-10 text-lg ">
                     <li><Link to="/"> Home </Link></li>
                     <li><Link to="/About">About</Link></li>
-                    {
-                        // loginUser?<a>LogOut</a>:
-                        <li><Link to="/Login">Login</Link></li>
-                    }
                     
                     <li >
                         <Link to="/CheckoutPage" className="flex gap-1 items-center relative" >Cart
@@ -64,6 +105,13 @@ const Header = () => {
                         </Link>
                     </li>
                     
+                     <li> <a className="cursor-pointer " onClick={loginLogoutHandler}>{loginLogout}</a>
+                     </li> 
+                       {/* <li> */}
+                        {/* <Link to="/Login" >{login}</Link></li> */}
+                    
+                     
+                    
                 </ul>
             </div>
         </div>
@@ -71,3 +119,4 @@ const Header = () => {
     );
 }
 export default Header;
+

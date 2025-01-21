@@ -1,10 +1,10 @@
-import React from "react";
+import React, { createContext, useContext,useState,useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./Components/Header"
+import Header from "./Components/Header";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import FoodItems from "./Components/FoodItems";
-import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Error from "./Components/Error";
 import Contact from "./Components/Contact";
@@ -23,27 +23,25 @@ import NameInfo from "./Components/NameInfo";
 import Test from "./Components/Test";
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
-import useLoginUser from "./utils/useLoginUser";
+import useLoginUser from "./utils/useLoginUser.js";
+import axios from "axios";
 
+const UserContext = createContext();
 
+const App = () => {
+  const { loginUser,setLoginUser }= useLoginUser();
+  
+  return (
+    <div>
+      {/* <NameInfo/> */}
+      <UserContext.Provider value={{ loginUser,setLoginUser }}>
+        <Provider store={store}>
+          <Header />
 
+          <Outlet />
 
-
-const App = () =>{
-    const loginUser = useLoginUser();
-    console.log(loginUser);
-    
-     return (
-        <div >
-            {/* <NameInfo/> */}
-         <Provider store={store}>
-            
-            <Header/>
-            
-            <Outlet  />
-            
-            <Footer/>
-            <ToastContainer 
+          <Footer />
+          <ToastContainer
             position="top-right"
             autoClose={1500}
             hideProgressBar={false}
@@ -55,74 +53,64 @@ const App = () =>{
             pauseOnHover
             theme="colored"
             bodyClassName="toastBody"
-            
-            />
-         </Provider>
-        </div>
-        
-        )
-}
+          />
+        </Provider>
+      </UserContext.Provider>
+    </div>
+  );
+};
+export { UserContext };
 
 const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
 
-    {
-        path:"/",
-        element:<App/>,
-        
-        children:[
-            {
-                path:"/",
-                element:<Main/>,
-                
-           },
-    
-           {
-                path:"/About",
-                element: <About/>
-            },
-            {
-                path:"/Login",
-                element: <LoginSignupPage/>
-            },
-            {
-                path:"/NameInfo",
-                element: <NameInfo/>
-            },
-            
-            {
-                path:"/Test",
-                element: <Test/>
-            },
-            
-            {
-                 path:"/CheckoutPage",
-                 element:<CheckoutPage/>,
-                 
-            },
-            
-            {
-                path:"/Contact",
-                element:<ContactUs/>
-            },
-            {
-                path:"/ResturantMenu/:resId",
-                element:<ResMenu/>
-            },
-            {
-                path:"/collection/:collection_id/:tags",
-                element:<ItemsPage/>
-            }
-                      
-        ],
-        errorElement:<Error/>,
-            
-        
-    },
-    
-    
-])
+    children: [
+      {
+        path: "/",
+        element: <Main />,
+      },
 
+      {
+        path: "/About",
+        element: <About />,
+      },
+      {
+        path: "/Login",
+        element: <LoginSignupPage />,
+      },
+      {
+        path: "/NameInfo",
+        element: <NameInfo />,
+      },
 
+      {
+        path: "/Test",
+        element: <Test />,
+      },
+
+      {
+        path: "/CheckoutPage",
+        element: <CheckoutPage />,
+      },
+
+      {
+        path: "/Contact",
+        element: <ContactUs />,
+      },
+      {
+        path: "/ResturantMenu/:resId",
+        element: <ResMenu />,
+      },
+      {
+        path: "/collection/:collection_id/:tags",
+        element: <ItemsPage />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);

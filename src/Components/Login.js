@@ -11,7 +11,7 @@ const LoginSignupPage = () => {
    const { loginUser,setLoginUser } = useContext(UserContext);
 
   if(loginUser){
-    toast.warning("Please logout first");
+    // toast.warning("Please logout first");
     return(navigate("/"));
   }
 
@@ -69,14 +69,14 @@ const LoginForm = () => {
          toast.success("Loging Succesfully"); 
         navigate("/");
         }catch(err){
-            console.error(err);
-            setLoginFailed(err?.response?.data||err.message);
-            console.log(err?.response?.data);
+            // console.error(err);
+            setLoginFailed(err?.response?.data||err.message||"somthing went wrong");
+            
         }
         
         
     }
-    console.log(loginUser);
+    
 
   return (
     <div>
@@ -123,24 +123,63 @@ const LoginForm = () => {
 };
 
 const SignupForm = () => {
+  const [emailId,setEmailId] = useState("imran@gmail");
+  const [password, setPassword] = useState("Shane@123");
+  const[name,setName] = useState("imran");
+  const[signupFailed,setSignupFailed] = useState("");
+  const navigate = useNavigate(); 
+  const [ticked,setTicked] = useState(false);
+  const { loginUser,setLoginUser } = useContext(UserContext);
+  const signupHandler = async() =>{
+   
+    if(!ticked){
+      
+      return ;
+    }
+    try{
+      const res  = await axios.post("http://localhost:5000/Signup",{
+        emailId,
+        password,
+        Name:name
+      },{withCredentials:true});
+     
+       setLoginUser(res.data.data);
+       navigate("/");
+    }
+
+    catch(err){
+
+       
+        setSignupFailed(err?.response?.data?.data||err?.response?.data||"something went wrong");
+    }
+  }
+ const checkBoxHandler = () =>{
+  
+  setTicked(!ticked);
+ }
+  
   return (
-    <form>
+    <div>
       <div>
         <label className="block text-sm font-medium text-gray-700">Username</label>
         <input
           type="text"
+          value={name}
           placeholder="Username"
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
+          onChange={(e) =>{ setName(e.target.value)}}
         />
       </div>
       <div className='my-3'>
         <label className="block text-sm font-medium text-gray-700">Email</label>
         <input
           type="email"
+          value={emailId}
           placeholder="Email"
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
+          onChange={(e) =>{ setEmailId(e.target.value)}}
         />
       </div>
       
@@ -148,23 +187,29 @@ const SignupForm = () => {
         <label className="block text-sm font-medium text-gray-700">Password</label>
         <input
           type="password"
+          value={password}
           placeholder="Password"
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
+          onChange={(e) =>{ setPassword(e.target.value)}}
+          
         />
       </div>
-      <p className="text-red-600 text-sm ">{}hheyeyey</p>
+      <p className="text-red-600 text-sm ">{signupFailed}</p>
       <div className="flex items-center my-3">
-        <input type="checkbox" className="h-4 w-4 text-[#F97316] border-gray-300 rounded" />
+        <input type="checkbox" onChange={checkBoxHandler}  className="h-4 w-4 text-[#F97316] border-gray-300 rounded checked:border-red-600" />
         <label className="ml-2 block text-sm text-gray-700">I agree to the Terms of Service</label>
       </div>
+      {!ticked?<p className="text-red-600 text-sm px-3 -m-1 mb-3 py-1 bg-rose-50 border-red-600 rounded ">Please accept the Terms of Service to proceed</p>:null}
+
       <button
+      onClick={signupHandler}
         type="submit"
         className="w-full py-2 font-semibold text-white bg-[#F97316] rounded-md hover:bg-orange-600 focus:outline-none"
       >
         Signup
       </button>
-    </form>
+    </div>
   );
 };
 

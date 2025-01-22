@@ -6,12 +6,11 @@ const useLoginUser= () =>{
     const user = async() =>{
         try{
         const res= await axios.get("http://localhost:5000/profile/view",{withCredentials:true});
-            console.log(res.data);
             setLoginUser(res.data);
             
     
         }catch(err){
-            console.error(err);
+            console.error(err?.response?.data||"user is not loggedin");
             
          }
         

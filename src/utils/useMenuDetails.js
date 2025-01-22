@@ -17,7 +17,7 @@ const useMenuDetails = (resId) =>{
     
     const json = await data.json();
     
-    console.log(data.json)
+    // console.log(data.json)
 
     setMenuDetails(json.data);
    }

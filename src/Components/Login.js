@@ -47,8 +47,8 @@ const LoginSignupPage = () => {
 
 const LoginForm = () => {
   
-    const [emailId,setEmailId] = useState("imran@gmail");
-    const [password, setPassword] = useState("Shane@123");
+    const [emailId,setEmailId] = useState("");
+    const [password, setPassword] = useState("");
 
     const[loginFailed,setLoginFailed] = useState("");
     const navigate = useNavigate(); 
@@ -123,9 +123,9 @@ const LoginForm = () => {
 };
 
 const SignupForm = () => {
-  const [emailId,setEmailId] = useState("imran@gmail");
-  const [password, setPassword] = useState("Shane@123");
-  const[name,setName] = useState("imran");
+  const [emailId,setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const[name,setName] = useState("");
   const[signupFailed,setSignupFailed] = useState("");
   const navigate = useNavigate(); 
   const [ticked,setTicked] = useState(false);

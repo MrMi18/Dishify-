@@ -24,7 +24,7 @@ const ResMenu = () => {
     } = menuDetails?.cards[2]?.card?.card?.info;
     
       const cards = menuDetails?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-      console.log(cards);
+      // console.log(cards);
       
     return(
       <div className="mt-24" >

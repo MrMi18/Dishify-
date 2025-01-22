@@ -1,53 +1,21 @@
-import { useEffect, useState } from "react";
-import { API_URL, itemsPageApi } from "../utils/constant";
-import Cards from "./Cards";
-import Testing from "./Testing";
-
-
+import { useState } from "react";
 
 const Test = () =>{
+    const [showPopup , setShowPopup] = useState(false);
 
-    const [resData , setResData] = useState([]);
-   const [wholeResData, setWholeResData] = useState([]);
-    useEffect( () =>{
-        fetchData();
-    },[]);
-
-    const fetchData = async () =>{
-        const data = await fetch(API_URL);
-        const json = await data.json();
-        const banner = json?.data?.cards[0]?.card?.card?.imageGridCards?.info;
-        setResData(banner||[]);
-        
-    }
-
-   
-    console.log(wholeResData);
-        
     return (
-        <div className="w-11/12 h-4/5">
-            <h1>Hi</h1>
-            {resData &&
-                resData.map((item, index) => {
-                    const entityId = item?.entityId;
-                    if (entityId) {
-                        const collectionString = entityId.split("=");
-                        const tags = collectionString.length > 1 && collectionString[2].split("&")[0];
-                        const collection_id = collectionString.length > 1 && collectionString[1].split("&")[0];
-                        const itemurl = `${itemsPageApi}/${collection_id}/${tags}`;
-                        // console.log(itemurl);
-
-                        return <Testing key={index} itemurl={itemurl} updateWholeResData={setWholeResData} />
-                    }
-                    return null;
-                })}
+        <div className="h-[100vh] w-[100vw] flex justify-center items-center">
+            <button className="px-4 py-2 bg-gray-900 text-white border rounded-md">Popup</button>
+            <div className="h-32 w-48 bg-slate-400 border rounded-sm hover:shadow-lg flex flex-col justify-center">
+                <p>Please confirm logout</p>
+                <div className="flext justify-between">
+                    <button  className="px-2 py-1 border rounded-md bg-green-500">Yes</button>
+                    <button  className="px-2 py-1 border rounded-md bg-red-500">No</button>
+                </div>
+                
+            </div>
+            
         </div>
-    );
-
-};
-
-
-
+    )
+}
 export default Test;
-
-

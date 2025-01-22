@@ -20,6 +20,8 @@ const Main = () => {
     const onlineStatus = useOnlineStatus();
     const wholeResData = useAllResData(); 
     const[searchResData, setSearchResData] = useState([]);
+    const [foodItemTitle,setFoodItemTitle] = useState("");
+    const [resTitle,setResTitle] = useState("");
     // setSearchResData(wholeResData);
    
 
@@ -44,7 +46,8 @@ const Main = () => {
         const data = await fetch(API_URL);
         
         const json = await data.json();
-        // console.log(json.data);
+        // console.log(json?.data?.cards[0]?.card?.card?.header?.title);
+        
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         // const moreData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const moreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
@@ -53,6 +56,12 @@ const Main = () => {
         setResData(allRestaurantData);
         setAllResData(allRestaurantData);
         // console.log(allRestaurantData);
+
+            
+        
+        setFoodItemTitle(json?.data?.cards[0]?.card?.card?.header?.title);
+        setResTitle(json?.data?.cards[1].card.card.header.title);
+
         
          
     }catch (error) {
@@ -88,18 +97,18 @@ const Main = () => {
 
     return (
         <div className="w-full text-center relative mt-20">
-            <FoodItems />
-            <div className="flex w-9/12 py-10  mx-auto items-center justify-between">
-              <h1 className="font-bold text-2xl   ">Top Restaurant Chain</h1>
+            <FoodItems foodItemTitle={foodItemTitle}/>
+            <div className="flex w-9/12 py-10  mx-auto items-center justify-between flex-col md:flex-row">
+              <h1 className="font-bold text-2xl   ">{resTitle||"Top Restuarant Near You"}</h1>
               
               <Search allResData={allResData} resData={allResData} setResData={setResData} setSearchResData={setSearchResData} searchResData={searchResData}  />
             </div>
             
-            <div className="flex gap-6 justify-center my-4">
+            <div className="flex gap-6 justify-center my-4 ">
                 <button onClick={() => {
                     const topRes = resData && resData.filter(res => res.info.avgRating > 4.5);
                     setResData(topRes);
-                }} className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500">Top Restaurant</button>
+                }} className="bg-orange-400 text-white px-4 py-2 rounded   hover:bg-orange-500">Top Restaurant</button>
                 <button onClick={availableRes} className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500">Open Restaurant</button>
                 <button onClick={reset} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Reset Filter</button>
             </div>

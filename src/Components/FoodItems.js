@@ -65,7 +65,7 @@ import { API_URL, foodImageUrl } from "../utils/constant";
 import { Link } from "react-router-dom";
 // import Shimmer from "./Shimmer";
 
-const FoodItems = () => {
+const FoodItems = ({foodItemTitle}) => {
     const [foodItemsList, setFoodItemList] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -96,7 +96,7 @@ const FoodItems = () => {
 
    if(foodItemsList) return (
         <div className="relative py-4 w-9/12 mx-auto border-b-2">
-            <h2 className="font-bold my-4 text-2xl py-2 text-left">Popular Food Items</h2>
+            <h2 className="font-bold my-4 text-2xl py-2 text-left">{foodItemTitle||"Popular Food Items"}</h2>
              <div className="relative flex justify-end">
 
              <button onClick={prevSlide} className= {` absolute top-1/4 left-2 px-1 z-10 rounded-full ${
@@ -124,7 +124,9 @@ const FoodItems = () => {
                                     const collection_id = collectionString.length > 1 && collectionString[1].split("&")[0];
 
                                     return (
-                                        <div key={item?.id} className="flex-shrink-0 px-2" style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}>
+                                        <div key={item?.id} className="flex-shrink-0 px-2 w-1/2 md:w-1/6" 
+                                        // style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}
+                                        >
                                             
                                             <Link to={`/collection/${collection_id}/${tags}`}>
                                                 <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext} />

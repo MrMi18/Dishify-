@@ -5,7 +5,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: ProximaNova, arial, Helvetica Neue, sans-serif;
+    font-family:     Arial, Helvetica, sans-serif;
     color:black;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -35,3 +35,5 @@
   .cursive{
     font-family: cursive;
   }
+
+  

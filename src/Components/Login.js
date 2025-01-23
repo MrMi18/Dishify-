@@ -57,7 +57,7 @@ const LoginForm = () => {
     
 
     const loginHander = async() =>{
-        console.log("we are inside the handler ")
+        // console.log("we are inside the handler ")
         try{
             console.log("we are tring to fetch");
             const res = await axios.post("http://localhost:5000/login",{

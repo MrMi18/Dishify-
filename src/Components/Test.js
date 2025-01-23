@@ -1,21 +1,30 @@
-import { useState } from "react";
+import React from 'react';
 
-const Test = () =>{
-    const [showPopup , setShowPopup] = useState(false);
+const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
+  if (!isOpen) return null;
 
-    return (
-        <div className="h-[100vh] w-[100vw] flex justify-center items-center">
-            <button className="px-4 py-2 bg-gray-900 text-white border rounded-md">Popup</button>
-            <div className="h-32 w-48 bg-slate-400 border rounded-sm hover:shadow-lg flex flex-col justify-center">
-                <p>Please confirm logout</p>
-                <div className="flext justify-between">
-                    <button  className="px-2 py-1 border rounded-md bg-green-500">Yes</button>
-                    <button  className="px-2 py-1 border rounded-md bg-red-500">No</button>
-                </div>
-                
-            </div>
-            
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white rounded-lg p-6 w-80">
+        <h2 className="text-xl font-bold mb-4">Logout</h2>
+        <p>Are you sure you want to logout?</p>
+        <div className="mt-6 flex justify-end">
+          <button
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded"
+            onClick={onConfirm}
+          >
+            Logout
+          </button>
         </div>
-    )
-}
-export default Test;
+      </div>
+    </div>
+  );
+};
+
+export default LogoutModal;

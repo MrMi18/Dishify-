@@ -7,12 +7,15 @@ import axios from "axios";
 import { useState,useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import useLoginUser from "../utils/useLoginUser.js";
+import LogoutModal from "./LogoutModal.js";
+import { LogIn, LogOut } from 'lucide-react';
+
 
 const Header = () => {
     const navigate = useNavigate();
     const [loginLogout,setloginLogout] = useState("");
-    // const [logout,setLogout] = useState(null)
 
+    const [isOpen,setIsOpen] = useState(false);
     const { loginUser,setLoginUser }= useContext(UserContext);
     
     const LoginLogoutHandling = () =>{
@@ -27,31 +30,15 @@ const Header = () => {
     useEffect(()=>{
         LoginLogoutHandling()
     },[loginUser])
-    
-    
-
-
     const loginLogoutHandler = async () =>{
-        if(loginUser){
-             try{
-            
-            await axios.post("http://localhost:5000/logout",{},{withCredentials:true});
-            toast.success("User logout succussfull");
-            setLoginUser(null);
-            navigate("/");
-            
-            
-
-        }
-        catch(err){
-            console.error(err);
-        }
+        
+        if(loginUser ){
+            setIsOpen(true); 
+             
         }else{
             navigate("/login")
             
         }
-        
-       
        
     }
     
@@ -64,10 +51,6 @@ const Header = () => {
     const cartItems =  Object.values(cartItemsObj);
     const quantity = cartItems.reduce((itemCount, item) => itemCount + (item.quantity ),0);
 
-    
-    
-
-    
     return (
         <div className="w-full  bg-slate-50 shadow-xl h-20 py-4 top-0 flex fixed z-50  ">
         <div className="flex items-center justify-between  w-10/12 mx-auto  ">
@@ -105,11 +88,17 @@ const Header = () => {
                         </Link>
                     </li>
                     
-                     <li> <a className="cursor-pointer " onClick={loginLogoutHandler}>{loginLogout}</a>
-                     </li> 
+                     <li className="flex items-center"> <a className="cursor-pointer " onClick={loginLogoutHandler }>{loginLogout} </a> <a >{loginUser?<LogOut size={20} />:<LogIn size={20}/>}</a>
+                     <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
+ 
+                     {/* </li> <a  className="cursor-pointer " onClick={() =>setIsOpen(true)}>Logout Mock</a>
+                     <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen} setBtnClicked={setBtnClicked}></LogoutModal>
+                     <li> */}
+
+                     </li>
                        {/* <li> */}
                         {/* <Link to="/Login" >{login}</Link></li> */}
-                    
+                        
                      
                     
                 </ul>

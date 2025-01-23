@@ -1,30 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
-  if (!isOpen) return null;
+const Test = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleOptionClick = (option) => {
+    console.log(`${option} clicked`);
+    // Add your logout or profile handling logic here
+    setIsOpen(false); // Close dropdown after selection
+  };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg p-6 w-80">
-        <h2 className="text-xl font-bold mb-4">Logout</h2>
-        <p>Are you sure you want to logout?</p>
-        <div className="mt-6 flex justify-end">
-          <button
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded"
-            onClick={onConfirm}
-          >
-            Logout
-          </button>
-        </div>
+    <div className="relative mt-40">
+        <button
+          onClick={toggleDropdown}
+          className="flex items-center text-white bg-gray-700 rounded-lg px-4 py-2 focus:outline-none"
+        >
+          <img src="avatar.png" alt="Avatar" className="w-8 h-8 rounded-full mr-2" />
+          <span>John Doe</span>
+        </button>
+        {isOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
+            <button
+              onClick={() => handleOptionClick('Micoin')}
+              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
+            >
+              Micoin
+            </button>
+            <button
+              onClick={() => handleOptionClick('Profile')}
+              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
+            >
+              Profile
+            </button>
+            <button
+              onClick={() => handleOptionClick('Logout')}
+              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
-    </div>
   );
 };
 
-export default LogoutModal;
+export default Test;

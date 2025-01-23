@@ -6,7 +6,7 @@
     margin: 0px;
     box-sizing: border-box;
     font-family:     Arial, Helvetica, sans-serif;
-    color:black;
+    /* color:black; */
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
  .no-scrollbar::-webkit-scrollbar { 

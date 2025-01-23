@@ -8,7 +8,7 @@ import { useState,useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import useLoginUser from "../utils/useLoginUser.js";
 import LogoutModal from "./LogoutModal.js";
-import { LogIn, LogOut } from 'lucide-react';
+import { LogIn, LogOut,UserRoundPen } from 'lucide-react';
 
 
 const Header = () => {
@@ -53,7 +53,7 @@ const Header = () => {
 
     return (
         <div className="w-full  bg-slate-50 shadow-xl h-20 py-4 top-0 flex fixed z-50  ">
-        <div className="flex items-center justify-between  w-10/12 mx-auto  ">
+        <div className="flex  items-center justify-between  w-11/12 mx-auto  ">
             <div className="">
                 <Link to="/">
                     <div className="h-18 w-32">
@@ -62,9 +62,19 @@ const Header = () => {
                 </Link>
             </div>
             <div>
-                <ul className="flex gap-10 text-lg ">
+                <ul className="flex gap-10 text-lg items-center ">
                     <li><Link to="/"> Home </Link></li>
                     <li><Link to="/About">About</Link></li>
+                    
+                    <li>
+                        <Link to="/Contact">
+                              Contactus
+                        </Link>
+                    </li>
+                    <li className="flex hover:cursor-pointer" onClick={micoinshandler}>
+                       <p>MiCoins</p> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef821e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+                    </li>
                     
                     <li >
                         <Link to="/CheckoutPage" className="flex gap-1 items-center relative" >Cart
@@ -78,29 +88,21 @@ const Header = () => {
                         <span data-testid ="cartSize" className="absolute -top-1.5 -right-1 bg-orange-500 border text-center rounded-full w-4 px-0  text-white  text-xs ">{quantity}</span>
                         </Link>
                     </li>
-                    <li className="flex hover:cursor-pointer" onClick={micoinshandler}>
-                       <p>MiCoins</p> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef821e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-coins"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
-                    </li>
-                    <li>
-                        <Link to="/Contact">
-                              ContactUs
-                        </Link>
-                    </li>
-                    
-                     <li className="flex items-center"> <a className="cursor-pointer " onClick={loginLogoutHandler }>{loginLogout} </a> <a >{loginUser?<LogOut size={20} />:<LogIn size={20}/>}</a>
-                     <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
- 
-                     {/* </li> <a  className="cursor-pointer " onClick={() =>setIsOpen(true)}>Logout Mock</a>
-                     <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen} setBtnClicked={setBtnClicked}></LogoutModal>
-                     <li> */}
-
-                     </li>
-                       {/* <li> */}
-                        {/* <Link to="/Login" >{login}</Link></li> */}
-                        
+                   
+                      <li className="flex items-center gap-1"> <a className="cursor-pointer " onClick={loginLogoutHandler }>{loginLogout} </a> <a >{loginUser?<LogOut size={20} />:<LogIn size={20}/>}</a>
+                      <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
+                      </li>
                      
-                    
+                    {/* //  <a >{loginUser? */}
+                    {/* //   <li className="flex flex-col items-center">
+                    //   <a>{loginUser.Name}</a> <UserRoundPen strokeWidth={1.25} /> 
+                    //    </li>
+                    //  :<LogIn size={20}/>}</a>
+                    //  <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
+                    //  </li> */}
+                       {/* <li> <LogOut size={20} /> */}
+                        {/* <Link to="/Login" >{login}</Link></li> */}
+                       
                 </ul>
             </div>
         </div>

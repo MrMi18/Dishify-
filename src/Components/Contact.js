@@ -80,7 +80,7 @@ const Contact = () => {
       
         <button
           type="submit"
-          className="w-full p-3 mt-4 bg-black text-white rounded-md hover:bg-gray-800"
+          className="w-full p-3 mt-4 bg-orange-400 text-white rounded-md hover:bg-orange-600"
         >
           SEND MESSAGE
         </button>

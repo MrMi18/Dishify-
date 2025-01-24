@@ -1,4 +1,5 @@
 import {imagUrl} from "../utils/constant";
+import dummy from "./assets/dummy.jpg"
 
 
 const Cards = (props) =>{
@@ -17,7 +18,7 @@ const Cards = (props) =>{
         <div className = "border border-slate-100 hover:shadow-2xl hover:border   my-4" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
     
           }}>
-            <img className=" h-44 w-[100%] object-cover border rounded-xl "  src={imagUrl+cloudinaryImageId}  alt="Food Image"></img>
+            <img className=" h-44 w-[100%] object-cover border rounded-xl "  src={imagUrl+cloudinaryImageId||dummy}  alt="Food Image"></img>
             <div className="flex flex-col items-start w-[100%] ml-4 py-3 gap-1.5" >
              <h3  className="font-semibold text-md cursive truncate w-[93%] text-left">{name}</h3>
              <h5 className=" cursive">

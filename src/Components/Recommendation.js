@@ -71,7 +71,7 @@ const Recommendation = ({ menu }) => {
     }
 
     return (
-        <div className="flex m-2 mx-auto justify-between border-b-2 w-[95%] py-4">
+        <div className="flex m-2 mx-auto justify-between  border-b-2 w-[95%] py-4">
             <div style={{ display: "flex", flexDirection: "column", gap: ".5rem", width: "60%" }}>
                 
                 <p className="font-semibold">{name}</p>

@@ -40,13 +40,16 @@ const Main = () => {
 
    
     const fetchData = async () => {
+        console.log("insdie main fech");
 
         try{
           
         const data = await fetch(API_URL);
         
         const json = await data.json();
+        
         // console.log(json?.data?.cards[0]?.card?.card?.header?.title);
+        
         
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         // const moreData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
@@ -57,10 +60,9 @@ const Main = () => {
         setAllResData(allRestaurantData);
         // console.log(allRestaurantData);
 
-            
         
         setFoodItemTitle(json?.data?.cards[0]?.card?.card?.header?.title);
-        setResTitle(json?.data?.cards[1].card.card.header.title);
+        setResTitle(json?.data?.cards[1]?.card?.card?.header?.title);
 
         
          

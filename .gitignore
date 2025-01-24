@@ -5,4 +5,4 @@
 /.Test
 /swiggy-proxy/node_modules/
 /coverage
- 
+/src/Components/Test.js

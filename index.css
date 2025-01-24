@@ -36,4 +36,7 @@
     font-family: cursive;
   }
 
+  .compStyle{
+    @apply hover:text-orange-200
+  }
   

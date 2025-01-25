@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import CartPage from './CartPage';
 import { clearItems } from '../utils/cartSlice';
@@ -8,13 +8,17 @@ import EmptyCart from './EmptyCart';
 import { Link } from 'react-router-dom';
 import NameInfo from './NameInfo';
 import OrderPlaced from './OrderPlaced';
+import { Trash2 } from 'lucide-react';
+import { UserContext } from '../App';
+import LoginFirstCard from './LoginFirstCard';
 
 
 
 const CheckoutPage = () => {
      const [isValid , setisValid] = useState(false);
-     
-
+     const[orderPlaced,setOrderPlaced] = useState(false);
+    const [isOpen,setIsOpen]  = useState(false);
+     const {loginUser }= useContext(UserContext);
    
     const cartItemsObj = useSelector(store => store.cart.item);
     
@@ -67,11 +71,12 @@ const CheckoutPage = () => {
        }
 
     }
-    const[orderPlaced,setOrderPlaced] = useState(false);
+    
     const orderSuccesfull = () =>{
         if(paymentMode==='') return toast.warning(" Please add payment method");
         if(paymentMode==='card') return toast.warning(" Please change payment mode cards not accepted try with mi coins");
         if(paymentMode==='upi') return toast.warning("Please change payment mode cards not accepted try with mi coins");
+        if(!loginUser) return setIsOpen(true);
         toast.success("Order Placed Successfully");
         setOrderPlaced(true);
         dispatch(clearItems());
@@ -100,12 +105,15 @@ const CheckoutPage = () => {
                     <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm m-1'>
                               <div>
                                    <span className='font-bold '>Cart  </span>
-                                   <span className='text-sm text-gray-300 ml-2 '>{quantity} items</span>
+                                   <span className='text-sm text-gray-300 ml-2  '>{quantity} items</span>
                               </div>
+                              
+                            <div className='flex gap-1 items-center border rounded-lg bg-white text-gray-600 px-2 py-1  cursor-pointer'>
                               <span onClick={() =>{
                                    clearingItems();
-                              }} className='cursor-pointer'><i className="fa-solid fa-trash"></i> Remove all</span>
-                              
+                              }} > Remove all</span>
+                              <i> <Trash2 size={16} /></i>
+                            </div>
                      </div>
                        {/* {console.log(cartItems)   }          */}
                     {cartItems && cartItems.map((cart, index) => {
@@ -193,7 +201,7 @@ const CheckoutPage = () => {
                                    onClick={orderSuccesfull}
                              >Checkout 
                             </button>
-                            
+                            <LoginFirstCard  isOpen={isOpen} setIsOpen={setIsOpen}/>
                         </div>
                     </div>
                 </div>

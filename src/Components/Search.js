@@ -47,7 +47,7 @@ const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}
 
 
     return (
-        <div className="p-4 w-90 flex ">
+        <div className="p-4 w-90 flex  sm:text-left">
             <input 
                 onChange={(e) => setSearchText(e.target.value)} 
                 value={searchText} 

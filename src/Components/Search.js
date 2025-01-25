@@ -19,8 +19,8 @@ const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}
         return;
      }
      if(searchResData){
-        console.log("yes search data is there");
-        console.log(searchResData);
+        // console.log("yes search data is there");
+        // console.log(searchResData);
      }
     
      const search = resData && resData.filter(res => (res?.info && res?.info?.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -47,11 +47,11 @@ const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}
 
 
     return (
-        <div className="p-4 w-90 ">
+        <div className="p-4 w-90 flex ">
             <input 
                 onChange={(e) => setSearchText(e.target.value)} 
                 value={searchText} 
-                className="border p-2 w-8/12 rounded focus:outline-none focus:ring-2 focus:ring-[#F0BB78]"
+                className="border p-2 md:w-8/12 rounded focus:outline-none focus:ring-2 focus:ring-[#F0BB78]"
                 type="text" 
                 placeholder="Search for restaurant" 
                 

@@ -96,7 +96,7 @@ const FoodItems = ({foodItemTitle}) => {
 
    if(foodItemsList) return (
         <div className="relative py-4 w-9/12 mx-auto border-b-2">
-            <h2 className="font-bold my-4 text-2xl py-2 text-left">{foodItemTitle||"Popular Food Items"}</h2>
+            <h2 className="font-bold my-4 md:text-2xl text-xl py-2 text-left whitespace-nowrap ">{foodItemTitle||"Popular Food Items"}</h2>
              <div className="relative flex justify-end">
 
              <button onClick={prevSlide} className= {` absolute top-1/4 left-2 px-1 z-10 rounded-full ${

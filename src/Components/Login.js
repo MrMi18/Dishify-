@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from "../App";
+import { Eye, EyeOff } from 'lucide-react';
 
 const LoginSignupPage = () => {
   const navigate = useNavigate(); 
@@ -54,7 +55,7 @@ const LoginForm = () => {
     const navigate = useNavigate(); 
    const { loginUser,setLoginUser } = useContext(UserContext);
 
-    
+    const [showPassword,setShowPassword]= useState(false);
 
     const loginHander = async() =>{
         // console.log("we are inside the handler ")
@@ -83,24 +84,26 @@ const LoginForm = () => {
       <div >
         <label className="block text-sm font-medium text-gray-700">Email</label>
         <input
-          type="email"
-          placeholder="Email"
+          type="email" placeholder="Email"
           value={emailId}
           onChange={(e) => setEmailId(e.target.value)}
           className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
         />
       </div>
-      <div className='my-3'>
+      <div className='my-3 relative '>
         <label className="block text-sm font-medium text-gray-700 ">Password</label>
         <input
-          type="password"
+          type={!showPassword?"password":"text"}
           value={password}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
+          className=" relative  w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
+         
         />
+         <a className='absolute right-3 -bottom-[0.5] transform -translate-y-1/2 z-10' onClick={() => setShowPassword(!showPassword)}>{showPassword?<Eye size={20} color='#9ca3af'/>:<EyeOff size={20} color='#9ca3af'/>}</a>
+       
       </div>
       <p className="text-red-600 text-sm ">{loginFailed}</p>
       <button
@@ -130,6 +133,9 @@ const SignupForm = () => {
   const navigate = useNavigate(); 
   const [ticked,setTicked] = useState(false);
   const { loginUser,setLoginUser } = useContext(UserContext);
+  const [showPassword,setShowPassword]= useState(false);
+
+
   const signupHandler = async() =>{
    
     if(!ticked){
@@ -183,17 +189,18 @@ const SignupForm = () => {
         />
       </div>
       
-      <div>
+      <div className='relative'>
         <label className="block text-sm font-medium text-gray-700">Password</label>
         <input
-          type="password"
+           type={!showPassword?"password":"text"}
           value={password}
           placeholder="Password"
-          className="w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
+          className="relative w-full px-4 py-2 mt-1 border rounded-md focus:ring focus:ring-[#F97316] outline-none"
           required
           onChange={(e) =>{ setPassword(e.target.value)}}
           
         />
+        <a className='absolute right-3 -bottom-[0.5] transform -translate-y-1/2 z-10' onClick={() => setShowPassword(!showPassword)}>{showPassword?<Eye size={20} color='#9ca3af'/>:<EyeOff size={20} color='#9ca3af'/>}</a>
       </div>
       <p className="text-red-600 text-sm ">{signupFailed}</p>
       <div className="flex items-center my-3">

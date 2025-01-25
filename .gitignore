@@ -3,6 +3,8 @@
 /.parcel-cache
 /rough
 /.Test
+/.Testing.js
 /swiggy-proxy/node_modules/
 /coverage
 /src/Components/Test.js
+/src/Components/Testing.js

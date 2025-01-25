@@ -47,18 +47,19 @@ const Main = () => {
         const data = await fetch(API_URL);
         
         const json = await data.json();
+        console.log(json.data)
         
         // console.log(json?.data?.cards[0]?.card?.card?.header?.title);
         
         
         const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-        // const moreData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
+        const morningResData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const moreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-            // console.log(moreData);
-        const allRestaurantData = [...API_DATA, ...moreData,...searchResData];
+            console.log(moreData);
+        const allRestaurantData = [...API_DATA, ...moreData,...morningResData,...searchResData];
         setResData(allRestaurantData);
         setAllResData(allRestaurantData);
-        // console.log(allRestaurantData);
+        console.log(allRestaurantData);
 
         
         setFoodItemTitle(json?.data?.cards[0]?.card?.card?.header?.title);
@@ -101,18 +102,18 @@ const Main = () => {
         <div className="w-full text-center relative mt-20">
             <FoodItems foodItemTitle={foodItemTitle}/>
             <div className="flex w-9/12 py-10  mx-auto items-center justify-between flex-col md:flex-row">
-              <h1 className="font-bold text-2xl   ">{resTitle||"Top Restuarant Near You"}</h1>
+              <h1 className="font-bold md:text-2xl text-xl whitespace-nowrap  ">{resTitle||"Top Restuarant Near You"}</h1>
               
               <Search allResData={allResData} resData={allResData} setResData={setResData} setSearchResData={setSearchResData} searchResData={searchResData}  />
             </div>
             
-            <div className="flex gap-6 justify-center my-4 ">
+            <div className="flex md:gap-6 justify-center my-4 gap-4">
                 <button onClick={() => {
                     const topRes = resData && resData.filter(res => res.info.avgRating > 4.5);
                     setResData(topRes);
-                }} className="bg-orange-400 text-white px-4 py-2 rounded   hover:bg-orange-500">Top Restaurant</button>
-                <button onClick={availableRes} className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500">Open Restaurant</button>
-                <button onClick={reset} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">Reset Filter</button>
+                }} className="bg-orange-400 text-sm md:text-base text-white md:px-4 md:py-2 px-1 rounded   hover:bg-orange-500 whitespace-nowrap ">Top Restaurant</button>
+                <button onClick={availableRes} className="text-sm md:text-base bg-orange-400 text-white md:px-4 md:py-2 px-1 rounded hover:bg-orange-500 whitespace-nowrap ">Open Restaurant</button>
+                <button onClick={reset} className="bg-gray-200 text-sm md:text-base md:px-4 md:py-2 px-1 rounded hover:bg-gray-300 whitespace-nowrap ">Reset Filter</button>
             </div>
             <div className="flex gap-4 flex-wrap w-9/12 mx-auto justify-center ">
                 {resData && resData.map((data,index) => (

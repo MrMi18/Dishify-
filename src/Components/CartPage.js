@@ -1,66 +1,72 @@
+import React from "react";
+import { imagUrl } from "../utils/constant";
+import { useDispatch } from "react-redux";
+import { addItems, addingOneItem, removeItem } from "../utils/cartSlice";
+import dummy from "./assets/dummy.jpg";
 
-import React from 'react';
-import { imagUrl } from '../utils/constant';
-import { useDispatch } from 'react-redux';
-import { addItems ,addingOneItem, removeItem} from '../utils/cartSlice';
-import dummy from "./assets/dummy.jpg"
-
-
-const CartPage = ({ name, description,id, imageId, defaultPrice, price,quantity,total,setTotal}) => {
+const CartPage = ({
+  name,
+  description,
+  id,
+  imageId,
+  defaultPrice,
+  price,
+  quantity,
+  total,
+  setTotal,
+}) => {
   // console.log(total);
-  const cost = (price || defaultPrice)/100;
-  
-  const title = (!name.includes("("))?name:name.split("(")[0];
-  const dispatch = useDispatch();
-    const addingItem  = (id) =>{
-        dispatch(addingOneItem({id}));
-        setTotal(total+cost);
-        
-    }
-    const clearItem  = (id) =>{
-        dispatch(removeItem({id}));
-        setTotal(total-cost);
-        
-    }
-    
+  const cost = (price || defaultPrice) / 100;
 
+  const title = !name.includes("(") ? name : name.split("(")[0];
+  const dispatch = useDispatch();
+  const addingItem = (id) => {
+    dispatch(addingOneItem({ id }));
+    setTotal(total + cost);
+  };
+  const clearItem = (id) => {
+    dispatch(removeItem({ id }));
+    setTotal(total - cost);
+  };
 
   return (
-    <div className='flex justify-between items-center w-full p-4 bg-gray-100 border rounded-lg gap-4 shadow-sm m-1'>
+   
+    <div className='flex justify-between items-start md:text-base text-sm w-full bg-gray-100 border px-2 py-3 rounded-lg gap-4 shadow-sm m-1'>
       {/* Product Image */}
-      <img
-        className='w-20 h-20 object-cover border rounded-lg'
-        src={imageId?imagUrl + imageId:dummy}
-        alt='product'
-      />
       
+      
+
       {/* Product Details */}
       <div className='flex-1 flex flex-col gap-1 w-3/12'>
-        <h3 className='font-semibold text-lg'>{title}</h3>
-        <p className='text-sm text-gray-600'>Perfect choice for any occasion</p>
+      <h3 className='font-semibold text-lg whitespace-nowrap truncate'>{title}</h3>
+        <p className='text-sm text-gray-600 '>Perfect choice for any occasion</p>
         <p className='text-sm'>Quantity: <span className='font-semibold'>{quantity}</span></p>
         <p className='text-sm'>Price: <span className='font-semibold'>₹ {cost }</span> per item</p>
       </div>
 
       {/* Quantity and Price Controls */}
+
       <div className='flex flex-col items-center gap-2'>
+       <img
+        className='w-20 h-20 object-cover border rounded-lg'
+        src={imageId?imagUrl + imageId:dummy}
+        alt='product'
+       />
         <div className='flex items-center gap-2'>
           <button onClick={()=>clearItem(id)}
           className='px-3 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>-</button>
           <span className='font-semibold'>{quantity}</span>
-           
+
           <button onClick={()=>addingItem(id)}
            className='px-3 py-1 bg-gray-200 rounded-full text-lg font-bold text-green-600'>+</button>
         </div>
         <span className='font-bold text-gray-700'>₹ {(cost*quantity).toFixed(2)}</span>
       </div>
-      
     </div>
   );
 };
 
 export default CartPage;
-
 
 // import React from 'react';
 // import { imagUrl } from '../utils/constant';
@@ -70,12 +76,12 @@ export default CartPage;
 // const CartPage = ({ name, imageId, price, defaultPrice, quantity, total, setTotal }) => {
 //     const cost = (price || defaultPrice) / 100;
 //     const dispatch = useDispatch();
-  
+
 //     const addingItem = (id) => {
 //         dispatch(addingOneItem({ id }));
 //         setTotal(total + cost);
 //     };
-  
+
 //     const clearItem = (id) => {
 //         dispatch(removeItem({ id }));
 //         setTotal(total - cost);

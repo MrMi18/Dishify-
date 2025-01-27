@@ -75,9 +75,9 @@ const Header = () => {
                 <ul className="md:flex gap-10 text-lg flex-nowrap hidden ">
                     <li ><NavLink className={({isActive}) => isActive?"text-orange-400":""} to="/"> Home </NavLink></li>
                     <li ><NavLink className={({isActive}) => isActive?"text-orange-400":""} to="/About">About</NavLink></li>
-                    <li className=" whitespace-nowrap"> <NavLink className={({isActive}) =>isActive?"text-orange-400":""} to="/Contact">ContactUs</NavLink> </li>
+                    <li className=" whitespace-nowrap"> <NavLink className={({isActive}) =>isActive?"text-orange-400":""} to="/Contact">Contact</NavLink> </li>
                     <li className="flex hover:cursor-pointer  whitespace-nowrap " onClick={micoinshandler}>
-                       <NavLink >MiCoins</NavLink> 
+                       <a >MiCoins</a> 
                        <Coins color="#F69720"/>                    
                     </li>
                     <li className="flex  items-center gap-1 cursor-pointer "> 
@@ -93,13 +93,13 @@ const Header = () => {
                 <ul className= {`  bg-slate-50 text-lg  flex gap-6 flex-col text-left  px-10 pb-4`} >
                     <li className= {`compStyle ${openPath ==="/login"?"text-orange-400":""}`}><Link to="/"> Home </Link></li>
                     <li className={`compStyle ${openPath ==="/About"?"text-orange-400":""}`}><Link to="/About">About</Link></li>
-                    <li className= {`compStyle whitespace-nowrap ${openPath ==="/Contact"?"text-orange-400":""}`}> <Link to="/Contact">ContactUs</Link> </li>
+                    <li className= {`compStyle whitespace-nowrap ${openPath ==="/Contact"?"text-orange-400":""}`}> <Link to="/Contact">Contact</Link> </li>
                     <li className="flex hover:cursor-pointer compStyle whitespace-nowrap " onClick={micoinshandler}>
                        <p>MiCoins</p> 
                        <Coins color="#F69720"/>                    
                     </li>   
-                    <li className="flex  items-center gap-1 border rounded-md bg-orange-400 px-2 py-1 text-white whitespace-nowrap">
-                         <Link className="cursor-pointer " onClick={loginLogoutHandler }>{loginLogout} </Link> <a >{loginUser?<LogOut size={20} />:<LogIn size={20} />}</a>
+                    <li className="flex cursor-pointer  items-center gap-1 border rounded-md bg-orange-400 px-2 py-1 text-white whitespace-nowrap">
+                         <a className=" " onClick={loginLogoutHandler }>{loginLogout} </a> <a >{loginUser?<LogOut size={20} />:<LogIn size={20} />}</a>
                       <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
                     </li>
                 </ul>

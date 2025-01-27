@@ -21,7 +21,7 @@ const Cards = (props) =>{
             <img className=" h-44 w-[100%] object-cover border rounded-xl "  src={imagUrl+cloudinaryImageId||dummy}  alt="Food Image"></img>
             <div className="flex flex-col items-start w-[100%] ml-4 py-3 gap-1.5" >
              <h3  className="font-semibold text-md font-serif md:cursive truncate w-[93%] text-left">{name}</h3>
-             <h5 className="font-serif ">
+             <h5 className=" ">
                {(aggregatedDiscountInfoV3?.header && aggregatedDiscountInfoV3?.subHeader)
                ? `${aggregatedDiscountInfoV3.header} ${aggregatedDiscountInfoV3.subHeader}`
                : costForTwo} </h5> 
@@ -34,7 +34,7 @@ const Cards = (props) =>{
                 
                 <p >{sla.slaString}</p>
               </div>
-              <p className="font-light text-md text-gray-400 font-serif md:cursive truncate w-[93%] text-left">{nCuisines}</p>
+              <p className="font-light text-md text-gray-400  md:cursive truncate w-[93%] text-left">{nCuisines}</p>
               <p className=" md:cursive font-serif" >{areaName} </p>
             </div>
             

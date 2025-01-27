@@ -6,18 +6,23 @@ const useOnlineStatus =  () =>{
 
     
 useEffect(() =>{
+    const offlineHander = () =>{
+        setOnlineStatus(false);
+     }
+     const onlineHandler = () =>{
+        setOnlineStatus(true);
+    }
 
    
-    window.addEventListener("offline", () =>{
-       setOnlineStatus(false);
-    })
+    window.addEventListener("offline", offlineHander )
 
-    window.addEventListener("online", () =>{
-        setOnlineStatus(true);
-    })
-    
+    window.addEventListener("online", onlineHandler )
 
-  
+    return () =>{
+        window.removeEventListener("offline", offlineHander );
+        window.removeEventListener("online", onlineHandler  );
+
+    };
     },[])
 
  

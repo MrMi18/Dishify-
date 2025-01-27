@@ -4,23 +4,16 @@ import { useParams } from "react-router-dom";
 import useMenuDetails from "../utils/useMenuDetails";
 import { useState } from "react";
 import MainMenu from "./MainMenu";
+import { ShimmerPostDetails } from "react-shimmer-effects";
 
 const ResMenu = () => {
   const { resId } = useParams();
 
   const menuDetails = useMenuDetails(resId);
 
-  if (menuDetails.length === 0) return <Shimmer cards={true} circle={false} />;
+  if (menuDetails.length === 0) return <ShimmerPostDetails  card cta variant="EDITOR" />;
 
-  const {
-    name,
-    avgRating,
-    costForTwoMessage,
-    cuisines,
-    areaName,
-    sla,
-    totalRatingsString,
-    availability,
+  const {name,avgRating,costForTwoMessage,cuisines,areaName,sla,totalRatingsString,availability,
   } = menuDetails?.cards[2]?.card?.card?.info;
 
   const cards =

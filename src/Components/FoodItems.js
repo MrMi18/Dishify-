@@ -63,6 +63,7 @@
 import { useEffect, useState } from "react";
 import { API_URL, foodImageUrl } from "../utils/constant";
 import { Link } from "react-router-dom";
+import ShimmerCircle from "./ShimmerCircle";
 // import Shimmer from "./Shimmer";
 
 const FoodItems = ({foodItemTitle}) => {
@@ -80,6 +81,7 @@ const FoodItems = ({foodItemTitle}) => {
         // console.log(json.data)
     };
 
+   
     
 
     const prevSlide = () => {
@@ -94,6 +96,7 @@ const FoodItems = ({foodItemTitle}) => {
         }
     };
 
+    if(foodItemsList&&foodItemsList.length===0 )return <ShimmerCircle/>
    if(foodItemsList) return (
         <div className="relative py-4 w-9/12 mx-auto border-b-2">
             <h2 className="font-bold my-4 md:text-2xl text-xl py-2 text-left whitespace-nowrap ">{foodItemTitle||"Popular Food Items"}</h2>

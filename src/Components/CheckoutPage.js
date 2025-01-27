@@ -175,19 +175,17 @@ const CheckoutPage = () => {
                     {/* Coupon Code Section */}
                     <div className="mt-4">
                         <h3 className="text-sm font-semibold mb-2">Apply Coupon</h3>
-                        <div className="flex gap-2">
-                            <input onChange={(e) =>{
+                        <div className="flex gap-2 ">
+                            <input  onChange={(e) =>{
                               // console.log(e.target.value);
                               let value = e.target.value;
-                               if(value==='virat18'){
-                                  
-                                   
+                               if(value==='virat18'){  
                                    setisValid(true);
                                }
                             }}
                                 type="text"
                                 placeholder="Enter coupon code"
-                                className="border rounded-lg p-2 flex-grow focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="border rounded-lg w-[70%] p-2 flex-grow focus:outline-none focus:ring-2 focus:ring-green-400"
                             />
                             <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
                                    onClick={!isValid?wrongCoupon:couponHandler}

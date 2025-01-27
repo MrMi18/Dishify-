@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from "../App";
 import { Eye, EyeOff } from 'lucide-react';
@@ -17,7 +17,7 @@ const LoginSignupPage = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 mt-10">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 md:mt-10">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center text-gray-900">
           {isLogin ? 'Login' : 'Signup'}
@@ -55,20 +55,30 @@ const LoginForm = () => {
     const navigate = useNavigate(); 
    const { loginUser,setLoginUser } = useContext(UserContext);
 
+  //  const [loginRequest,setLoginRequest] = useState(false);
+   const location = useLocation();
+   
+   
     const [showPassword,setShowPassword]= useState(false);
 
     const loginHander = async() =>{
         // console.log("we are inside the handler ")
         try{
             console.log("we are tring to fetch");
-            const res = await axios.post("https://dishify-1x1o.onrender.com/login",{
+            const res = await axios.post("http://localhost:5000/login",{
             emailId: emailId,
             password: password
         },{withCredentials: true});
          
         setLoginUser(res.data.data);
          toast.success("Loging Succesfully"); 
-        navigate("/");
+         if(location?.state?.loginRequest){
+          
+          navigate("/CheckoutPage");
+         }else{
+          navigate("/");
+         }
+        
         }catch(err){
             // console.error(err);
             setLoginFailed(err?.response?.data||err.message||"somthing went wrong");
@@ -134,7 +144,7 @@ const SignupForm = () => {
   const [ticked,setTicked] = useState(false);
   const { loginUser,setLoginUser } = useContext(UserContext);
   const [showPassword,setShowPassword]= useState(false);
-
+  const location = useLocation();
 
   const signupHandler = async() =>{
    
@@ -150,7 +160,13 @@ const SignupForm = () => {
       },{withCredentials:true});
      
        setLoginUser(res.data.data);
-       navigate("/");
+       toast.success("Account created Succesfully"); 
+         if(location?.state?.loginRequest){
+          navigate("/CheckoutPage");
+         }else{
+          navigate("/");
+         }
+        
     }
 
     catch(err){

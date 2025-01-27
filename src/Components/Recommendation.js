@@ -71,10 +71,10 @@ const Recommendation = ({ menu }) => {
     }
 
     return (
-        <div className="flex m-2 mx-auto md:justify-between flex-col-reverse md:flex-row gap-16 sm:items-start border-b-2 w-[95%] py-4">
-            <div    className="md:w-[60%] w-[90%] ml-2 mt-2"    style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+        <div className="flex m-2 mx-auto md:justify-between flex-col-reverse md:flex-row  sm:items-start border-b-2 w-[95%] py-4">
+            <div    className="md:w-[60%] w-[90%] ml-2 "    style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
                 
-                <p className="font-semibold text-lg">{name}hh</p>
+                <p className="font-semibold text-lg">{name}</p>
                  <div className="flex gap-4 items-center">
                      <p className="font-semibold">₹{price / 100 || defaultPrice / 100}</p>
                     {itemAttribute?.vegClassifier === "NONVEG" ?
@@ -90,12 +90,12 @@ const Recommendation = ({ menu }) => {
 
                  </div>
                 
-                <p>{description}</p>
+                <p className="md:text-base text-sm">{description}</p>
             </div>
-            <div className="relative m-2 md:w-36 h-32">
+            <div className="relative m-2 md:w-36 md:h-32">
                 
-                <img className="md:w-32 md:h-32   object-cover rounded-xl" src={imageId?`${imagUrl}${imageId}`:dummy} alt="" />
-                <button onClick={() => addingItem(menu)} className="hover:bg-orange-400 hover:text-slate-50 border-gray-300 p-1 text-slate-400 w-20 absolute inset-x-0 mx-auto -bottom-16 md:inset-x-5 md:bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
+                <img className="w-44 h-44 md:w-32 md:h-32  object-cover rounded-xl" src={imageId?`${imagUrl}${imageId}`:dummy} alt="" />
+                <button onClick={() => addingItem(menu)} className="hover:bg-orange-400 hover:text-slate-50 border-gray-300 p-1 text-slate-400 w-20 absolute inset-x-4  bottom-2 md:inset-x-5 mx-auto md:bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
             </div>
         </div>
     )

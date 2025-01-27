@@ -3,13 +3,14 @@
 import Cards from "./Cards";
 import { API_URL } from "../utils/constant";
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
 import FoodItems from "./FoodItems";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { toast } from "react-toastify";
 import useAllResData from "../utils/useAllResData";
+import Shimmer from "./Shimmer";
+
 
 
 const Main = () => {
@@ -23,7 +24,9 @@ const Main = () => {
     const [foodItemTitle,setFoodItemTitle] = useState("");
     const [resTitle,setResTitle] = useState("");
     // setSearchResData(wholeResData);
-   
+
+    const[loadMore,setLoadMore]  = useState(false);
+    
 
     const availableRes = () => {
         const openRes = resData && resData.filter(res => res.info.availability.opened === true);
@@ -40,7 +43,7 @@ const Main = () => {
 
    
     const fetchData = async () => {
-        console.log("insdie main fech");
+       
 
         try{
           
@@ -69,13 +72,16 @@ const Main = () => {
          
     }catch (error) {
         console.error("Error during fetch:", error);
-        //  toast.warning("Please try again later.");
+        
     }
     };
     
+    const loadMoreHandler = () =>{
+        setLoadMore(true);
+    }
       
-    if (resData && resData.length === 0) return (<Shimmer circle={true}  cards ={true} />);
-    if (allResData && allResData.length === 0) return <Shimmer circle={false}  cards ={true} />;
+    if (resData && resData.length === 0) return (<Shimmer />);
+    if (allResData && allResData.length === 0) return <Shimmer/>;
     
     if (onlineStatus === false) {
         return (
@@ -120,13 +126,19 @@ const Main = () => {
                       <Cards apiData={data} />
                    </Link>
                 ))}
-                {wholeResData && wholeResData.map((data,index) => (
+            </div>
+                <a className={`${loadMore?"hidden":""}`}>
+                    <button onClick={loadMoreHandler} className={`${loadMore?"hidden":"font-extrabold"}text-sm md:text-base bg-orange-400 text-white md:px-4 md:py-2 px-1 rounded hover:bg-orange-500 whitespace-nowrap`} >See More Restaurant</button>
+                </a>
+                
+            <div className="flex gap-4 flex-wrap w-9/12 mx-auto justify-center ">
+                { loadMore && wholeResData && wholeResData.map((data,index) => (
                    <Link to={`/ResturantMenu/${data.id}`} key={data.name+index} className="text-decoration-none">
                       <Cards apiData={data} />
                    </Link>
                 ))}
-                
             </div>
+           
             
         </div>
     );

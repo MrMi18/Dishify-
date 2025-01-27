@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const LoginFirstCard = ({isOpen,setIsOpen}) => {
+  
   const navigate = useNavigate();
     if(!isOpen) return;
   const handleLoginRedirect = () => {
-    navigate('/login');
+    // setLoginRequest(true);
+    navigate('/login',{state:{loginRequest:true}});
+    
     setIsOpen(false);
   }
 

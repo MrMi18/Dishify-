@@ -1,8 +1,7 @@
-import Shimmer from "./Shimmer";
+
 
 import { useParams } from "react-router-dom";
 import useMenuDetails from "../utils/useMenuDetails";
-import { useState } from "react";
 import MainMenu from "./MainMenu";
 import { ShimmerPostDetails } from "react-shimmer-effects";
 

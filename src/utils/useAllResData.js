@@ -77,26 +77,17 @@
 
 import { useEffect, useState } from "react";
 import { API_URL, itemsPageApi } from "./constant";
+import useMainApiData from "./useMainApiData";
 
 const useAllResData = () => {
     const [resData, setResData] = useState([]);
     const [wholeResData, setWholeResData] = useState([]);
+    const{mainData} = useMainApiData();
 
-    // Fetch main data
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetch(API_URL);
-                const json = await data.json();
-                const banner = json?.data?.cards[0]?.card?.card?.imageGridCards?.info || [];
-                setResData(banner);
-            } catch (error) {
-                console.error("Error fetching main data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
+      useEffect(() =>{
+        setResData(mainData?.cards[0]?.card?.card?.imageGridCards?.info||[] );
+      },[])
+                
 
     // Fetch restaurant data
     useEffect(() => {
@@ -113,6 +104,7 @@ const useAllResData = () => {
                         const response = await fetch(itemurl);
                         const json = await response.json();
                         const cards = json?.data?.cards || [];
+                       
                         return cards
                             .filter(
                                 (card) =>
@@ -120,6 +112,7 @@ const useAllResData = () => {
                                     "type.googleapis.com/swiggy.presentation.food.v2.Restaurant"
                             )
                             .map((card) => card?.card?.card.info);
+                            
                     } catch (error) {
                         console.error(`Error fetching restaurant data for URL ${itemurl}:`, error);
                         return [];
@@ -139,8 +132,8 @@ const useAllResData = () => {
         if (resData.length > 0) {
             fetchAllRestaurants();
         }
-    }, [resData]);
-
+    }, [mainData]);
+    
     return wholeResData;
 };
 

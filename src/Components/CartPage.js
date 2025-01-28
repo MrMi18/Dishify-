@@ -4,17 +4,7 @@ import { useDispatch } from "react-redux";
 import { addItems, addingOneItem, removeItem } from "../utils/cartSlice";
 import dummy from "./assets/dummy.jpg";
 
-const CartPage = ({
-  name,
-  description,
-  id,
-  imageId,
-  defaultPrice,
-  price,
-  quantity,
-  total,
-  setTotal,
-}) => {
+const CartPage = ({ name, description, id, imageId, defaultPrice, price, quantity, total, setTotal}) => {
   // console.log(total);
   const cost = (price || defaultPrice) / 100;
 

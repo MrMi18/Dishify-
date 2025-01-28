@@ -1,6 +1,6 @@
 
 
-import { use, useState } from "react";
+import {  memo, useState } from "react";
 import { toast } from "react-toastify";
 
 const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}) => {
@@ -64,5 +64,5 @@ const Search = ({ resData, setResData,allResData,setSearchResData,searchResData}
     )
 }
 
-export default Search;
+export default memo (Search);
 

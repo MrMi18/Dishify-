@@ -1,11 +1,11 @@
 import axios from 'axios';
-import React from 'react';
+import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const LogoutModal = ({ isOpen, setIsOpen, setLoginUser }) => {
     const navigate = useNavigate();
-    console.log(isOpen);
+    // console.log(isOpen);
   if (!isOpen) return null;
 
   const logoutHandler = async()=>{
@@ -23,6 +23,7 @@ const LogoutModal = ({ isOpen, setIsOpen, setLoginUser }) => {
     }
     setIsOpen(false);
   }
+  console.log(isOpen);
 
   return (
 <div  onClick={()=>setIsOpen(false)} className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ${isOpen?'':'hidden'}`}>
@@ -48,4 +49,4 @@ const LogoutModal = ({ isOpen, setIsOpen, setLoginUser }) => {
   );
 };
 
-export default LogoutModal;
+export default memo( LogoutModal);

@@ -1,39 +1,38 @@
-import React, { createContext, useContext,useState,useEffect } from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
-import FoodItems from "./Components/FoodItems";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Error from "./Components/Error";
-import Contact from "./Components/Contact";
 import ResMenu from "./Components/ResMenu";
-import Login from "./Components/Login";
 import ItemsPage from "./Components/ItemsPage";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import CheckoutPage from "./Components/CheckoutPage";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FortAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NameInfo from "./Components/NameInfo";
 import Test from "./Components/Test";
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
 import useLoginUser from "./utils/useLoginUser.js";
-import axios from "axios";
+import useMainApiData from "./utils/useMainApiData.js";
 
 const UserContext = createContext();
+const MainDataContext = createContext();
 
 const App = () => {
   const { loginUser,setLoginUser }= useLoginUser();
+  const {mainData,loading,fetchError} = useMainApiData();
+ 
+
   
   return (
     <div>
       {/* <NameInfo/> */}
+      <MainDataContext.Provider value={{mainData,loading,fetchError}}>
       <UserContext.Provider value={{ loginUser,setLoginUser }}>
         <Provider store={store}>
           <Header />
@@ -41,25 +40,16 @@ const App = () => {
           <Outlet />
 
           <Footer />
-          <ToastContainer
-            position="top-right"
-            autoClose={1500}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-            bodyClassName="toastBody"
+          <ToastContainer position="top-right" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" bodyClassName="toastBody"
           />
         </Provider>
       </UserContext.Provider>
+      </MainDataContext.Provider>
     </div>
   );
 };
 export { UserContext };
+export {MainDataContext};
 
 const appRouter = createBrowserRouter([
   {

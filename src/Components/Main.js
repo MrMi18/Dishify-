@@ -1,15 +1,15 @@
 
-
 import Cards from "./Cards";
-import { API_URL } from "../utils/constant";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FoodItems from "./FoodItems";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { toast } from "react-toastify";
 import useAllResData from "../utils/useAllResData";
 import Shimmer from "./Shimmer";
+import { MainDataContext } from "../App";
+import Unavailable from "./Unavailable";
+import OfflineCard from "./OfflineCard";
 
 
 
@@ -21,12 +21,32 @@ const Main = () => {
     const onlineStatus = useOnlineStatus();
     const wholeResData = useAllResData(); 
     const[searchResData, setSearchResData] = useState([]);
-    const [foodItemTitle,setFoodItemTitle] = useState("");
+    
     const [resTitle,setResTitle] = useState("");
-    // setSearchResData(wholeResData);
+    const [unavailable , setUnavailable] = useState(false);
 
+    const {mainData,loading,fetchError} = useContext(MainDataContext);
+    
     const[loadMore,setLoadMore]  = useState(false);
     
+
+    useEffect(() => {
+        const API_DATA = mainData?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
+        const morningResData = mainData?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
+        const moreData = mainData?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
+           
+        const allRestaurantData = [...API_DATA, ...moreData,...morningResData,...searchResData];
+        setResData(allRestaurantData);
+        setAllResData(allRestaurantData);
+
+        if(mainData?.cards[0]?.card?.card?.id==="swiggy_not_present") setUnavailable(true);
+
+        
+       
+        setResTitle(mainData?.cards[1]?.card?.card?.header?.title);
+
+    }, [mainData]); 
+         
 
     const availableRes = () => {
         const openRes = resData && resData.filter(res => res.info.availability.opened === true);
@@ -36,77 +56,20 @@ const Main = () => {
     const reset = () => {
         setResData(allResData);
     }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-   
-    const fetchData = async () => {
-       
-
-        try{
-          
-        const data = await fetch(API_URL);
-        
-        const json = await data.json();
-        console.log(json.data)
-        
-        // console.log(json?.data?.cards[0]?.card?.card?.header?.title);
-        
-        
-        const API_DATA = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-        const morningResData = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-        const moreData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
-            console.log(moreData);
-        const allRestaurantData = [...API_DATA, ...moreData,...morningResData,...searchResData];
-        setResData(allRestaurantData);
-        setAllResData(allRestaurantData);
-        console.log(allRestaurantData);
-
-        
-        setFoodItemTitle(json?.data?.cards[0]?.card?.card?.header?.title);
-        setResTitle(json?.data?.cards[1]?.card?.card?.header?.title);
-
-        
-         
-    }catch (error) {
-        console.error("Error during fetch:", error);
-        
-    }
-    };
     
     const loadMoreHandler = () =>{
         setLoadMore(true);
     }
-      
+
+    if(unavailable) return (<Unavailable/>)
     if (resData && resData.length === 0) return (<Shimmer />);
     if (allResData && allResData.length === 0) return <Shimmer/>;
+    if (!onlineStatus) return <OfflineCard/>;
     
-    if (onlineStatus === false) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br bg-black text-white gap-2 mt-20">
-            <div className="max-w-lg text-center shadow-lg p-8 bg-white bg-opacity-10 rounded-lg backdrop-blur-md">
-                <h1 className="text-7xl font-extrabold mb-4 text-white drop-shadow-md">
-                    Oops!
-                </h1>
-                <p className="text-lg font-medium mb-6 text-white">
-                    Look like you are offline please check your internet connection.
-                </p>
-                <a
-                    href="/"
-                    className="mt-8 inline-block bg-white text-red-500 font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 hover:shadow-lg transition duration-300"
-                >
-                    No internet
-                </a>
-            </div>
-        </div>
-        );
-    }
-
+   
     return (
         <div className="w-full text-center relative mt-20">
-            <FoodItems foodItemTitle={foodItemTitle}/>
+            <FoodItems />
             <div className="flex w-9/12 md:py-10 py-4  mx-auto items-center  md:items-center md:justify-between flex-col-reverse md:flex-row">
               <h1 className="font-bold md:text-2xl text-xl  whitespace-nowrap  ">{resTitle||"Top Restuarant Near You"}</h1>
               <Search allResData={allResData} resData={allResData} setResData={setResData} setSearchResData={setSearchResData} searchResData={searchResData}  />
@@ -127,7 +90,7 @@ const Main = () => {
                    </Link>
                 ))}
             </div>
-                <a className={`${loadMore?"hidden":""}`}>
+                <a className={`${loadMore && wholeResData?"hidden":""}`}>
                     <button onClick={loadMoreHandler} className={`${loadMore?"hidden":"font-extrabold"}text-sm md:text-base bg-orange-400 text-white md:px-4 md:py-2 px-1 rounded hover:bg-orange-500 whitespace-nowrap`} >See More Restaurant</button>
                 </a>
                 

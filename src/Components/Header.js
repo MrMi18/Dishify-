@@ -2,9 +2,9 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from './assets/DeshifyByMrMI.png'
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import ContactUs from "./Contact";
-import axios from "axios";
-import { useState,useEffect, useContext } from "react";
+
+
+import { useState,useEffect, useContext, memo } from "react";
 import { UserContext } from "../App";
 import useLoginUser from "../utils/useLoginUser.js";
 import LogoutModal from "./LogoutModal.js";
@@ -23,7 +23,7 @@ const Header = () => {
     
 
     let openPath = location.pathname;
-    console.log(openPath);
+    
     const LoginLogoutHandling = () =>{
         //  user?setLoginOrLogout("Logout"):setLoginOrLogout("Login");
         if(loginUser){
@@ -123,4 +123,4 @@ const Header = () => {
         </div>
     );
 }
-export default Header;
+export default memo( Header);

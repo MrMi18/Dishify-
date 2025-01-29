@@ -21,6 +21,7 @@ import useLoginUser from "./utils/useLoginUser.js";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import Shimmer from "./Components/Shimmer.js";
+import useScrollToTop from "./utils/useScrollToTop.js";
 
 const ResMenu = lazy(() => import('./Components/ResMenu.js'));
 
@@ -30,7 +31,9 @@ const MainDataContext = createContext();
 const queryClient = new QueryClient();
 
 const App = () => {
+  useScrollToTop();
   const { loginUser,setLoginUser }= useLoginUser();
+  
  
  
 

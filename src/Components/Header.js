@@ -87,18 +87,21 @@ const Header = () => {
                     </li>
                 </ul>
 
-            
+             
            {/* {isMenuBtn && */}
-            <div className={`md:hidden gap-10 shadow-md border-l-2 border-b-2 rounded-md absolute top-20 right-0 ${!isMenuBtn?'hidden':""}`} >
-                <ul className= {`  bg-slate-50 text-lg  flex gap-6 flex-col text-left  px-10 pb-4`} >
-                    <li className= {`compStyle ${openPath ==="/login"?"text-orange-400":""}`}><Link to="/"> Home </Link></li>
-                    <li className={`compStyle ${openPath ==="/About"?"text-orange-400":""}`}><Link to="/About">About</Link></li>
-                    <li className= {`compStyle whitespace-nowrap ${openPath ==="/Contact"?"text-orange-400":""}`}> <Link to="/Contact">Contact</Link> </li>
-                    <li className="flex hover:cursor-pointer compStyle whitespace-nowrap " onClick={micoinshandler}>
+           {/* {`md:hidden gap-10 shadow-md border-l-2  inset-0  bg-opacity-50 z-50 border-b-2 rounded-md absolute top-20 right-0 ${!isMenuBtn?'hidden':""}`} */}
+            <div onClick={()=>setIsMenuBtn(false)} className={`fixed inset-0 top-20    bg-black bg-opacity-50 z-50 ${!isMenuBtn?'hidden':""}`} >
+                {/* <ul onClick={(e) => e.stopPropagation()} className= {`  bg-slate-50 text-lg pt-2  flex gap-6 flex-col  items-end pr-20  pb-4`} > */}
+                <ul onClick={(e) => e.stopPropagation()} className={`bg-slate-50 text-lg pt-2 flex gap-6 flex-col items-center pl-9 pb-4 text-right  `}>
+
+                    <li onClick={()=>setIsMenuBtn(false)} className= {`compStyle ${openPath ==="/home"?"text-orange-400":""} border-b-2 pb-1`}><Link to="/"> Home </Link></li>
+                    <li onClick={()=>setIsMenuBtn(false)} className={`compStyle ${openPath ==="/About"?"text-orange-400":""} border-b-2 pb-1`}><Link to="/About">About</Link></li>
+                    <li onClick={()=>setIsMenuBtn(false)} className= {`compStyle whitespace-nowrap border-b-2 pb-1 ${openPath ==="/Contact"?"text-orange-400":""}`}> <Link to="/Contact">Contact</Link> </li>
+                    <li onClick={()=>setIsMenuBtn(false)}  className="border-b-2 pb-1 flex hover:cursor-pointer compStyle whitespace-nowrap " onClick={micoinshandler}>
                        <p>MiCoins</p> 
                        <Coins color="#F69720"/>                    
                     </li>   
-                    <li className="flex cursor-pointer  items-center gap-1 border rounded-md bg-orange-400 px-2 py-1 text-white whitespace-nowrap">
+                    <li className="border-b-2 pb-1 flex cursor-pointer  items-center gap-1 border rounded-md bg-orange-400 px-2 py-1 text-white whitespace-nowrap">
                          <a className=" " onClick={loginLogoutHandler }>{loginLogout} </a> <a >{loginUser?<LogOut size={20} />:<LogIn size={20} />}</a>
                       <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen}  setLoginUser={setLoginUser}> </LogoutModal>
                     </li>

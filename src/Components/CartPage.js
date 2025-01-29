@@ -38,7 +38,7 @@ const CartPage = ({ name, description, id, imageId, defaultPrice, price, quantit
 
       <div className='flex flex-col items-center gap-2'>
        <img
-        className='w-20 h-20 object-cover border rounded-lg'
+        className='w-24 h-24 object-cover border rounded-md'
         src={imageId?imagUrl + imageId:dummy}
         alt='product'
        />

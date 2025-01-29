@@ -76,17 +76,17 @@
 
 
 import { useEffect, useState } from "react";
-import { API_URL, itemsPageApi } from "./constant";
+import { itemsPageApi } from "./constant";
 import useMainApiData from "./useMainApiData";
 
 const useAllResData = () => {
     const [resData, setResData] = useState([]);
     const [wholeResData, setWholeResData] = useState([]);
-    const{mainData} = useMainApiData();
+    const { data: mainData, isLoading, error } = useMainApiData();
 
       useEffect(() =>{
         setResData(mainData?.cards[0]?.card?.card?.imageGridCards?.info||[] );
-      },[])
+      },[mainData])
                 
 
     // Fetch restaurant data
@@ -99,12 +99,23 @@ const useAllResData = () => {
                     const tags = collectionString.length > 1 && collectionString[2].split("&")[0];
                     const collection_id = collectionString.length > 1 && collectionString[1].split("&")[0];
                     const itemurl = `${itemsPageApi}/${collection_id}/${tags}`;
-
+                    
+                //     const fetchMainApiData = async() =>{
+                //         const{data} = await axios.get(API_URL);
+             
+                //         console.log("api call maded");
+                //         return data.data;
+                //  };
+                //  return useQuery("mainData",fetchMainApiData,{
+                //      cacheTime: 24*60*60*100,
+                //      staleTime:24*60*60*100,
+                //  })
+                                 
                     try {
                         const response = await fetch(itemurl);
                         const json = await response.json();
                         const cards = json?.data?.cards || [];
-                       
+                       console.log("food api call")
                         return cards
                             .filter(
                                 (card) =>
@@ -132,7 +143,7 @@ const useAllResData = () => {
         if (resData.length > 0) {
             fetchAllRestaurants();
         }
-    }, [mainData]);
+    }, [resData]);
     
     return wholeResData;
 };

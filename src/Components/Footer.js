@@ -5,6 +5,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaPhoneAlt, FaEnvelope,
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+    
     return (
         <div className='text-slate-500 '>    
             <footer className="bg-gray-800 text-white py-6 mt-4">

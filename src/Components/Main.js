@@ -1,15 +1,16 @@
 
 import Cards from "./Cards";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo, memo, useCallback } from "react";
 import FoodItems from "./FoodItems";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useAllResData from "../utils/useAllResData";
 import Shimmer from "./Shimmer";
-import { MainDataContext } from "../App";
+
 import Unavailable from "./Unavailable";
 import OfflineCard from "./OfflineCard";
+import useMainApiData from "../utils/useMainApiData";
 
 
 
@@ -21,16 +22,18 @@ const Main = () => {
     const onlineStatus = useOnlineStatus();
     const wholeResData = useAllResData(); 
     const[searchResData, setSearchResData] = useState([]);
-    
+    const { data: mainData, isLoading, error } = useMainApiData();
     const [resTitle,setResTitle] = useState("");
     const [unavailable , setUnavailable] = useState(false);
 
-    const {mainData,loading,fetchError} = useContext(MainDataContext);
+
     
     const[loadMore,setLoadMore]  = useState(false);
     
-
+console.log("main Comp render");
     useEffect(() => {
+        if(mainData?.cards[0]?.card?.card?.id==="swiggy_not_present") return setUnavailable(true);
+       
         const API_DATA = mainData?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const morningResData = mainData?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
         const moreData = mainData?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants||[];
@@ -39,27 +42,23 @@ const Main = () => {
         setResData(allRestaurantData);
         setAllResData(allRestaurantData);
 
-        if(mainData?.cards[0]?.card?.card?.id==="swiggy_not_present") setUnavailable(true);
-
-        
-       
         setResTitle(mainData?.cards[1]?.card?.card?.header?.title);
 
-    }, [mainData]); 
+    }, [mainData,searchResData]); 
          
 
-    const availableRes = () => {
+    const availableRes = useCallback(() => {
         const openRes = resData && resData.filter(res => res.info.availability.opened === true);
         setResData(openRes);
-    };
+    }, [resData]);
 
-    const reset = () => {
+    const reset = useCallback(() => {
         setResData(allResData);
-    }
+    }, [allResData])
     
-    const loadMoreHandler = () =>{
+    const loadMoreHandler = useCallback(() =>{
         setLoadMore(true);
-    }
+    },[])
 
     if(unavailable) return (<Unavailable/>)
     if (resData && resData.length === 0) return (<Shimmer />);
@@ -69,7 +68,7 @@ const Main = () => {
    
     return (
         <div className="w-full text-center relative mt-20">
-            <FoodItems />
+             <FoodItems />
             <div className="flex w-9/12 md:py-10 py-4  mx-auto items-center  md:items-center md:justify-between flex-col-reverse md:flex-row">
               <h1 className="font-bold md:text-2xl text-xl  whitespace-nowrap  ">{resTitle||"Top Restuarant Near You"}</h1>
               <Search allResData={allResData} resData={allResData} setResData={setResData} setSearchResData={setSearchResData} searchResData={searchResData}  />
@@ -106,4 +105,4 @@ const Main = () => {
         </div>
     );
 }
-export default Main;
+export default memo(Main);

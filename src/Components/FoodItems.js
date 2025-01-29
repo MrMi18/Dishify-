@@ -3,26 +3,20 @@ import { memo, useContext, useEffect, useState } from "react";
 import { API_URL, foodImageUrl } from "../utils/constant";
 import { Link } from "react-router-dom";
 import ShimmerCircle from "./ShimmerCircle";
-import { MainDataContext } from "../App";
+
+import useMainApiData from "../utils/useMainApiData";
 // import Shimmer from "./Shimmer";
 
 const FoodItems = () => {
     const [foodItemsList, setFoodItemList] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const {mainData} = useContext(MainDataContext);
+    const { data: mainData, isLoading, error } = useMainApiData();
     
     useEffect(() =>{
         setFoodItemList(mainData?.cards[0]?.card?.card?.imageGridCards?.info||[]);
         
     },[mainData]);
-// fetchData();
-    // const fetchData = async() =>{
-        // const data = await fetch(API_URL);
-        // const json = await data.json();
-        ;
-        
-    // };
-    // },[]);
+
 
    
     

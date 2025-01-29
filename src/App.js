@@ -18,21 +18,23 @@ import Test from "./Components/Test";
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
 import useLoginUser from "./utils/useLoginUser.js";
-import useMainApiData from "./utils/useMainApiData.js";
+
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const UserContext = createContext();
 const MainDataContext = createContext();
 
+const queryClient = new QueryClient();
+
 const App = () => {
   const { loginUser,setLoginUser }= useLoginUser();
-  const {mainData,loading,fetchError} = useMainApiData();
+ 
  
 
   
   return (
     <div>
-      {/* <NameInfo/> */}
-      <MainDataContext.Provider value={{mainData,loading,fetchError}}>
+      <QueryClientProvider client={queryClient}>
       <UserContext.Provider value={{ loginUser,setLoginUser }}>
         <Provider store={store}>
           <Header />
@@ -44,7 +46,7 @@ const App = () => {
           />
         </Provider>
       </UserContext.Provider>
-      </MainDataContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 };

@@ -12,14 +12,25 @@ const Cards = (props) =>{
     // const trimmedName = name.length>21?name.slice(0,21)+"...":name;
     
       
-  
+    const imageSrc = cloudinaryImageId
+    ? `${imagUrl}${cloudinaryImageId}?w=300&h=200&fit=fill&auto=format,compress`
+    : dummy;
     
     return (
         <div className = "border border-slate-100 hover:shadow-2xl hover:border md:w-56 w-60  my-4" style={{width:"14rem", marginTop:"1rem",height:"fit-content",borderRadius:"1rem",
     
           }}>
             
-            <img className=" h-44 w-[100%] object-cover border rounded-xl "  src={imagUrl+cloudinaryImageId||dummy}  alt="Food Image"></img>
+            <img className=" h-44 w-[100%] object-cover border rounded-xl "  
+               src={imageSrc}  alt={name||"Food Image"}
+               loading="lazy"
+               onError={(e) => {
+                    e.target.onerror = null; // Prevents infinite loop
+                    e.target.src = dummy; // Fallback to dummy image
+                }}
+               >
+                
+            </img>
             <div className="flex flex-col items-start w-[100%] ml-4 py-3 gap-1.5" >
              <h3  className="font-semibold text-md font-serif md:cursive truncate w-[93%] text-left">{name}</h3>
              <h5 className=" ">

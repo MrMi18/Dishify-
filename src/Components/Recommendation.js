@@ -71,7 +71,7 @@ const Recommendation = ({ menu }) => {
     }
 
     return (
-        <div className="flex m-2 mx-auto md:justify-between flex-col-reverse md:flex-row  sm:items-start border-b-2 w-[95%] py-4">
+        <div className="flex m-2 mx-auto md:justify-between flex-col-reverse md:flex-row  sm:items-start border-b-2 w-[96%] py-4">
             <div    className="md:w-[60%] w-[90%] ml-2 "    style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
                 
                 <p className="font-semibold text-lg">{name}</p>
@@ -92,11 +92,18 @@ const Recommendation = ({ menu }) => {
                 
                 <p className="md:text-base text-sm">{description}</p>
             </div>
-            <div className="relative m-2 md:w-36 md:h-32">
+            {/* <div className="relative m-2 md:w-36 md:h-32">
                 
                 <img className="w-44 h-44 md:w-32 md:h-32  object-cover rounded-xl" src={imageId?`${imagUrl}${imageId}`:dummy} alt="" />
-                <button onClick={() => addingItem(menu)} className="hover:bg-orange-400 hover:text-slate-50 border-gray-300 p-1 text-slate-400 w-20 absolute inset-x-4  bottom-2 md:inset-x-5 mx-auto md:bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
+                <button onClick={() => addingItem(menu)} className="hover:bg-orange-400 hover:text-slate-50 border-gray-300 p-1 md:inset-4 text-slate-400 w-20 absolute inset-x-4  px-2 bottom-2  mx-auto md:bottom-0.5 bg-slate-100 rounded-lg font-bold">ADD</button>
+            </div> */}
+            <div class="relative group">
+                <img src={imageId?`${imagUrl}${imageId}`:dummy} alt={name||"Food Item"} class="w-48 h-44 md:w-32 md:h-32 rounded-lg object-cover" />
+                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-orange-400  text-white font-bold py-2 px-6 md:px-4 rounded-xl  transition-opacity duration-300">
+                 Add
+                </button>
             </div>
+
         </div>
     )
 }

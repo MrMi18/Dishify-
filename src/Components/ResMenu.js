@@ -6,6 +6,7 @@ import MainMenu from "./MainMenu";
 import { ShimmerPostDetails } from "react-shimmer-effects";
 
 const ResMenu = () => {
+  
   const { resId } = useParams();
 
   const menuDetails = useMenuDetails(resId);

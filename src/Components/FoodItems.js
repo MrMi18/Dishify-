@@ -1,8 +1,9 @@
 
 import { memo, useContext, useEffect, useState } from "react";
-import { API_URL, foodImageUrl } from "../utils/constant";
+import {  foodImageUrl } from "../utils/constant";
 import { Link } from "react-router-dom";
 import ShimmerCircle from "./ShimmerCircle";
+import dummy from "./assets/dummy.jpg"
 
 import useMainApiData from "../utils/useMainApiData";
 // import Shimmer from "./Shimmer";
@@ -17,6 +18,7 @@ const FoodItems = () => {
         
     },[mainData]);
 
+    console.log(foodItemsList);
 
    
     
@@ -58,6 +60,7 @@ const FoodItems = () => {
                         {
                             foodItemsList && foodItemsList.map((item, index) => {
                                 const entityId = item?.entityId;
+                              
                                 if (entityId) {
                                     const collectionString = entityId.split("=");
                                     const tags = collectionString.length > 1 && collectionString[2].split("&")[0];
@@ -67,9 +70,15 @@ const FoodItems = () => {
                                         <div key={item?.id} className="flex-shrink-0 px-2 w-1/2 md:w-1/6" 
                                         // style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}
                                         >
-                                            
+                                            {console.log(`/collection/${collection_id}/${tags}`)}
                                             <Link to={`/collection/${collection_id}/${tags}`}>
-                                                <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext} />
+                                                <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext}
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.onerror = null; // Prevents infinite loop
+                                                    e.target.src = dummy; // Fallback to dummy image
+                                                }}
+                                                />
                                             </Link>
                                         </div>
                                     );

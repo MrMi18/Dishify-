@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import CartPage from './CartPage';
 import { clearItems } from '../utils/cartSlice';
@@ -209,7 +209,7 @@ const CheckoutPage = () => {
 }
 };
 
-export default CheckoutPage;
+export default memo (CheckoutPage);
 
 
 // import React from "react";

@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
@@ -6,7 +6,7 @@ import Footer from "./Components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Error from "./Components/Error";
-import ResMenu from "./Components/ResMenu";
+// import ResMenu from "./Components/ResMenu";
 import ItemsPage from "./Components/ItemsPage";
 import { Provider } from "react-redux";
 import store from "./utils/store";
@@ -20,6 +20,9 @@ import LoginSignupPage from "./Components/Login";
 import useLoginUser from "./utils/useLoginUser.js";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import Shimmer from "./Components/Shimmer.js";
+
+const ResMenu = lazy(() => import('./Components/ResMenu.js'));
 
 const UserContext = createContext();
 const MainDataContext = createContext();
@@ -38,9 +41,9 @@ const App = () => {
       <UserContext.Provider value={{ loginUser,setLoginUser }}>
         <Provider store={store}>
           <Header />
-
+          
           <Outlet />
-
+          
           <Footer />
           <ToastContainer position="top-right" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" bodyClassName="toastBody"
           />
@@ -93,7 +96,9 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/ResturantMenu/:resId",
-        element: <ResMenu />,
+        element: <Suspense fallback={<Shimmer/>}>
+           <ResMenu />
+           </Suspense>,
       },
       {
         path: "/collection/:collection_id/:tags",

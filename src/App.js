@@ -13,7 +13,7 @@ import store from "./utils/store";
 import CheckoutPage from "./Components/CheckoutPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NameInfo from "./Components/NameInfo";
+
 import Test from "./Components/Test";
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
@@ -77,10 +77,6 @@ const appRouter = createBrowserRouter([
       {
         path: "/Login",
         element: <LoginSignupPage />,
-      },
-      {
-        path: "/NameInfo",
-        element: <NameInfo />,
       },
 
       {

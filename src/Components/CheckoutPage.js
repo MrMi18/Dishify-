@@ -5,8 +5,6 @@ import CartPage from './CartPage';
 import { clearItems } from '../utils/cartSlice';
 import { toast } from 'react-toastify';
 import EmptyCart from './EmptyCart';
-import { Link } from 'react-router-dom';
-import NameInfo from './NameInfo';
 import OrderPlaced from './OrderPlaced';
 import { Trash2 } from 'lucide-react';
 import { UserContext } from '../App';

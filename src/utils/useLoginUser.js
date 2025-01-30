@@ -5,7 +5,7 @@ const useLoginUser= () =>{
     const[loginUser, setLoginUser] = useState(null); 
     const user = async() =>{
         try{
-        const res= await axios.get("http://localhost:5000/profile/view",{withCredentials:true});
+        const res= await axios.get("https://dishify-backend.onrender.com/profile/view",{withCredentials:true});
             setLoginUser(res.data);
             
     

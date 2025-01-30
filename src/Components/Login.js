@@ -65,7 +65,7 @@ const LoginForm = () => {
         // console.log("we are inside the handler ")
         try{
             console.log("we are tring to fetch");
-            const res = await axios.post("http://localhost:5000/login",{
+            const res = await axios.post("https://dishify-backend.onrender.com/login",{
             emailId: emailId,
             password: password
         },{withCredentials: true});
@@ -153,7 +153,7 @@ const SignupForm = () => {
       return ;
     }
     try{
-      const res  = await axios.post("http://localhost:5000/Signup",{
+      const res  = await axios.post("https://dishify-backend.onrender.com/Signup",{
         emailId,
         password,
         Name:name

@@ -11,10 +11,10 @@ const LogoutModal = ({ isOpen, setIsOpen, setLoginUser }) => {
   const logoutHandler = async()=>{
     try{
             
-        await axios.post("http://localhost:5000/logout",{},{withCredentials:true});
+        await axios.post("https://dishify-backend.onrender.com/logout",{},{withCredentials:true});
         
         setLoginUser(null); 
-        toast.success(" User Loggedout Succesfully");
+        toast.success(" User Logout Succesfully");
         navigate("/login");
 
     }

@@ -14,7 +14,7 @@ import CheckoutPage from "./Components/CheckoutPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Test from "./Components/Test";
+
 import ContactUs from "./Components/Contact";
 import LoginSignupPage from "./Components/Login";
 import useLoginUser from "./utils/useLoginUser.js";
@@ -79,10 +79,7 @@ const appRouter = createBrowserRouter([
         element: <LoginSignupPage />,
       },
 
-      {
-        path: "/Test",
-        element: <Test />,
-      },
+      
 
       {
         path: "/CheckoutPage",

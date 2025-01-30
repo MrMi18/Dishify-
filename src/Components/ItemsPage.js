@@ -4,6 +4,7 @@ import { useParams,Link } from "react-router-dom";
 import Cards from "./Cards";
 import Shimmer from "./Shimmer";
 import ShimmerCircle from "./ShimmerCircle";
+import Error from "./Error.js";
 
 const ItemsPage =  () =>{
 
@@ -13,17 +14,26 @@ const ItemsPage =  () =>{
     const [cards,setCards] = useState([]);
     
     useEffect(() =>{
-
+       
+       
         fetchData();
     },[collection_id])
-
-    const itemsPageApi1 = itemsPageApi+"/"+collection_id+"/"+tags;
+    
+    const cId = isNaN(collection_id)?80469:collection_id;
+    const itemsPageApi1 = itemsPageApi+"/"+cId+"/"+tags;
 
     // console.log(itemsPageApi.localeCompare("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.174214&lng=79.0600207&collection=149088&tags=layout_FestiveEvent10&sortBy=&filters=&type=rcv2&offset=0&page_type=null"));
-    console.log(itemsPageApi1);
+    // console.log(itemsPageApi1);
     const fetchData = async () =>{
-        const data = await fetch (itemsPageApi1);
-        const json = await data.json();
+        try{
+          const data = await fetch (itemsPageApi1);
+         const json = await data.json();  
+         const {cards} = json?.data;
+         setCards(cards);
+        }catch(err){
+            if(err) return <Error/>
+        }
+        
         // console.log(json.data);
         // setItemsData(json.data);
 
@@ -32,8 +42,7 @@ const ItemsPage =  () =>{
 
         // setRestaurants(restaurants); event card 
         
-        const {cards} = json?.data;
-        setCards(cards);
+       
         // console.log(cards);
        
        

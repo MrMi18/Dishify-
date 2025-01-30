@@ -64,7 +64,7 @@ const LoginForm = () => {
     const loginHander = async() =>{
         // console.log("we are inside the handler ")
         try{
-            console.log("we are tring to fetch");
+            // console.log("we are tring to fetch");
             const res = await axios.post("https://dishify-backend.onrender.com/login",{
             emailId: emailId,
             password: password

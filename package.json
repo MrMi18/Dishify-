@@ -2,6 +2,7 @@
   "name": "react-practice",
   "version": "1.0.0",
   "description": "we are currently learning Ract",
+  "proxy":"https://dishify-backend.onrender.com",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",

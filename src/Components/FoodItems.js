@@ -60,17 +60,18 @@ const FoodItems = () => {
                         {
                             foodItemsList && foodItemsList.map((item, index) => {
                                 const entityId = item?.entityId;
-                              
+                                     
                                 if (entityId) {
                                     const collectionString = entityId.split("=");
                                     const tags = collectionString.length > 1 && collectionString[2].split("&")[0];
                                     const collection_id = collectionString.length > 1 && collectionString[1].split("&")[0];
-
+                                    
                                     return (
                                         <div key={item?.id} className="flex-shrink-0 px-2 w-1/2 md:w-1/6" 
                                         // style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}
                                         >
                                             {/* {console.log(`/collection/${collection_id}/${tags}`)} */}
+                                            
                                             <Link to={`/collection/${collection_id}/${tags}`}>
                                                 <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext}
                                                 loading="lazy"

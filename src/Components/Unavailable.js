@@ -16,7 +16,7 @@ const Unavailable = () => {
                 onClick={() => navigate("/about")}
                 className="text-sm md:text-base bg-orange-400 text-white md:px-4 md:py-2 px-1 rounded hover:bg-orange-500 whitespace-nowrap"
             >
-                Learn more about me
+                Go To About Page
             </button>
         </div>
     );

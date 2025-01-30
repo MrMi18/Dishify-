@@ -18,7 +18,7 @@ const FoodItems = () => {
         
     },[mainData]);
 
-    console.log(foodItemsList);
+    // console.log(foodItemsList);
 
    
     
@@ -34,7 +34,7 @@ const FoodItems = () => {
             setCurrentIndex(currentIndex + 1);
         }
     };
-    console.log("food Items render");
+    // console.log("food Items render");
     if(foodItemsList&&foodItemsList.length===0 )return <ShimmerCircle/>
    if(foodItemsList) return (
         <div className="relative py-4 w-9/12 mx-auto border-b-2">
@@ -70,7 +70,7 @@ const FoodItems = () => {
                                         <div key={item?.id} className="flex-shrink-0 px-2 w-1/2 md:w-1/6" 
                                         // style={{ width: `${100 / Math.min(6, foodItemsList.length)}%` }}
                                         >
-                                            {console.log(`/collection/${collection_id}/${tags}`)}
+                                            {/* {console.log(`/collection/${collection_id}/${tags}`)} */}
                                             <Link to={`/collection/${collection_id}/${tags}`}>
                                                 <img className="w-full h-full object-cover " src={`${foodImageUrl}/${item?.imageId}`} alt={item?.accessibility?.alttext}
                                                 loading="lazy"

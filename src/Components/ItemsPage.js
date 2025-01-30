@@ -53,7 +53,7 @@ const ItemsPage =  () =>{
                     
                    
 
-                    return (<Link to={"/ResturantMenu/"+card?.card?.card.info.id} key={card?.card?.card.info.id}  style={{textDecoration:"none"}}>
+                    return (<Link to={"/ResturantMenu/"+card?.card?.card?.info?.id} key={card?.card?.card?.info?.id}  style={{textDecoration:"none"}}>
                     <Cards apiData={card?.card?.card} /></Link>)
                 }
                 

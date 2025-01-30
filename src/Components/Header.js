@@ -37,7 +37,7 @@ const Header = () => {
         LoginLogoutHandling()
     },[loginUser])
     const loginLogoutHandler = async () =>{
-        
+        setIsMenuBtn(false);
         if(loginUser ){
             setIsOpen(true); 
              
@@ -51,6 +51,7 @@ const Header = () => {
 1
     const cartItem = useSelector(store => store.cart.item);
     const micoinshandler = () =>{
+        setIsMenuBtn(false);
         toast.info("You've got 10,000 MiCoins to use! Feature still under development.");
     }
     const cartItemsObj = useSelector(store => store.cart.item);
@@ -63,7 +64,7 @@ const Header = () => {
     return (
         <div className={`w-full  bg-slate-50 shadow-xl h-20 py-4 top-0 flex fixed z-50`} >
          <div className="flex  items-center justify-between w-full  md:w-11/12 mx-auto  ">
-            <div className=''>
+            <div onClick={()=>isMenuBtn?setIsMenuBtn(false):null}>
                 <Link to="/">
                     <div className="h-18 w-32">
                         <img data-testid = "logo"   src={logo} className="object-fill   "/>
@@ -97,7 +98,7 @@ const Header = () => {
                     <li onClick={()=>setIsMenuBtn(false)} className= {`compStyle ${openPath ==="/home"?"text-orange-400":""} border-b-2 pb-1`}><Link to="/"> Home </Link></li>
                     <li onClick={()=>setIsMenuBtn(false)} className={`compStyle ${openPath ==="/About"?"text-orange-400":""} border-b-2 pb-1`}><Link to="/About">About</Link></li>
                     <li onClick={()=>setIsMenuBtn(false)} className= {`compStyle whitespace-nowrap border-b-2 pb-1 ${openPath ==="/Contact"?"text-orange-400":""}`}> <Link to="/Contact">Contact</Link> </li>
-                    <li onClick={()=>setIsMenuBtn(false)}  className="border-b-2 pb-1 flex hover:cursor-pointer compStyle whitespace-nowrap " onClick={micoinshandler}>
+                    <li  className="border-b-2 pb-1 flex hover:cursor-pointer compStyle whitespace-nowrap " onClick={micoinshandler}>
                        <p>MiCoins</p> 
                        <Coins color="#F69720"/>                    
                     </li>   
@@ -110,7 +111,7 @@ const Header = () => {
             {/* } */}
 
             <div className="flex gap-6 mr-4 "> 
-               <div className=" text-lg" >
+               <div onClick={()=>isMenuBtn?setIsMenuBtn(false):null} className=" text-lg" >
                      <NavLink  to="/CheckoutPage" className={ `flex gap-1 items-center relative ${openPath==="/CheckoutPage"?"text-orange-400":""}`} >Cart
                         <span>
                          

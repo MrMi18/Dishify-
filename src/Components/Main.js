@@ -30,7 +30,7 @@ const Main = () => {
     
     const[loadMore,setLoadMore]  = useState(false);
     
-console.log("main Comp render");
+// console.log("main Comp render");
     useEffect(() => {
         if(mainData?.cards[0]?.card?.card?.id==="swiggy_not_present") return setUnavailable(true);
        

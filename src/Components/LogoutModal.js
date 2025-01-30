@@ -27,7 +27,7 @@ const LogoutModal = ({ isOpen, setIsOpen, setLoginUser }) => {
 
   return (
 <div  onClick={()=>setIsOpen(false)} className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ${isOpen?'':'hidden'}`}>
-      <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-lg p-6 w-80">
+      <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-lg p-6">
         <h2 className="text-xl font-bold mb-4 text-black">Logout</h2>
         <p className='text-black'>Are you sure you want to logout?</p>
         <div className="mt-6 flex justify-end">

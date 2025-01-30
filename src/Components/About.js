@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Contact from './Contact';
 
 const About = () => {
-  console.log("rendered");
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 mt-20">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-xl w-full">

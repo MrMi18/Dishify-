@@ -61,6 +61,7 @@ import { useDispatch } from "react-redux";
 import { addItems } from "../utils/cartSlice";
 import { imagUrl } from "../utils/constant";
 import dummy from "./assets/dummy.jpg"
+import { toast } from "react-toastify";
 
 const Recommendation = ({ menu }) => {
     const { name, imageId, description, itemAttribute, price, defaultPrice } = menu;
@@ -68,6 +69,9 @@ const Recommendation = ({ menu }) => {
 
     const addingItem = (menu) => {
         dispatch(addItems({ id: menu.id, data: menu }));
+        toast.success("Item added in cart",{
+            position: 'bottom-right',
+          });
     }
 
     return (

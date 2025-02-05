@@ -11,6 +11,7 @@ import Shimmer from "./Shimmer";
 import Unavailable from "./Unavailable";
 import OfflineCard from "./OfflineCard";
 import useMainApiData from "../utils/useMainApiData";
+import { ShimmerTitle } from "react-shimmer-effects";
 
 
 
@@ -64,6 +65,7 @@ const Main = () => {
     if (resData && resData.length === 0) return (<Shimmer />);
     if (allResData && allResData.length === 0) return <Shimmer/>;
     if (!onlineStatus) return <OfflineCard/>;
+    if(loadMore && wholeResData.length === 0 ) return <ShimmerTitle line={2} gap={10} variant="primary" />
     
    
     return (
